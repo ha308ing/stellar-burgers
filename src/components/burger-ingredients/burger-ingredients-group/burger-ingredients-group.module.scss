@@ -1,0 +1,22 @@
+.container {
+  composes: mb-2 from global;
+}
+
+.header {
+  composes: mb-6 text text_type_main-medium from global;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.group {
+  composes: mb-10 pl-4 pr-4 from global;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+}
+
+.group > * {
+  flex-basis: 45%;
+}
