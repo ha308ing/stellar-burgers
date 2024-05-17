@@ -1,4 +1,4 @@
-# Stellar Burgers
+# Stellar Burgers [![Netlify Status](https://api.netlify.com/api/v1/badges/0cdc7d13-db54-4edd-90fc-0d9a85ec95ff/deploy-status)](https://app.netlify.com/sites/starlit-wisp-9e886a/deploys)
 
 React-приложение бургерной, с конструктором бургеров и лентой заказов.
 
