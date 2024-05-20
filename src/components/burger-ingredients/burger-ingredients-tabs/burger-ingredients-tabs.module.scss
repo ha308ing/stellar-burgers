@@ -1,0 +1,10 @@
+.container {
+  composes: mb-10 from global;
+  display: flex;
+  flex-flow: row nowrap;
+  text-transform: capitalize;
+}
+
+.container > * {
+  flex-grow: 1;
+}
