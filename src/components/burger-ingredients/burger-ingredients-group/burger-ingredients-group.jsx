@@ -20,7 +20,7 @@ export class BurgerIngredientsGroup extends React.Component {
 }
 
 BurgerIngredientsGroup.propTypes = {
-  groupRef: PropTypes.func,
-  groupName: PropTypes.string,
-  ingredients: PropTypes.arrayOf(ingredientWithQtyShape),
+  groupRef: PropTypes.func.isRequired,
+  groupName: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf(ingredientWithQtyShape.isRequired).isRequired,
 };

@@ -53,6 +53,6 @@ export class BurgerIngredients extends React.Component {
 }
 
 BurgerIngredients.propTypes = {
-  groups: PropTypes.arrayOf(PropTypes.string),
-  ingredients: PropTypes.shape({ index: ingredientWithQtyShape }),
+  groups: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  ingredients: PropTypes.shape({ index: ingredientWithQtyShape }).isRequired,
 };

@@ -84,6 +84,6 @@ export class BurgerConstructor extends React.Component {
 BurgerConstructor.propTypes = {
   order: PropTypes.shape({
     bun: ingredientWithQtyShape.isRequired,
-    inner: PropTypes.arrayOf(ingredientWithQtyShape).isRequired,
+    inner: PropTypes.arrayOf(ingredientWithQtyShape.isRequired).isRequired,
   }),
 };
