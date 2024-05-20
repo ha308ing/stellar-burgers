@@ -27,8 +27,8 @@ export class BurgerConstructor extends React.Component {
         <div className={styles.ingredients}>
           {bun ? (
             <ConstructorElement
-              price={bun.price / 2}
-              text={bun.name}
+              price={bun.price}
+              text={bun.name + " (верх)"}
               thumbnail={bun.image}
               type="top"
               isLocked={true}
@@ -59,8 +59,8 @@ export class BurgerConstructor extends React.Component {
 
           {bun && (
             <ConstructorElement
-              price={bun.price / 2}
-              text={bun.name}
+              price={bun.price}
+              text={bun.name + " (низ)"}
               thumbnail={bun.image}
               type="bottom"
               isLocked={true}
