@@ -14,16 +14,11 @@ export class AppHeader extends React.Component {
       <header className={styles.header}>
         <nav className={styles.nav}>
           <div className={styles.leftNav}>
-            <HeaderLink
-              Icon={BurgerIcon}
-              href="#"
-              label="Конструктор"
-              isActive={true}
-            />
-            <HeaderLink Icon={ListIcon} href="#" label="Лента заказов" />
+            <HeaderLink Icon={BurgerIcon} label="Конструктор" isActive={true} />
+            <HeaderLink Icon={ListIcon} label="Лента заказов" />
           </div>
           <div className={styles.rightNav}>
-            <HeaderLink Icon={ProfileIcon} href="#" label="Личный кабинет" />
+            <HeaderLink Icon={ProfileIcon} label="Личный кабинет" />
           </div>
           <div className={styles.centerNav}>
             <Logo />
