@@ -16,7 +16,10 @@ export class BurgerConstructor extends React.Component {
     const ingredients = [bun, ...inner];
 
     const total = ingredients.reduce((total, ingredient) => {
-      return (total += ingredient == null ? 0 : ingredient.price);
+      if (ingredient == null) return total;
+      const { type, price } = ingredient;
+      const isBun = type === "bun";
+      return (total += isBun ? price * 2 : price);
     }, 0);
 
     return (
