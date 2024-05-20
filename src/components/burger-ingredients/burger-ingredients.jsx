@@ -6,22 +6,13 @@ import PropTypes from "prop-types";
 import { ingredientWithQtyShape } from "../../utils/prop-types";
 
 export class BurgerIngredients extends React.Component {
-  constructor(props) {
-    super(props);
+  scrollPoints = [];
 
-    this.scrollPoints = [];
-
-    this.setScrollPoint = (index) => (element) => {
-      this.scrollPoints[index] = element;
-    };
-  }
-
-  state = {
-    activeTab: null,
+  setScrollPoint = (index) => (element) => {
+    this.scrollPoints[index] = element;
   };
 
   scrollToView = (index) => {
-    this.setState({ activeTab: index });
     this.scrollPoints[index].scrollIntoView({ behavior: "smooth" });
   };
 
@@ -32,8 +23,7 @@ export class BurgerIngredients extends React.Component {
       <section className={styles.container}>
         <BurgerIngredientsTabs
           groups={groups}
-          scrollToView={this.scrollToView}
-          activeGroupIndex={this.state.activeTab}
+          clickHandler={this.scrollToView}
         />
         <section className={styles.ingredients}>
           {Object.entries(ingredients).map(

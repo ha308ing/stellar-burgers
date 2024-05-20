@@ -4,8 +4,12 @@ import styles from "./burger-ingredients-tabs.module.scss";
 import PropTypes from "prop-types";
 
 export class BurgerIngredientsTabs extends React.Component {
+  state = {
+    activeTab: null,
+  };
+
   render() {
-    const { groups, activeGroupIndex, scrollToView } = this.props;
+    const { groups, clickHandler } = this.props;
 
     return (
       <section className={styles.container}>
@@ -13,9 +17,10 @@ export class BurgerIngredientsTabs extends React.Component {
           <Tab
             key={index}
             value={group}
-            active={activeGroupIndex === index}
+            active={this.state.activeTab === index}
             onClick={() => {
-              scrollToView(index);
+              this.setState({ activeTab: index });
+              clickHandler(index);
             }}
           >
             {group}
@@ -29,5 +34,5 @@ export class BurgerIngredientsTabs extends React.Component {
 BurgerIngredientsTabs.propTypes = {
   group: PropTypes.string,
   activeGroupIndex: PropTypes.number,
-  scrollToView: PropTypes.func,
+  clickHandler: PropTypes.func,
 };
