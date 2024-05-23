@@ -1,0 +1,9 @@
+.container {
+  position: absolute;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: var(--background);
+  filter: opacity(0.6);
+  inset: 0;
+}

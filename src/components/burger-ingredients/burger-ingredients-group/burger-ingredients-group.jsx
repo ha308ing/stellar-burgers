@@ -1,8 +1,8 @@
 import React from "react";
-import { BugerIngredient } from "../burger-ingredient/burger-ingredient";
 import styles from "./burger-ingredients-group.module.scss";
 import PropTypes from "prop-types";
 import { ingredientWithQtyShape } from "../../../utils/prop-types";
+import { BurgerIngredientWithModal } from "../burger-ingredient/burger-ingredient-with-modal";
 
 export const BurgerIngredientsGroup = React.forwardRef(
   ({ groupName, ingredients }, ref) => (
@@ -10,7 +10,7 @@ export const BurgerIngredientsGroup = React.forwardRef(
       <header className={styles.header}>{groupName}</header>
       <div className={styles.group}>
         {ingredients.map((ingredient) => (
-          <BugerIngredient key={ingredient._id} {...ingredient} />
+          <BurgerIngredientWithModal key={ingredient._id} {...ingredient} />
         ))}
       </div>
     </section>

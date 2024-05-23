@@ -1,0 +1,30 @@
+.container {
+  composes: pt-30 pb-30 from global;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.header {
+  composes: text text_type_digits-large mb-8 from global;
+  text-shadow:
+    0 0 8px #3333ff80,
+    0 0 16px #3333ff40,
+    0 8px 8px #3333ff40;
+}
+
+.subHeader {
+  composes: text text_type_main-medium mb-15 from global;
+}
+
+.image {
+  composes: mb-15 from global;
+}
+
+.message {
+  composes: text text_type_main-default mb-2 from global;
+}
+
+.subMessage {
+  composes: text text_type_main-default text_color_inactive from global;
+}
