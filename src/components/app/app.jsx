@@ -6,7 +6,7 @@ import { BurgerConstructor } from "../burger-constructor/burger-constructor";
 import { ingredientsRaw, order } from "../../utils/mock-data";
 import { formatIngredients, flatOrder, addIngredientsQty } from "../../utils";
 
-function App() {
+const App = () => {
   const [orderState] = useState(order);
   const orderFlatted = flatOrder(orderState);
   const ingredientsQty = addIngredientsQty(ingredientsRaw, orderFlatted);
@@ -26,6 +26,6 @@ function App() {
       </main>
     </section>
   );
-}
+};
 
 export default App;

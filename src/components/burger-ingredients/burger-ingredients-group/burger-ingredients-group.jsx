@@ -4,23 +4,20 @@ import styles from "./burger-ingredients-group.module.scss";
 import PropTypes from "prop-types";
 import { ingredientWithQtyShape } from "../../../utils/prop-types";
 
-export class BurgerIngredientsGroup extends React.Component {
-  render() {
-    return (
-      <section className={styles.container} ref={this.props.groupRef}>
-        <header className={styles.header}>{this.props.groupName}</header>
-        <div className={styles.group}>
-          {this.props.ingredients.map((ingredient, index) => (
-            <BugerIngredient key={index} {...ingredient} />
-          ))}
-        </div>
-      </section>
-    );
-  }
-}
+export const BurgerIngredientsGroup = React.forwardRef(
+  ({ groupName, ingredients }, ref) => (
+    <section className={styles.container} ref={ref}>
+      <header className={styles.header}>{groupName}</header>
+      <div className={styles.group}>
+        {ingredients.map((ingredient) => (
+          <BugerIngredient key={ingredient._id} {...ingredient} />
+        ))}
+      </div>
+    </section>
+  ),
+);
 
 BurgerIngredientsGroup.propTypes = {
-  groupRef: PropTypes.func.isRequired,
   groupName: PropTypes.string.isRequired,
   ingredients: PropTypes.arrayOf(ingredientWithQtyShape.isRequired).isRequired,
 };
