@@ -20,60 +20,58 @@ export const BurgerConstructor = ({ order }) => {
   }, 0);
 
   return (
-    <>
-      <section className={styles.container}>
-        <div className={styles.ingredients}>
-          {bun ? (
-            <ConstructorElement
-              price={bun.price}
-              text={bun.name + " (верх)"}
-              thumbnail={bun.image}
-              type="top"
-              isLocked={true}
-              extraClass={styles.bunIngredient}
-            />
-          ) : (
-            <div className={styles.noIngredients}>Выберете булку</div>
-          )}
-          <div className={styles.innerIngredients}>
-            {inner.length > 0 &&
-              inner.map((ingredient, index) => (
-                <div className={styles.ingredient} key={ingredient._id + index}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    price={ingredient.price}
-                    text={ingredient.name}
-                    thumbnail={ingredient.image}
-                    key={ingredient._id}
-                    isLocked={false}
-                  />
-                </div>
-              ))}
-          </div>
-
-          {inner.length < 1 && (
-            <div className={styles.noIngredients}>Выберете начинки и соусы</div>
-          )}
-
-          {bun && (
-            <ConstructorElement
-              price={bun.price}
-              text={bun.name + " (низ)"}
-              thumbnail={bun.image}
-              type="bottom"
-              isLocked={true}
-              extraClass={styles.bunIngredient}
-            />
-          )}
+    <section className={styles.container}>
+      <div className={styles.ingredients}>
+        {bun ? (
+          <ConstructorElement
+            price={bun.price}
+            text={bun.name + " (верх)"}
+            thumbnail={bun.image}
+            type="top"
+            isLocked={true}
+            extraClass={styles.bunIngredient}
+          />
+        ) : (
+          <div className={styles.noIngredients}>Выберете булку</div>
+        )}
+        <div className={styles.innerIngredients}>
+          {inner.length > 0 &&
+            inner.map((ingredient, index) => (
+              <div className={styles.ingredient} key={ingredient._id + index}>
+                <DragIcon type="primary" />
+                <ConstructorElement
+                  price={ingredient.price}
+                  text={ingredient.name}
+                  thumbnail={ingredient.image}
+                  key={ingredient._id}
+                  isLocked={false}
+                />
+              </div>
+            ))}
         </div>
-        <div className={styles.summary}>
-          <div className={styles.total}>
-            {total} <CurrencyIcon type="primary" />
-          </div>
-          <ButtonCheckoutOrder />
+
+        {inner.length < 1 && (
+          <div className={styles.noIngredients}>Выберете начинки и соусы</div>
+        )}
+
+        {bun && (
+          <ConstructorElement
+            price={bun.price}
+            text={bun.name + " (низ)"}
+            thumbnail={bun.image}
+            type="bottom"
+            isLocked={true}
+            extraClass={styles.bunIngredient}
+          />
+        )}
+      </div>
+      <div className={styles.summary}>
+        <div className={styles.total}>
+          {total} <CurrencyIcon type="primary" />
         </div>
-      </section>
-    </>
+        <ButtonCheckoutOrder />
+      </div>
+    </section>
   );
 };
 
