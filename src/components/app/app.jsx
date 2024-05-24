@@ -10,7 +10,6 @@ import { ModalLoading } from "../modal-loading/modal-loading";
 import { ModalConnectError } from "../modal-connect-error/modal-connect-error";
 
 const App = () => {
-  const [orderState] = useState(order);
   const [ingredientsApi, setIngredientsApi] = useState({
     status: "loading",
     data: [],
@@ -40,7 +39,7 @@ const App = () => {
   };
 
   const ingredientsRaw = ingredientsApi.data;
-  const orderFlatted = flatOrder(orderState);
+  const orderFlatted = flatOrder(order);
   const ingredientsQty = addIngredientsQty(ingredientsRaw, orderFlatted);
 
   const [ingredientsGrouped, ingredientsGroups] =
@@ -58,7 +57,7 @@ const App = () => {
           ingredients={ingredientsGrouped}
           groups={ingredientsGroups}
         />
-        <BurgerConstructor order={orderState} />
+        <BurgerConstructor order={order} />
       </main>
     </section>
   );
