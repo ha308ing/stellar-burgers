@@ -10,7 +10,10 @@ export const BurgerIngredientsGroup = React.forwardRef(
       <header className={styles.header}>{groupName}</header>
       <div className={styles.group}>
         {ingredients.map((ingredient) => (
-          <BurgerIngredientWithModal key={ingredient._id} {...ingredient} />
+          <BurgerIngredientWithModal
+            key={ingredient._id}
+            ingredient={ingredient}
+          />
         ))}
       </div>
     </section>
