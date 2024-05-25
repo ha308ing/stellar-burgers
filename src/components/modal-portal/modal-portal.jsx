@@ -15,10 +15,12 @@ export const ModalPortal = ({ children, closeModalHandler = null }) => {
   );
 
   useEffect(() => {
-    if (closeModalHandler) document.addEventListener("keyup", keyHandler);
+    if (!closeModalHandler) return;
+
+    document.addEventListener("keyup", keyHandler);
 
     return () => {
-      if (closeModalHandler) document.removeEventListener("keyup", keyHandler);
+      document.removeEventListener("keyup", keyHandler);
     };
   }, [keyHandler, closeModalHandler]);
 
