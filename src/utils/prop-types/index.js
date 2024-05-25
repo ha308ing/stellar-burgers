@@ -1,4 +1,6 @@
 export {
-  ingredientWithQty,
+  ingredientType,
+  ingredientShape,
+  ingredientWithQtyType,
   ingredientWithQtyShape,
-} from "./ingredient-with-qty-shape";
+} from "./ingredient-prop-types";

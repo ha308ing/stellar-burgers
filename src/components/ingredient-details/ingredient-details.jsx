@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./ingredient-details.module.scss";
-import { ingredientWithQty } from "../../utils/prop-types";
+import { ingredientWithQtyType } from "../../utils/prop-types";
 
 export const IngredientDetails = ({ ingredient }) => {
   const { image_large, name, calories, proteins, fat, carbohydrates } =
@@ -36,5 +36,5 @@ export const IngredientDetails = ({ ingredient }) => {
 };
 
 IngredientDetails.propTypes = {
-  ingredient: PropTypes.shape(ingredientWithQty).isRequired,
+  ingredient: PropTypes.shape(ingredientWithQtyType).isRequired,
 };

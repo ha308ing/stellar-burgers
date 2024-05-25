@@ -5,7 +5,7 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import { ingredientWithQtyShape } from "../../utils/prop-types";
+import { ingredientShape } from "../../utils/prop-types";
 import { ButtonCheckoutOrder } from "./button-checkout/button-checkout-order";
 
 export const BurgerConstructor = ({ order }) => {
@@ -77,7 +77,7 @@ export const BurgerConstructor = ({ order }) => {
 
 BurgerConstructor.propTypes = {
   order: PropTypes.shape({
-    bun: ingredientWithQtyShape.isRequired,
-    inner: PropTypes.arrayOf(ingredientWithQtyShape.isRequired).isRequired,
+    bun: ingredientShape.isRequired,
+    inner: PropTypes.arrayOf(ingredientShape.isRequired).isRequired,
   }),
 };

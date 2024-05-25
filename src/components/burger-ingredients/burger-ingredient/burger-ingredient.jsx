@@ -4,7 +4,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import styles from "./burger-ingredient.module.scss";
-import { ingredientWithQty } from "../../../utils/prop-types";
+import { ingredientWithQtyType } from "../../../utils/prop-types";
 
 export const BugerIngredient = ({ ingredient, handleClick }) => {
   const { image, image_mobile, image_large, name, price, qty } = ingredient;
@@ -28,6 +28,6 @@ export const BugerIngredient = ({ ingredient, handleClick }) => {
 };
 
 BugerIngredient.propTypes = {
-  ingredient: PropTypes.shape(ingredientWithQty).isRequired,
+  ingredient: PropTypes.shape(ingredientWithQtyType).isRequired,
   handleClick: PropTypes.func.isRequired,
 };
