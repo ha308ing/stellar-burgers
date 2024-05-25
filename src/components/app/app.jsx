@@ -7,7 +7,7 @@ import { order } from "../../utils/mock-data";
 import { formatIngredients, flatOrder, addIngredientsQty } from "../../utils";
 import { ModalLoading } from "../modal-loading/modal-loading";
 import { ModalConnectError } from "../modal-connect-error/modal-connect-error";
-import { burgersService } from "../../utils/burgers-api-service";
+import { burgersApiController } from "../../utils/api/burgers-api-controller";
 
 const App = () => {
   const [ingredients, setIngredients] = useState({
@@ -16,12 +16,12 @@ const App = () => {
   });
 
   useEffect(() => {
-    burgersService.getIngredients(setIngredients);
+    burgersApiController.getIngredients(setIngredients);
   }, []);
 
   const handleRetry = () => {
     setIngredients({ status: "loading", data: [] });
-    burgersService.getIngredients(setIngredients);
+    burgersApiController.getIngredients(setIngredients);
   };
 
   const ingredientsRaw = ingredients.data;
