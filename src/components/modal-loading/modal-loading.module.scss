@@ -1,0 +1,24 @@
+.content {
+  composes: text text_type_main-large p-10 from global;
+  animation: move-background 0.5s linear infinite;
+  background-clip: text;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--text-primary-color) 50%,
+    transparent
+  );
+  background-size: 50% 100%;
+  color: transparent;
+  text-align: center;
+}
+
+@keyframes move-background {
+  from {
+    background-position: 0%;
+  }
+
+  to {
+    background-position: 100%;
+  }
+}

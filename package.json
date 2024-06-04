@@ -1,7 +1,10 @@
 {
-  "name": "burger-test",
+  "name": "stellar-burgers",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.13.1"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -10,9 +13,12 @@
     "@types/node": "^16.18.97",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
+    "@ya.praktikum/react-developer-burger-ui-components": "1.14.0",
+    "minireset.css": "0.0.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
+    "sass": "1.77.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -20,12 +26,49 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "run-p prettier eslint stylelint",
+    "stylelint": "stylelint \"./src/**/*.{css,scss}\"",
+    "prettier": "prettier ./src --check",
+    "eslint": "eslint ./src"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.{js,jsx,ts,tsx}"
+        ],
+        "rules": {
+          "no-unused-vars": "error"
+        }
+      }
+    ]
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard-scss",
+      "stylelint-config-css-modules",
+      "stylelint-config-idiomatic-order"
+    ],
+    "rules": {
+      "scss/dollar-variable-pattern": null,
+      "selector-class-pattern": [
+        "^([a-z][a-z0-9]*)([A-Z_][a-z0-9]+)*$",
+        {
+          "message": "Expected class selector \"%s\" to be camelCase or _"
+        }
+      ],
+      "value-keyword-case": null
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
   },
   "browserslist": {
@@ -39,5 +82,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.3.0",
+    "@commitlint/config-conventional": "19.2.2",
+    "commitlint": "19.3.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-config-standard": "17.1.0",
+    "lefthook": "1.6.11",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.2.5",
+    "stylelint": "16.5.0",
+    "stylelint-config-css-modules": "4.4.0",
+    "stylelint-config-idiomatic-order": "10.0.0",
+    "stylelint-config-standard-scss": "13.1.0"
   }
 }

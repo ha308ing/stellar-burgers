@@ -1,0 +1,19 @@
+@use "../../styles/variables.scss";
+
+.container {
+  max-inline-size: 600px;
+}
+
+.ingredients {
+  --height-delta: 12em;
+
+  composes: custom_scroll from global;
+  overflow: auto;
+  max-block-size: calc(100vh - var(--height-delta));
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .ingredients {
+    --height-delta: 20em;
+  }
+}
