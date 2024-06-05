@@ -4,20 +4,18 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
-import { ingredientShape } from "../../utils/prop-types";
 import { ButtonCheckoutOrder } from "./button-checkout/button-checkout-order";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  burgerConstructorActions,
+  selectBurger,
+  selectBurgerTotal,
+} from "../../services/burger-constructor";
 
-export const BurgerConstructor = ({ order }) => {
-  const { bun = null, inner = [] } = order;
-  const ingredients = [bun, ...inner];
-
-  const total = ingredients.reduce((total, ingredient) => {
-    if (ingredient == null) return total;
-    const { type, price } = ingredient;
-    const isBun = type === "bun";
-    return (total += isBun ? price * 2 : price);
-  }, 0);
+export const BurgerConstructor = () => {
+  const { bun = null, inner = [] } = useSelector(selectBurger);
+  const total = useSelector(selectBurgerTotal);
+  const dispatch = useDispatch();
 
   return (
     <section className={styles.container}>
@@ -30,6 +28,11 @@ export const BurgerConstructor = ({ order }) => {
             type="top"
             isLocked={true}
             extraClass={styles.bunIngredient}
+            handleClose={() =>
+              dispatch(
+                burgerConstructorActions.removeIngredient(bun.internalId),
+              )
+            }
           />
         ) : (
           <div className={styles.noIngredients}>Выберете булку</div>
@@ -45,6 +48,13 @@ export const BurgerConstructor = ({ order }) => {
                   thumbnail={ingredient.image}
                   key={ingredient._id}
                   isLocked={false}
+                  handleClose={() =>
+                    dispatch(
+                      burgerConstructorActions.removeIngredient(
+                        ingredient.internalId,
+                      ),
+                    )
+                  }
                 />
               </div>
             ))}
@@ -62,6 +72,11 @@ export const BurgerConstructor = ({ order }) => {
             type="bottom"
             isLocked={true}
             extraClass={styles.bunIngredient}
+            handleClose={() =>
+              dispatch(
+                burgerConstructorActions.removeIngredient(bun.internalId),
+              )
+            }
           />
         )}
       </div>
@@ -73,11 +88,4 @@ export const BurgerConstructor = ({ order }) => {
       </div>
     </section>
   );
-};
-
-BurgerConstructor.propTypes = {
-  order: PropTypes.shape({
-    bun: ingredientShape.isRequired,
-    inner: PropTypes.arrayOf(ingredientShape.isRequired).isRequired,
-  }),
 };

@@ -2,8 +2,11 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
 import styles from "./burger-ingredients-tabs.module.scss";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectGroups } from "../../../services/ingredients";
 
-export const BurgerIngredientsTabs = ({ groups, clickHandler }) => {
+export const BurgerIngredientsTabs = ({ clickHandler }) => {
+  const groups = useSelector(selectGroups);
   const [activeTab, setActiveTab] = useState();
 
   return (
@@ -26,6 +29,5 @@ export const BurgerIngredientsTabs = ({ groups, clickHandler }) => {
 };
 
 BurgerIngredientsTabs.propTypes = {
-  groups: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   clickHandler: PropTypes.func,
 };

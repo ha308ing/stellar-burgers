@@ -4,13 +4,30 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import styles from "./burger-ingredient.module.scss";
-import { ingredientWithQtyType } from "../../../utils/prop-types";
+import {
+  burgerConstructorActions,
+  selectIngredientQty,
+} from "../../../services/burger-constructor";
+import { selectIngredient } from "../../../services/ingredients";
+import { ingredientActions } from "../../../services/ingredient";
+import { useDispatch, useSelector } from "react-redux";
 
-export const BugerIngredient = ({ ingredient, handleClick }) => {
-  const { image, image_mobile, image_large, name, price, qty } = ingredient;
+export const BugerIngredient = ({ ingredientId, handleClick }) => {
+  const ingredient = useSelector(selectIngredient(ingredientId));
+  const qty = useSelector(selectIngredientQty(ingredientId));
+  const { image, image_mobile, image_large, name, price } = ingredient;
+
+  const dispatch = useDispatch();
 
   return (
-    <section className={styles.container} onClick={handleClick}>
+    <section
+      className={styles.container}
+      onClick={() => {
+        dispatch(ingredientActions.setIngredient(ingredient));
+        dispatch(burgerConstructorActions.addIngredient(ingredient));
+        handleClick();
+      }}
+    >
       <img
         srcSet={`${image_mobile} 1x, ${image} 2x, ${image_large} 3x`}
         alt={name}
@@ -22,12 +39,12 @@ export const BugerIngredient = ({ ingredient, handleClick }) => {
         {price} <CurrencyIcon type="primary" />
       </div>
       <div>{name}</div>
-      {qty && <Counter count={qty} extraClass={styles.qty} />}
+      {qty > 0 && <Counter count={qty} extraClass={styles.qty} />}
     </section>
   );
 };
 
 BugerIngredient.propTypes = {
-  ingredient: PropTypes.shape(ingredientWithQtyType).isRequired,
+  ingredientId: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
