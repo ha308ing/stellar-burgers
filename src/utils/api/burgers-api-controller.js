@@ -1,7 +1,7 @@
 import { burgersApiService } from "./burgers-api-service";
 
-export const burgersApiController = {
-  getIngredients: (stateSetter) => {
+class BurgersApiController {
+  getIngredientsToState = (stateSetter) => {
     const { abortController, requestPromise } =
       burgersApiService.getIngredients();
 
@@ -9,10 +9,12 @@ export const burgersApiController = {
       .then(({ data }) => {
         stateSetter({ status: "ok", data });
       })
-      .catch((_) => {
+      .catch((error) => {
         stateSetter({ status: "error", data: [] });
       });
 
     return abortController;
-  },
-};
+  };
+}
+
+export const burgersApiController = new BurgersApiController();
