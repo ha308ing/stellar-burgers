@@ -8,6 +8,7 @@ export const ingredientsSlice = createSlice({
   name: "ingredients",
   initialState,
   selectors,
+
   extraReducers: (builder) => {
     builder
       .addCase(getIngredientsThunk.pending, (state) => {
