@@ -31,8 +31,8 @@ export const orderSlice = createSlice({
 });
 
 export const orderActions = {
-  postOrder: postOrderThunk,
   ...orderSlice.actions,
+  postOrder: postOrderThunk,
 };
 
 export const { selectOrderInfo } = orderSlice.selectors;
