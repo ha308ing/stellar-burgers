@@ -1,21 +1,22 @@
-@use "../../styles/variables.scss";
+@use "../../styles/variables";
+@use "../../styles/colors";
 
 .header {
-  display: grid;
   width: 100%;
-  grid-template: repeat(2, auto) / 1fr;
-  grid-template-areas: "nav" "heading";
+  background-color: colors.$grey;
   margin-inline: auto;
-  max-inline-size: variables.$app-max-inline-size;
 }
 
 .nav {
-  composes: mb-8 from global;
+  composes: py-5 from global;
   display: grid;
   align-items: center;
   grid-area: nav;
-  grid-template: repeat(2, auto) / 2fr 1fr;
-  grid-template-areas: "logo logo" "left right";
+  grid-template:
+    "logo logo" auto
+    "left right" auto / 2fr 1fr;
+  margin-inline: auto;
+  max-inline-size: variables.$app-max-inline-size;
 }
 
 .navPart {
@@ -28,11 +29,6 @@
 
 .centerNav {
   grid-area: logo;
-}
-
-.heading {
-  composes: text text_type_main-large mb-5 from global;
-  grid-area: heading;
 }
 
 @media (min-width: variables.$breakpoint-md) {
