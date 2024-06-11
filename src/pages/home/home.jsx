@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import styles from "./home.module.scss";
 import {
-  AppHeader,
   BurgerIngredients,
   BurgerConstructor,
   ModalLoading,
   ModalConnectError,
+  LayoutMain,
 } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -31,12 +31,14 @@ export const HomePage = () => {
   ) : status === STATUSES.REJECTED || ingredientsQty === 0 ? (
     <ModalConnectError handleRetry={handleRetry} />
   ) : (
-    <section className={styles.container}>
-      <AppHeader />
-      <main className={styles.main}>
-        <BurgerIngredients />
-        <BurgerConstructor />
-      </main>
-    </section>
+    <LayoutMain>
+      <div className={styles.container}>
+        <h1 className={styles.heading}>Соберите бургер</h1>
+        <main className={styles.main}>
+          <BurgerIngredients />
+          <BurgerConstructor />
+        </main>
+      </div>
+    </LayoutMain>
   );
 };

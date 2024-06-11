@@ -21,6 +21,5 @@ export const AppHeader = () => (
         <Logo />
       </div>
     </nav>
-    <h1 className={styles.heading}>Соберите бургер</h1>
   </header>
 );

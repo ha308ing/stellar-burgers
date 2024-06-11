@@ -1,21 +1,18 @@
 @use "../../styles/variables.scss";
 
 .container {
-  display: grid;
-  align-content: start;
-  padding: 0;
-  margin: 0;
-  block-size: 100vh;
-  grid-template-rows: auto 1fr;
-  overflow-y: hidden;
+  max-width: variables.$app-max-inline-size;
+  margin: 0 auto;
 }
 
 .main {
   display: flex;
-  max-width: variables.$app-max-inline-size;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: center;
-  margin: 0 auto;
-  gap: 48px;
+  justify-content: space-around;
+  gap: 3vw;
+}
+
+.heading {
+  composes: text text_type_main-large mb-5 from global;
 }

@@ -1,0 +1,14 @@
+@use "../../styles/colors";
+
+.container {
+  display: grid;
+  overflow: hidden;
+  block-size: 100vh;
+  grid-template:
+    "header" auto
+    "content" 1fr / 100%;
+}
+
+.mainContainer {
+  composes: pt-8 pb-8 from global;
+}
