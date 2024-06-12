@@ -8,3 +8,4 @@ export { ModalLoading } from "./modal-loading/modal-loading";
 export { ModalPortal } from "./modal-portal/modal-portal";
 export { OrderDetails } from "./order-details/order-details";
 export { LayoutMain } from "./layout-main/layout-main";
+export { LayoutForm } from "./layout-form";
