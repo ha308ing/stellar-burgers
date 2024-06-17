@@ -1,0 +1,7 @@
+@use "../../styles/variables";
+
+@media (min-width: variables.$breakpoint-md) {
+  .container {
+    margin-block-start: variables.$profile-edit-top-space;
+  }
+}
