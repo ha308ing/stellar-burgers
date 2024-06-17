@@ -1,10 +1,7 @@
+import { IngredientShape } from "../../utils/prop-types";
 import styles from "./ingredient-details.module.scss";
-import { selectIngredient } from "../../services/ingredient";
-import { useSelector } from "react-redux";
 
-export const IngredientDetails = () => {
-  const ingredient = useSelector(selectIngredient);
-
+export const IngredientDetails = ({ ingredient }) => {
   const { image_large, name, calories, proteins, fat, carbohydrates } =
     ingredient;
 
@@ -35,4 +32,8 @@ export const IngredientDetails = () => {
       </div>
     </section>
   );
+};
+
+IngredientDetails.propTypes = {
+  ingredient: IngredientShape.isRequired,
 };
