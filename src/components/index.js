@@ -3,9 +3,12 @@ export { AppHeader } from "./app-header/app-header";
 export { BurgerConstructor } from "./burger-constructor/burger-constructor";
 export { BurgerIngredients } from "./burger-ingredients/burger-ingredients";
 export { IngredientDetails } from "./ingredient-details/ingredient-details";
-export { ModalConnectError } from "./modal-connect-error/modal-connect-error";
-export { ModalLoading } from "./modal-loading/modal-loading";
-export { ModalPortal } from "./modal-portal/modal-portal";
 export { OrderDetails } from "./order-details/order-details";
-export { LayoutMain } from "./layout-main/layout-main";
-export { LayoutForm } from "./layout-form";
+export { LayoutForm, LayoutMain, LayoutProfile } from "./layouts";
+export { ModalFullfilled, ModalPending, ModalRejected } from "./modal";
+export { ModalIngredientsError } from "./modal-ingredients-error/modal-ingredients-error";
+export {
+  OnlyAuthorizedElement,
+  OnlyUnauthorizedElement,
+} from "./protected-route-element/protected-route-element";
+export { IngredientDetailsModal } from "./ingredient-details";
