@@ -6,11 +6,10 @@
   grid-template: repeat(2, auto) / 1fr;
   grid-template-areas: "nav" "heading";
   margin-inline: auto;
-  max-inline-size: 1240px;
+  max-inline-size: variables.$app-max-inline-size;
 }
 
 .nav {
-  // composes: pt-4 pb-4 mb-10 from global;
   composes: mb-8 from global;
   display: grid;
   align-items: center;

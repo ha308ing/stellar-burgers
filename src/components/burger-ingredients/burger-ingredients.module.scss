@@ -1,11 +1,11 @@
 @use "../../styles/variables.scss";
 
 .container {
-  max-inline-size: 600px;
+  flex-grow: 1;
 }
 
 .ingredients {
-  --height-delta: 12em;
+  --height-delta: 300px;
 
   composes: custom_scroll from global;
   overflow: auto;
@@ -14,6 +14,6 @@
 
 @media (min-width: variables.$breakpoint-md) {
   .ingredients {
-    --height-delta: 20em;
+    --height-delta: 250px;
   }
 }
