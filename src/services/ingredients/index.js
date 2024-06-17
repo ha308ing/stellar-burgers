@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./initialState";
+import { initialState } from "./initial-state";
 import * as selectors from "./selectors";
 import { getIngredientsThunk } from "./thunks";
 import { STATUSES } from "../../utils";
@@ -15,6 +15,7 @@ export const ingredientsSlice = createSlice({
         state.status = STATUSES.PENDING;
       })
       .addCase(getIngredientsThunk.rejected, (state) => {
+        console.log("slice rejected");
         state.status = STATUSES.REJECTED;
       })
       .addCase(getIngredientsThunk.fulfilled, (state, action) => {
@@ -29,8 +30,12 @@ export const ingredientsActions = {
   getIngredients: getIngredientsThunk,
 };
 
-export const { selectIgredientsGrouped, selectGroups, selectActiveIngredient } =
-  ingredientsSlice.selectors;
+export const {
+  selectIgredientsGrouped,
+  selectGroups,
+  selectActiveIngredient,
+  selectStatus,
+} = ingredientsSlice.selectors;
 
 export const selectIngredient = (ingredientId) => (state) =>
   ingredientsSlice.selectors.selectIngredientById(state, ingredientId);
