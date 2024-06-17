@@ -1,8 +1,8 @@
 @use "../../styles/variables.scss";
 
 .container {
-  max-width: variables.$app-max-inline-size;
   margin: 0 auto;
+  max-inline-size: variables.$app-max-inline-size;
 }
 
 .main {
