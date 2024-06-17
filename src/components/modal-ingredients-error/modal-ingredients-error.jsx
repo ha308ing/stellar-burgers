@@ -1,18 +1,17 @@
 import PropTypes from "prop-types";
-import styles from "./modal-connect-error.module.scss";
-import { ModalPortal } from "../modal-portal/modal-portal";
+import styles from "./modal-ingredients-error.module.scss";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ModalRejected } from "../modal";
 
-export const ModalConnectError = ({ handleRetry }) => (
-  <ModalPortal>
+export const ModalIngredientsError = ({ handleRetry }) => (
+  <ModalRejected>
     <div className={styles.content}>
       <h1 className={styles.header}>Ошибка подключения</h1>
       <div className={styles.text}>
         <p>Вы можете сделать заказ через нашего телепата.</p>
         <p>
-          Сфокусируйтесь на мысли "хочу стеллар бургер"
-          <br />
-          на 15 октантских секунд
+          Сфокусируйтесь на мысли "хочу стеллар бургер" в течение 15 октантских
+          секунд
         </p>
       </div>
       <ul className={styles.notes}>
@@ -30,9 +29,9 @@ export const ModalConnectError = ({ handleRetry }) => (
         Попробовать снова
       </Button>
     </div>
-  </ModalPortal>
+  </ModalRejected>
 );
 
-ModalConnectError.propTypes = {
+ModalIngredientsError.propTypes = {
   handleRetry: PropTypes.func.isRequired,
 };

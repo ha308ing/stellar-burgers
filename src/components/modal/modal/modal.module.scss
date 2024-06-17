@@ -1,0 +1,20 @@
+.container {
+  composes: p-15 from global;
+  position: relative;
+  border-radius: 40px;
+  background: var(--background);
+  min-inline-size: 60ch;
+}
+
+.closeIconContainer {
+  composes: mt-15 mr-10 from global;
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+}
+
+.content {
+  display: grid;
+  max-block-size: 80ch;
+  place-content: center;
+}
