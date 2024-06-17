@@ -1,21 +1,70 @@
-import { LayoutForm as LF } from "../../components";
+import {
+  LayoutForm as LF,
+  ModalRejected,
+  ModalPending,
+} from "../../components";
 import { EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ROUTES } from "../../utils";
+import { ROUTES, STATUSES } from "../../utils";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  formPasswordForgotActions,
+  selectFormPasswordForgot,
+} from "../../services/forms/form-password-forgot";
+import {
+  dispatchFormAction,
+  dispatchInputAction,
+} from "../../utils/dispatch-actions";
+import { ModalFullfilled } from "./components";
 
 export const ForgotPasswordPage = () => {
+  const {
+    inputs: { email },
+    message,
+    status,
+  } = useSelector(selectFormPasswordForgot);
+  const dispatch = useDispatch();
+
+  const handleChange = dispatchInputAction(
+    dispatch,
+    formPasswordForgotActions.change,
+  );
+
+  const handleSubmit = dispatchFormAction(
+    dispatch,
+    formPasswordForgotActions.submit,
+  )({ email });
+
+  const closeModal = () => {
+    dispatch(formPasswordForgotActions.resetMessage());
+  };
+
   return (
-    <LF>
-      <LF.Heading>Восстановление пароля</LF.Heading>
-      <LF.Form>
-        <EmailInput name="email" placeholder="Укажите e-mail" />
-        <LF.Button>Восстановить</LF.Button>
-      </LF.Form>
-      <LF.Footer>
-        <LF.FooterString>
-          Вспомнили пароль?{" "}
-          <LF.FooterLink to={ROUTES.LOGIN}>Войти</LF.FooterLink>
-        </LF.FooterString>
-      </LF.Footer>
-    </LF>
+    <>
+      {status === STATUSES.PENDING && (
+        <ModalPending>отправляем код на почту {email}</ModalPending>
+      )}
+      {status === STATUSES.REJECTED && (
+        <ModalRejected closeModalHandler={closeModal}>{message}</ModalRejected>
+      )}
+      {status === STATUSES.FULFILLED && <ModalFullfilled email={email} />}
+      <LF>
+        <LF.Heading>Восстановление пароля</LF.Heading>
+        <LF.Form onSubmit={handleSubmit}>
+          <EmailInput
+            name="email"
+            placeholder="Укажите e-mail"
+            value={email}
+            onChange={handleChange}
+          />
+          <LF.Button>Восстановить</LF.Button>
+        </LF.Form>
+        <LF.Footer>
+          <LF.FooterString>
+            Вспомнили пароль?{" "}
+            <LF.FooterLink to={ROUTES.LOGIN}>Войти</LF.FooterLink>
+          </LF.FooterString>
+        </LF.Footer>
+      </LF>
+    </>
   );
 };
