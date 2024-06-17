@@ -1,0 +1,33 @@
+@use "../../styles/variables";
+
+.profileContainer {
+  display: grid;
+  grid-template:
+    "inputs" 1fr
+    "buttons" auto / 1fr;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.5em;
+  grid-area: inputs;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2em;
+  grid-area: buttons;
+  margin-block-start: 2em;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .profileContainer {
+    grid-template:
+      "inputs ." 1fr
+      "buttons ." auto / 1fr 1fr;
+  }
+}
