@@ -1,10 +1,14 @@
 import styles from "./burger-ingredients.module.scss";
 import { BurgerIngredientsTabs } from "./burger-ingredients-tabs/burger-ingredients-tabs";
 import { BurgerIngredientsGroup } from "./burger-ingredients-group/burger-ingredients-group";
-import PropTypes from "prop-types";
-import { ingredientWithQtyShape } from "../../utils/prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { selectGroups } from "../../services/ingredients";
+import { ingredientsTabsActions } from "../../services/ingredients-tabs";
 
-export const BurgerIngredients = ({ ingredients, groups }) => {
+export const BurgerIngredients = () => {
+  const groups = useSelector(selectGroups);
+  const dispatch = useDispatch();
+
   // array for refs of scroll targets (group of ingredients)
   const scrollPoints = [];
 
@@ -17,14 +21,33 @@ export const BurgerIngredients = ({ ingredients, groups }) => {
     scrollPoints[index].scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleScroll = (e) => {
+    const container = e.target;
+    const { y: zero } = container.getBoundingClientRect();
+    const childGroups = container.children;
+    let min = null;
+    const childRects = [...childGroups].map((group) => {
+      const { y: groupY } = group.getBoundingClientRect();
+      let distanceToZero = groupY - zero;
+      distanceToZero = distanceToZero < 0 ? -distanceToZero : distanceToZero;
+      if (min === null) {
+        min = distanceToZero;
+      } else {
+        min = distanceToZero < min ? distanceToZero : min;
+      }
+      return distanceToZero;
+    });
+    const groupIndex = childRects.indexOf(min);
+    dispatch(ingredientsTabsActions.setActiveTabIndex(groupIndex));
+  };
+
   return (
     <section className={styles.container}>
-      <BurgerIngredientsTabs groups={groups} clickHandler={scrollToView} />
-      <section className={styles.ingredients}>
-        {Object.entries(ingredients).map(([groupIndex, groupIngredients]) => (
+      <BurgerIngredientsTabs clickHandler={scrollToView} />
+      <section className={styles.ingredients} onScroll={handleScroll}>
+        {groups.map((_, groupIndex) => (
           <BurgerIngredientsGroup
-            groupName={groups[groupIndex]}
-            ingredients={groupIngredients}
+            groupIndex={+groupIndex}
             key={groupIndex}
             ref={setScrollPoint(groupIndex)}
           />
@@ -32,9 +55,4 @@ export const BurgerIngredients = ({ ingredients, groups }) => {
       </section>
     </section>
   );
-};
-
-BurgerIngredients.propTypes = {
-  groups: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  ingredients: PropTypes.shape({ index: ingredientWithQtyShape }).isRequired,
 };

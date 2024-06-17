@@ -1,5 +1,4 @@
-import { flatOrder } from "./flat-order";
-import { formatIngredients } from "./format-ingredients";
-import { addIngredientsQty } from "./add-ingredients-qty";
+import { STATUSES } from "./connection-statuses";
+import { INGREDIENT_TYPES } from "./ingredients-groups-priority";
 
-export { flatOrder, formatIngredients, addIngredientsQty };
+export { STATUSES, INGREDIENT_TYPES };
