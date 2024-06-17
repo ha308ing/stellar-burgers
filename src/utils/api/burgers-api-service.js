@@ -1,17 +1,25 @@
-const BURGERS_API_ROOT = "https://norma.nomoreparties.space/api";
-const INGREDIENTS_API_URL = BURGERS_API_ROOT + "/ingredients";
-const ORDER_API_URL = BURGERS_API_ROOT + "/orders";
-const API_TIMEOUT = 3000;
+import { STRINGS } from "../strings";
+import { API } from "./endpoints";
+import { burgersApiController } from "./burgers-api-controller";
+import { ErrorLocal } from "./error-local";
+
+const API_TIMEOUT = 600000;
 
 class BurgersApiService {
-  basicRequest = (url, method = "GET", options = {}, dataTransformator) => {
+  basicRequest = (
+    url,
+    method = "GET",
+    options = {},
+    dataTransformator = null,
+  ) => {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
     const requestPromise = new Promise(async (res, rej) => {
       try {
         setTimeout(() => {
-          abortController.abort();
+          abortController.abort("too long request");
+          rej(new ErrorLocal(STRINGS.TOO_LONG));
         }, API_TIMEOUT);
 
         const data = await this.fetch(
@@ -29,34 +37,178 @@ class BurgersApiService {
     return { abortController, requestPromise };
   };
 
-  getIngredients = () => this.basicRequest(INGREDIENTS_API_URL);
+  getIngredients = () =>
+    this.basicRequest(API.INGREDIENTS, "GET", {}, ({ data }) => data);
 
-  fetch = async (url, method = "GET", options = {}, dataTransformator) => {
-    const response = await fetch(url, {
-      mode: "cors",
-      headers: { "Content-type": "application/json" },
-      method,
-      ...options,
-    });
+  fetch = async (
+    url,
+    method = "GET",
+    options = {},
+    dataTransformator = null,
+  ) => {
+    const hasAuthorizationHeader = options?.headers?.authorization;
+    const headers = {
+      "Content-Type": "application/json",
+      ...(options?.headers ?? {}),
+    };
 
-    if (!response.ok) throw new Error(response);
+    try {
+      const response = await fetch(url, {
+        mode: "cors",
+        method,
+        ...options,
+        headers,
+      });
 
-    const data = await response.json();
-    if (!dataTransformator) return data;
+      const data = await response.json();
 
-    const dataTransformed = dataTransformator(data);
-    return dataTransformed;
+      if (!response.ok) {
+        const message = data.message || STRINGS.REQUEST_FAILED;
+        throw new ErrorLocal(message);
+      }
+
+      if (!dataTransformator) return data;
+
+      const dataTransformed = dataTransformator(data);
+      return dataTransformed;
+    } catch (error) {
+      if (!hasAuthorizationHeader) throw new ErrorLocal(error.message);
+
+      const isTokenError = this.checkTokenError(error);
+      if (isTokenError) {
+        try {
+          const { accessToken } = await burgersApiController.updateToken();
+          return this.fetch(
+            url,
+            method,
+            {
+              ...options,
+              headers: { ...headers, authorization: accessToken },
+            },
+            dataTransformator,
+          );
+        } catch (error) {
+          throw new ErrorLocal(error.message);
+        }
+      }
+    }
   };
 
-  fetchIngredients = () =>
-    this.fetch(INGREDIENTS_API_URL, "GET", {}, ({ data }) => data);
-
   postOrder = (orderArray) =>
-    this.basicRequest(ORDER_API_URL, "POST", { body: orderArray }, (data) => {
+    this.basicRequest(API.ORDERS, "POST", { body: orderArray }, (data) => {
       const { name, order } = data;
       const { number } = order;
       return { orderName: name, orderNumber: number };
     });
+
+  checkTokenError = (error) => {
+    return (
+      error.message === STRINGS.JWT_EXPIRED ||
+      error.message === STRINGS.JWT_INVALID
+    );
+  };
+
+  register = (registerDataString) =>
+    this.basicRequest(
+      API.AUTH.REGISTER,
+      "POST",
+      { body: registerDataString },
+      (data) => {
+        const {
+          user: { email, name },
+          accessToken,
+          refreshToken,
+        } = data;
+        return { email, name, accessToken, refreshToken };
+      },
+    );
+
+  login = (loginDataString) =>
+    this.basicRequest(
+      API.AUTH.LOGIN,
+      "POST",
+      { body: loginDataString },
+      (data) => {
+        const {
+          user: { email, name },
+          accessToken,
+          refreshToken,
+        } = data;
+        return { email, name, accessToken, refreshToken };
+      },
+    );
+
+  updateToken = (tokenDataString) =>
+    this.basicRequest(
+      API.AUTH.TOKEN,
+      "POST",
+      { body: tokenDataString },
+      (data) => {
+        const { accessToken, refreshToken } = data;
+        return { accessToken, refreshToken };
+      },
+    );
+
+  logout = (refreshTokenDataString) =>
+    this.basicRequest(
+      API.AUTH.LOGOUT,
+      "POST",
+      { body: refreshTokenDataString },
+      (data) => {
+        const { success } = data;
+        return success;
+      },
+    );
+
+  getUserInfo = (accessToken) =>
+    this.basicRequest(
+      API.AUTH.USER,
+      "GET",
+      {
+        headers: { authorization: accessToken },
+      },
+      (data) => {
+        const {
+          user: { email, name },
+        } = data;
+        return { email, name };
+      },
+    );
+
+  updateUserInfo = (accessToken, userDataString) =>
+    this.basicRequest(
+      API.AUTH.USER,
+      "PATCH",
+      { body: userDataString, headers: { authorization: accessToken } },
+      (data) => {
+        const {
+          user: { email, name },
+        } = data;
+        return { email, name };
+      },
+    );
+
+  requestPasswordResetCode = (emailDataString) =>
+    this.basicRequest(
+      API.PASSWORD.RESET,
+      "POST",
+      { body: emailDataString },
+      (data) => {
+        const { message } = data;
+        return message;
+      },
+    );
+
+  resetPassword = (accessToken, resetDataString) =>
+    this.basicRequest(
+      API.PASSWORD.RENEW,
+      "POST",
+      { body: resetDataString, headers: { authorization: accessToken } },
+      (data) => {
+        const { message } = data;
+        return message;
+      },
+    );
 }
 
 export const burgersApiService = new BurgersApiService();
