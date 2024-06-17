@@ -1,21 +1,12 @@
 import PropTypes from "prop-types";
-import { ModalPortal } from "../modal-portal/modal-portal";
-import { IngredientDetails } from "../ingredient-details/ingredient-details";
-import { useDispatch } from "react-redux";
-import { ingredientActions } from "../../services/ingredient";
+import { ModalAlert } from "../modal/modal-alert/modal-alert";
+import { IngredientDetailsState } from "./ingredient-details-state";
 
 export const IngredientDetailsModal = ({ closeModalHandler }) => {
-  const dispatch = useDispatch();
-
-  const closeModalResetIngredient = () => {
-    dispatch(ingredientActions.resetIngredient());
-    closeModalHandler();
-  };
-
   return (
-    <ModalPortal closeModalHandler={closeModalResetIngredient}>
-      <IngredientDetails />
-    </ModalPortal>
+    <ModalAlert closeModalHandler={closeModalHandler}>
+      <IngredientDetailsState />
+    </ModalAlert>
   );
 };
 
