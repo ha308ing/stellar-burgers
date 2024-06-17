@@ -1,0 +1,40 @@
+@use "../../../../styles/variables";
+@use "../../../../styles/colors";
+
+.nav {
+  composes: text_type_main-medium text_color_inactive mb-10 from global;
+  grid-area: nav;
+  inline-size: 100%;
+}
+
+.button {
+  composes: text text_type_main-medium text_color_inactive from global;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &.active {
+    color: colors.$white;
+  }
+
+  &:hover:not(.active) {
+    text-shadow: 0 0 5px colors.$violet;
+  }
+}
+
+.navList {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .nav {
+    margin-block: variables.$profile-edit-top-space;
+  }
+
+  .navList {
+    flex-flow: column nowrap;
+    gap: 1em;
+  }
+}

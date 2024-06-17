@@ -1,4 +1,4 @@
-import { AppHeader } from "../app-header/app-header";
+import { AppHeader } from "../../app-header/app-header";
 import styles from "./layout-main.module.scss";
 
 export const LayoutMain = ({ children }) => {
