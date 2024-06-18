@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import { ModalAlert } from "../modal/modal-alert/modal-alert";
-import { IngredientDetailsState } from "./ingredient-details-state";
+import { IngredientDetailsParams } from "./ingredient-details-params";
 
 export const IngredientDetailsModal = ({ closeModalHandler }) => {
   return (
     <ModalAlert closeModalHandler={closeModalHandler}>
-      <IngredientDetailsState />
+      <IngredientDetailsParams />
     </ModalAlert>
   );
 };
