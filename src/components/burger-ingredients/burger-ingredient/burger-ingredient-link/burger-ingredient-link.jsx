@@ -1,23 +1,24 @@
-import { useLocation, Link } from "react-router-dom";
-import { ROUTES } from "../../../../utils";
-import { BugerIngredient } from "../burger-ingredient";
 import styles from "./burger-ingredient-link.module.scss";
-import PropTypes from "prop-types";
+import { BurgerIngredient } from "../burger-ingredient";
 
-export const BurgerIngredientLink = ({ ingredientId }) => {
+import { Link, useLocation } from "react-router-dom";
+import { ROUTES } from "../../../../utils";
+import { IngredientShape } from "../../../../utils/prop-types";
+
+export const BurgerIngredientLink = ({ ingredient }) => {
   const location = useLocation();
 
   return (
     <Link
-      to={ROUTES.INGREDIENTS_ROOT + "/" + ingredientId}
+      to={ROUTES.INGREDIENTS_ROOT + "/" + ingredient._id}
       state={{ background: location }}
       className={styles.link}
     >
-      <BugerIngredient ingredientId={ingredientId} handleClick={() => {}} />
+      <BurgerIngredient ingredient={ingredient} />
     </Link>
   );
 };
 
-BurgerIngredientLink.propTypes = {
-  ingredientId: PropTypes.string.isRequired,
+BurgerIngredient.propTypes = {
+  ingredient: IngredientShape.isRequired,
 };

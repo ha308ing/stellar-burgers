@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./burger-ingredients-group.module.scss";
 import PropTypes from "prop-types";
-import { BurgerIngredientLink } from "../burger-ingredient/burger-ingredient-link/burger-ingredient-link";
+import { BurgerIngredientDrag as BurgerIngredient } from "../burger-ingredient/burger-ingredient-drag";
 import { useSelector } from "react-redux";
 import { selectGroup } from "../../../services/ingredients";
 
@@ -14,10 +14,7 @@ export const BurgerIngredientsGroup = React.forwardRef(
         <header className={styles.header}>{groupName}</header>
         <div className={styles.group}>
           {ingredients.map((ingredient) => (
-            <BurgerIngredientLink
-              key={ingredient._id}
-              ingredientId={ingredient._id}
-            />
+            <BurgerIngredient key={ingredient._id} ingredient={ingredient} />
           ))}
         </div>
       </section>
