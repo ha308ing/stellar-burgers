@@ -15,7 +15,6 @@ export const ingredientsSlice = createSlice({
         state.status = STATUSES.PENDING;
       })
       .addCase(getIngredientsThunk.rejected, (state) => {
-        console.log("slice rejected");
         state.status = STATUSES.REJECTED;
       })
       .addCase(getIngredientsThunk.fulfilled, (state, action) => {
