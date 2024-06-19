@@ -4,28 +4,16 @@ const KEY_ACCESS = "accessToken";
 const KEY_REFRESH = "refreshToken";
 
 class BurgersApiController {
-  getIngredients = burgersApiService.getIngredients().requestPromise;
-
-  getIngredientsToState = (stateSetter) => {
-    const { abortController, requestPromise } =
-      burgersApiService.getIngredients();
-
-    requestPromise
-      .then((data) => {
-        stateSetter({ status: "ok", data });
-      })
-      .catch((_) => {
-        stateSetter({ status: "error", data: [] });
-      });
-
-    return abortController;
+  getIngredients = async () => {
+    const ingredients = await burgersApiService.getIngredients();
+    return ingredients;
   };
 
   register = async (registerData) => {
     const registerDataString = JSON.stringify(registerData);
 
-    const { requestPromise } = burgersApiService.register(registerDataString);
-    const { email, name, accessToken, refreshToken } = await requestPromise;
+    const { email, name, accessToken, refreshToken } =
+      await burgersApiService.register(registerDataString);
 
     localStorage.setItem(KEY_ACCESS, accessToken);
     localStorage.setItem(KEY_REFRESH, refreshToken);
@@ -36,8 +24,8 @@ class BurgersApiController {
   login = async (loginData) => {
     const loginDataString = JSON.stringify(loginData);
 
-    const { requestPromise } = burgersApiService.login(loginDataString);
-    const { email, name, accessToken, refreshToken } = await requestPromise;
+    const { email, name, accessToken, refreshToken } =
+      await burgersApiService.login(loginDataString);
 
     localStorage.setItem(KEY_ACCESS, accessToken);
     localStorage.setItem(KEY_REFRESH, refreshToken);
@@ -49,8 +37,8 @@ class BurgersApiController {
     const token = localStorage.getItem(KEY_REFRESH);
     const tokenDataString = JSON.stringify({ token });
 
-    const { requestPromise } = burgersApiService.updateToken(tokenDataString);
-    const { accessToken, refreshToken } = await requestPromise;
+    const { accessToken, refreshToken } =
+      await burgersApiService.updateToken(tokenDataString);
 
     localStorage.setItem(KEY_ACCESS, accessToken);
     localStorage.setItem(KEY_REFRESH, refreshToken);
@@ -61,8 +49,7 @@ class BurgersApiController {
   getUserInfo = async () => {
     const accessToken = localStorage.getItem(KEY_ACCESS);
 
-    const { requestPromise } = burgersApiService.getUserInfo(accessToken);
-    const { email, name } = await requestPromise;
+    const { email, name } = await burgersApiService.getUserInfo(accessToken);
 
     return { email, name };
   };
@@ -71,11 +58,10 @@ class BurgersApiController {
     const accessToken = localStorage.getItem(KEY_ACCESS);
     const userDataString = JSON.stringify(userData);
 
-    const { requestPromise } = burgersApiService.updateUserInfo(
+    const { email, name } = await burgersApiService.updateUserInfo(
       accessToken,
       userDataString,
     );
-    const { email, name } = await requestPromise;
 
     return { email, name };
   };
@@ -84,8 +70,7 @@ class BurgersApiController {
     const token = localStorage.getItem(KEY_REFRESH);
     const tokenDataString = JSON.stringify({ token });
 
-    const { requestPromise } = burgersApiService.logout(tokenDataString);
-    const success = await requestPromise;
+    const success = await burgersApiService.logout(tokenDataString);
 
     localStorage.removeItem(KEY_REFRESH);
     localStorage.removeItem(KEY_ACCESS);
@@ -96,9 +81,8 @@ class BurgersApiController {
   requestPasswordResetCode = async (emailData) => {
     const emailDataString = JSON.stringify(emailData);
 
-    const { requestPromise } =
-      burgersApiService.requestPasswordResetCode(emailDataString);
-    const response = await requestPromise;
+    const response =
+      await burgersApiService.requestPasswordResetCode(emailDataString);
 
     return response;
   };
@@ -107,11 +91,10 @@ class BurgersApiController {
     const accessToken = localStorage.getItem(KEY_ACCESS);
     const resetDataString = JSON.stringify(resetData);
 
-    const { requestPromise } = burgersApiService.resetPassword(
+    const response = await burgersApiService.resetPassword(
       accessToken,
       resetDataString,
     );
-    const response = await requestPromise;
 
     return response;
   };
@@ -121,6 +104,15 @@ class BurgersApiController {
     if (!accessToken) return true;
     await this.getUserInfo();
     return true;
+  };
+
+  postOrder = async (orderIds) => {
+    const orderIdsString = JSON.stringify({ ingredients: orderIds });
+
+    const { orderName, orderNumber } =
+      await burgersApiService.postOrder(orderIdsString);
+
+    return { orderName, orderNumber };
   };
 }
 

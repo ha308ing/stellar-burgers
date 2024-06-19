@@ -3,8 +3,6 @@ import { API } from "./endpoints";
 import { burgersApiController } from "./burgers-api-controller";
 import { ErrorLocal } from "./error-local";
 
-const API_TIMEOUT = 600000;
-
 class BurgersApiService {
   basicRequest = (
     url,
@@ -12,29 +10,14 @@ class BurgersApiService {
     options = {},
     dataTransformator = null,
   ) => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
-
-    const requestPromise = new Promise(async (res, rej) => {
+    return new Promise(async (res, rej) => {
       try {
-        setTimeout(() => {
-          abortController.abort("too long request");
-          rej(new ErrorLocal(STRINGS.TOO_LONG));
-        }, API_TIMEOUT);
-
-        const data = await this.fetch(
-          url,
-          method,
-          { signal, ...options },
-          dataTransformator,
-        );
+        const data = await this.fetch(url, method, options, dataTransformator);
         res(data);
       } catch (error) {
         rej(error);
       }
     });
-
-    return { abortController, requestPromise };
   };
 
   getIngredients = () =>
@@ -94,10 +77,11 @@ class BurgersApiService {
     }
   };
 
-  postOrder = (orderArray) =>
-    this.basicRequest(API.ORDERS, "POST", { body: orderArray }, (data) => {
+  postOrder = (orderIdsString) =>
+    this.basicRequest(API.ORDERS, "POST", { body: orderIdsString }, (data) => {
       const { name, order } = data;
       const { number } = order;
+
       return { orderName: name, orderNumber: number };
     });
 

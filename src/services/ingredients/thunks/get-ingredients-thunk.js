@@ -3,5 +3,5 @@ import { burgersApiController } from "../../../utils/api/burgers-api-controller"
 
 export const getIngredientsThunk = createAsyncThunk(
   "ingredients/get",
-  async () => burgersApiController.getIngredients,
+  burgersApiController.getIngredients,
 );

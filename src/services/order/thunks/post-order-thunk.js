@@ -1,9 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { burgersApiService } from "../../../utils/api/burgers-api-service";
+import { burgersApiController } from "../../../utils/api/burgers-api-controller";
 
-export const postOrderThunk = createAsyncThunk("order/post", (orderIds) => {
-  const { requestPromise } = burgersApiService.postOrder(
-    JSON.stringify({ ingredients: orderIds }),
-  );
-  return requestPromise;
-});
+export const postOrderThunk = createAsyncThunk(
+  "order/post",
+  burgersApiController.postOrder,
+);
