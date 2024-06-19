@@ -13,4 +13,5 @@ export {
 export {
   IngredientDetailsModal,
   IngredientDetailsParams,
+  IngredientDetails,
 } from "./ingredient-details";
