@@ -8,7 +8,6 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ROUTES, STATUSES } from "../../utils";
-import { Navigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   formPasswordResetActions,
@@ -25,14 +24,7 @@ export const ResetPasswordPage = () => {
     message,
     status,
   } = useSelector(selectFormPasswordReset);
-  const location = useLocation();
   const dispatch = useDispatch();
-
-  const from = location.state?.from;
-
-  if (from !== ROUTES.FORGOT_PASSWORD) {
-    return <Navigate to={ROUTES.FORGOT_PASSWORD} />;
-  }
 
   const handleModalClose = () => {
     dispatch(formPasswordResetActions.resetMessage());

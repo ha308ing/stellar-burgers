@@ -1,19 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import {
-  HomePage,
-  RegisterPage,
-  LoginPage,
-  ForgotPasswordPage,
-  ResetPasswordPage,
-  ProfilePage,
-  NotFoundPage,
-  ProfileEditPage,
-  OrderHistoryPage,
-  OrdersFeedPage,
-  IngredientPage,
-} from "../../pages";
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useRoutes,
+} from "react-router-dom";
+import * as Pages from "../../pages";
 import {
   OnlyAuthorizedElement,
   OnlyUnauthorizedElement,
@@ -31,7 +25,6 @@ import {
 export const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
   const { status: ingredientsStatus, ingredientsQty } = useSelector(
     selectIgredientsGrouped,
   );
@@ -42,67 +35,78 @@ export const App = () => {
     dispatch(profileActions.get());
   }, [dispatch]);
 
-  const background = location?.state?.background;
+  const from = location.state?.from;
+  const background = location.state?.background;
 
-  const handleModalClose = () => {
-    navigate(-1);
-  };
+  const isResetPasswordAvailable = from === ROUTES.FORGOT_PASSWORD;
 
-  const handleRetry = () => {
-    dispatch(ingredientsActions.getIngredients());
-  };
-
-  if (profileStatus === STATUSES.PENDING)
-    return <ModalPending>грузим профиль</ModalPending>;
+  const routes = useRoutes(
+    [
+      { path: ROUTES.ROOT, element: <Pages.HomePage /> },
+      {
+        path: ROUTES.REGISTER,
+        element: <OnlyUnauthorizedElement element={<Pages.RegisterPage />} />,
+      },
+      {
+        path: ROUTES.LOGIN,
+        element: <OnlyUnauthorizedElement element={<Pages.LoginPage />} />,
+      },
+      {
+        path: ROUTES.FORGOT_PASSWORD,
+        element: (
+          <OnlyUnauthorizedElement element={<Pages.ForgotPasswordPage />} />
+        ),
+      },
+      {
+        path: ROUTES.RESET_PASSWORD,
+        element: (
+          <OnlyUnauthorizedElement
+            element={
+              isResetPasswordAvailable ? (
+                <Pages.ResetPasswordPage />
+              ) : (
+                <Navigate to={ROUTES.FORGOT_PASSWORD} />
+              )
+            }
+          />
+        ),
+      },
+      { path: ROUTES.ORDERS_FEED, element: <Pages.OrdersFeedPage /> },
+      { path: ROUTES.INGREDIENT, element: <Pages.IngredientPage /> },
+      {
+        path: ROUTES.PROFILE,
+        element: <OnlyAuthorizedElement element={<Pages.ProfilePage />} />,
+        children: [
+          { index: true, element: <Pages.ProfileEditPage /> },
+          { path: ROUTES.ORDERS, element: <Pages.OrderHistoryPage /> },
+        ],
+      },
+      { path: "*", element: <Pages.NotFoundPage /> },
+    ],
+    background || location,
+  );
 
   if (ingredientsStatus === STATUSES.PENDING)
     return <ModalPending>грузим бургеры</ModalPending>;
+
+  if (profileStatus === STATUSES.PENDING)
+    return <ModalPending>грузим профиль</ModalPending>;
 
   if (
     ingredientsStatus === STATUSES.REJECTED ||
     (ingredientsStatus === STATUSES.FULFILLED && ingredientsQty === 0)
   )
-    return <ModalIngredientsError handleRetry={handleRetry} />;
+    return <ModalIngredientsError />;
 
   return (
     <>
-      <Routes location={background || location}>
-        <Route path={ROUTES.ROOT} element={<HomePage />} />
-        <Route
-          path={ROUTES.REGISTER}
-          element={<OnlyUnauthorizedElement element={<RegisterPage />} />}
-        />
-        <Route
-          path={ROUTES.LOGIN}
-          element={<OnlyUnauthorizedElement element={<LoginPage />} />}
-        />
-        <Route
-          path={ROUTES.FORGOT_PASSWORD}
-          element={<OnlyUnauthorizedElement element={<ForgotPasswordPage />} />}
-        />
-        <Route
-          path={ROUTES.RESET_PASSWORD}
-          element={<OnlyUnauthorizedElement element={<ResetPasswordPage />} />}
-        />
-        <Route path={ROUTES.ORDERS_FEED} element={<OrdersFeedPage />} />
-        <Route path={ROUTES.INGREDIENT} element={<IngredientPage />} />
-        <Route
-          path={ROUTES.PROFILE}
-          element={<OnlyAuthorizedElement element={<ProfilePage />} />}
-        >
-          <Route index element={<ProfileEditPage />} />
-          <Route path={ROUTES.ORDERS} element={<OrderHistoryPage />} />
-        </Route>
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      {routes}
 
       {background && (
         <Routes>
           <Route
             path={ROUTES.INGREDIENT}
-            element={
-              <IngredientDetailsModal closeModalHandler={handleModalClose} />
-            }
+            element={<IngredientDetailsModal />}
           />
         </Routes>
       )}
