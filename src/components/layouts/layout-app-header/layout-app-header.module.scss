@@ -1,5 +1,5 @@
-@use "../../styles/variables";
-@use "../../styles/colors";
+@use "../../../styles/variables";
+@use "../../../styles/colors";
 
 .header {
   width: 100%;
@@ -19,39 +19,10 @@
   max-inline-size: variables.$app-max-inline-size;
 }
 
-.navPart {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: flex-end;
-  justify-content: space-around;
-  white-space: nowrap;
-}
-
-.centerNav {
-  grid-area: logo;
-}
-
 @media (min-width: variables.$breakpoint-md) {
   .nav {
     align-items: center;
     grid-template-areas: "left logo right";
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .centerNav {
-    composes: navPart;
-    display: block;
-    margin: auto;
-  }
-
-  .leftNav {
-    composes: navPart;
-    justify-content: flex-start;
-  }
-
-  .rightNav {
-    composes: navPart;
-    justify-content: flex-end;
-    order: 1;
   }
 }
