@@ -29,7 +29,8 @@ class BurgersApiService {
     options = {},
     dataTransformator = null,
   ) => {
-    const hasAuthorizationHeader = options?.headers?.authorization;
+    const hasAuthorizationHeader =
+      options?.headers && Object.hasOwn(options.headers, "authorization");
     const headers = {
       "Content-Type": "application/json",
       ...(options?.headers ?? {}),
@@ -55,10 +56,10 @@ class BurgersApiService {
       const dataTransformed = dataTransformator(data);
       return dataTransformed;
     } catch (error) {
-      if (!hasAuthorizationHeader) throw new ErrorLocal(error.message);
+      const shouldUpdateToken =
+        hasAuthorizationHeader && this.shouldUpdateToken(error);
 
-      const isTokenError = this.checkTokenError(error);
-      if (isTokenError) {
+      if (shouldUpdateToken) {
         try {
           const { accessToken } = await burgersApiController.updateToken();
           return this.fetch(
@@ -74,6 +75,8 @@ class BurgersApiService {
           throw new ErrorLocal(error.message);
         }
       }
+
+      throw new ErrorLocal(error.message);
     }
   };
 
@@ -85,10 +88,13 @@ class BurgersApiService {
       return { orderName: name, orderNumber: number };
     });
 
-  checkTokenError = (error) => {
+  shouldUpdateToken = (error) => {
+    const hasRefreshToken = burgersApiController.hasRefreshToken();
+
     return (
       error.message === STRINGS.JWT_EXPIRED ||
-      error.message === STRINGS.JWT_INVALID
+      error.message === STRINGS.JWT_INVALID ||
+      hasRefreshToken
     );
   };
 

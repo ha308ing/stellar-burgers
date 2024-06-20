@@ -99,11 +99,8 @@ class BurgersApiController {
     return response;
   };
 
-  checkToken = async () => {
-    const accessToken = localStorage.getItem(KEY_ACCESS);
-    if (!accessToken) return true;
-    await this.getUserInfo();
-    return true;
+  hasRefreshToken = () => {
+    return localStorage.getItem(KEY_REFRESH);
   };
 
   postOrder = async (orderIds) => {
