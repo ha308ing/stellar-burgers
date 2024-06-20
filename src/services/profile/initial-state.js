@@ -3,5 +3,4 @@ export const initialState = {
   status: null,
   message: null,
   logoutStatus: null,
-  isAuthChecked: false,
 };

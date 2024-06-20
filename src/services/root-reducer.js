@@ -11,6 +11,7 @@ import {
   formPasswordResetSlice,
 } from "./forms";
 import { profileSlice } from "./profile";
+import { appSlice } from "./app";
 
 const appReducer = combineReducers({
   [ingredientsSlice.reducerPath]: ingredientsSlice.reducer,
@@ -23,6 +24,7 @@ const appReducer = combineReducers({
   [formProfileSlice.reducerPath]: formProfileSlice.reducer,
   [formPasswordForgotSlice.reducerPath]: formPasswordForgotSlice.reducer,
   [formPasswordResetSlice.reducerPath]: formPasswordResetSlice.reducer,
+  [appSlice.reducerPath]: appSlice.reducer,
 });
 
 export const RESET_STORE = "RESET_STORE";
@@ -30,14 +32,11 @@ export const RESET_STORE = "RESET_STORE";
 export const rootReducer = (state, action) => {
   if (action.type === RESET_STORE) {
     const ingredients = state[ingredientsSlice.reducerPath];
-    const { isAuthChecked } = state[profileSlice.reducerPath];
+    const app = state[appSlice.reducerPath];
     return appReducer(
       {
         [ingredientsSlice.reducerPath]: ingredients,
-        [profileSlice.reducerPath]: {
-          ...profileSlice.getInitialState(),
-          isAuthChecked,
-        },
+        [appSlice.reducerPath]: app,
       },
       action,
     );

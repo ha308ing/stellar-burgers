@@ -16,11 +16,8 @@ import {
   ModalPending,
 } from "../index";
 import { ROUTES, STATUSES } from "../../utils";
-import { profileActions, selectProfile } from "../../services/profile";
-import {
-  ingredientsActions,
-  selectIgredientsGrouped,
-} from "../../services/ingredients";
+import { selectIgredientsGrouped } from "../../services/ingredients";
+import { appActions, selectLoadingStatus } from "../../services/app";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -28,11 +25,10 @@ export const App = () => {
   const { status: ingredientsStatus, ingredientsQty } = useSelector(
     selectIgredientsGrouped,
   );
-  const { status: profileStatus } = useSelector(selectProfile);
+  const appLoadingStatus = useSelector(selectLoadingStatus);
 
   useEffect(() => {
-    dispatch(ingredientsActions.getIngredients());
-    dispatch(profileActions.get());
+    dispatch(appActions.load());
   }, [dispatch]);
 
   const from = location.state?.from;
@@ -86,11 +82,8 @@ export const App = () => {
     background || location,
   );
 
-  if (ingredientsStatus === STATUSES.PENDING)
-    return <ModalPending>грузим бургеры</ModalPending>;
-
-  if (profileStatus === STATUSES.PENDING)
-    return <ModalPending>грузим профиль</ModalPending>;
+  if (appLoadingStatus === STATUSES.PENDING)
+    return <ModalPending>грузим приложение</ModalPending>;
 
   if (
     ingredientsStatus === STATUSES.REJECTED ||

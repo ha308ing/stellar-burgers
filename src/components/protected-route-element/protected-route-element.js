@@ -2,12 +2,14 @@ import { useSelector } from "react-redux";
 import { useLocation, Navigate } from "react-router-dom";
 import { ModalPending } from "../../components";
 import { selectProfile } from "../../services/profile";
+import { selectIsAuthChecked } from "../../services/app";
 import { ROUTES } from "../../utils";
 import PropTypes from "prop-types";
 
 const ProtectedRouteElement = ({ onlyAuthorized = true, element }) => {
   const location = useLocation();
-  const { isAuthChecked, user } = useSelector(selectProfile);
+  const { user } = useSelector(selectProfile);
+  const isAuthChecked = useSelector(selectIsAuthChecked);
 
   if (!isAuthChecked) {
     return <ModalPending>загрузка</ModalPending>;

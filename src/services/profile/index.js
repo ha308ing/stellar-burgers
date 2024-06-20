@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./initial-state";
-import { get } from "./thunks/get";
+import { get, logout } from "./thunks";
 import { STATUSES } from "../../utils";
-import { logout } from "./thunks/logout";
 
 export const profileSlice = createSlice({
   name: "profile",
@@ -13,8 +12,12 @@ export const profileSlice = createSlice({
       state.message = initialState.message;
     },
     set: (state, action) => {
-      state.isAuthChecked = true;
+      state.status = STATUSES.FULFILLED;
       state.user = { ...state.user, ...action.payload };
+    },
+    setMessage: (state, action) => {
+      state.status = STATUSES.REJECTED;
+      state.message = action.payload;
     },
   },
   selectors: {
@@ -31,26 +34,21 @@ export const profileSlice = createSlice({
           ? { ...state.user, ...action.payload }
           : action.payload;
         state.message = initialState.message;
-        state.isAuthChecked = true;
       })
       .addCase(get.rejected, (state, action) => {
         state.status = STATUSES.REJECTED;
         state.message = action.error.message;
         state.user = initialState.user;
-        state.isAuthChecked = true;
       })
-      .addCase(logout.pending, (state, action) => {
+      .addCase(logout.pending, (state) => {
         state.logoutStatus = STATUSES.PENDING;
-        state.isAuthChecked = true;
       })
       .addCase(logout.rejected, (state, action) => {
         state.logoutStatus = STATUSES.REJECTED;
         state.message = action.error.message;
-        state.isAuthChecked = true;
       })
-      .addCase(logout.fulfilled, (state, action) => {
+      .addCase(logout.fulfilled, (state) => {
         state.logoutStatus = STATUSES.FULFILLED;
-        state.isAuthChecked = true;
       });
   },
 });

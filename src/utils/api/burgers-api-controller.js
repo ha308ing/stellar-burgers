@@ -111,6 +111,20 @@ class BurgersApiController {
 
     return { orderName, orderNumber };
   };
+
+  loadApp = async () => {
+    const userInfoPromise = this.getUserInfo();
+    const ingredientsPromise = this.getIngredients();
+
+    const response = await Promise.allSettled([
+      userInfoPromise,
+      ingredientsPromise,
+    ]);
+
+    const [userInfo, ingredients] = response;
+
+    return { userInfo, ingredients };
+  };
 }
 
 export const burgersApiController = new BurgersApiController();
