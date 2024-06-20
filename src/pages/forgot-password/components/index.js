@@ -1,1 +1,1 @@
-export { ModalFullfilled } from "./modal-fullfilled/modal-fullfilled";
+export { ModalFulfilled } from "./modal-fulfilled/modal-fulfilled";

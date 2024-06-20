@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   change,
-  resetInputsFullfilled,
+  resetInputsFulfilled,
   resetMessage,
   setMessageRejected,
   setStatusPending,
@@ -19,7 +19,7 @@ export const formRegisterSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(submit.pending, setStatusPending);
     builder.addCase(submit.rejected, setMessageRejected);
-    builder.addCase(submit.fulfilled, resetInputsFullfilled(initialState));
+    builder.addCase(submit.fulfilled, resetInputsFulfilled(initialState));
   },
 });
 

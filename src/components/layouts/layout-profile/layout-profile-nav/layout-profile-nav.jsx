@@ -3,7 +3,7 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./layout-profile-nav.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  ModalFullfilled,
+  ModalFulfilled,
   ModalPending,
   ModalRejected,
 } from "../../../../components";
@@ -40,11 +40,11 @@ export const LayoutProfileNav = () => {
         </ModalRejected>
       )}
       {logoutStatus === STATUSES.FULFILLED && (
-        <ModalFullfilled closeModalHandler={handleModalCloseNavigate}>
+        <ModalFulfilled closeModalHandler={handleModalCloseNavigate}>
           <Button htmlType="button" onClick={handleModalCloseNavigate}>
             На главную
           </Button>
-        </ModalFullfilled>
+        </ModalFulfilled>
       )}
       <nav className={styles.nav}>
         <ul className={styles.navList}>

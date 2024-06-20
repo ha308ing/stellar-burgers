@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   change,
   resetMessage,
-  setMessageFullfilled,
+  setMessageFulfilled,
   setMessageRejected,
   setStatusPending,
 } from "../actions";
@@ -20,7 +20,7 @@ export const formPasswordResetSlice = createSlice({
     builder
       .addCase(submit.pending, setStatusPending)
       .addCase(submit.rejected, setMessageRejected)
-      .addCase(submit.fulfilled, setMessageFullfilled);
+      .addCase(submit.fulfilled, setMessageFulfilled);
   },
 });
 

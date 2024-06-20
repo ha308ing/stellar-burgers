@@ -1,13 +1,13 @@
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ModalFullfilled as Modal } from "../../../../components";
-import styles from "./modal-fullfilled.module.scss";
+import { ModalFulfilled as Modal } from "../../../../components";
+import styles from "./modal-fulfilled.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { formPasswordForgotActions } from "../../../../services/forms/form-password-forgot";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "../../../../utils";
 import PropTypes from "prop-types";
 
-export const ModalFullfilled = ({ email }) => {
+export const ModalFulfilled = ({ email }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export const ModalFullfilled = ({ email }) => {
 
   return (
     <Modal closeModalHandler={closeModalHandler}>
-      <div className={styles.modalFullfilled}>
+      <div className={styles.modalFulfilled}>
         <div>На почту {email} отправлен код.</div>
         <div>Он нужен для сброса пароля.</div>
         <Button
@@ -38,6 +38,6 @@ export const ModalFullfilled = ({ email }) => {
   );
 };
 
-ModalFullfilled.propTypes = {
+ModalFulfilled.propTypes = {
   email: PropTypes.string.isRequired,
 };

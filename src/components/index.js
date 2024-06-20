@@ -4,7 +4,7 @@ export { BurgerConstructor } from "./burger-constructor/burger-constructor";
 export { BurgerIngredients } from "./burger-ingredients/burger-ingredients";
 export { OrderDetails } from "./order-details/order-details";
 export { LayoutForm, LayoutMain, LayoutProfile } from "./layouts";
-export { ModalFullfilled, ModalPending, ModalRejected } from "./modal";
+export { ModalFulfilled, ModalPending, ModalRejected } from "./modal";
 export { ModalIngredientsError } from "./modal-ingredients-error/modal-ingredients-error";
 export {
   OnlyAuthorizedElement,

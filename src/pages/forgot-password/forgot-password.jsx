@@ -14,7 +14,7 @@ import {
   dispatchFormAction,
   dispatchInputAction,
 } from "../../utils/dispatch-actions";
-import { ModalFullfilled } from "./components";
+import { ModalFulfilled } from "./components";
 
 export const ForgotPasswordPage = () => {
   const {
@@ -46,7 +46,7 @@ export const ForgotPasswordPage = () => {
       {status === STATUSES.REJECTED && (
         <ModalRejected closeModalHandler={closeModal}>{message}</ModalRejected>
       )}
-      {status === STATUSES.FULFILLED && <ModalFullfilled email={email} />}
+      {status === STATUSES.FULFILLED && <ModalFulfilled email={email} />}
       <LF>
         <LF.Heading>Восстановление пароля</LF.Heading>
         <LF.Form onSubmit={handleSubmit}>

@@ -2,12 +2,12 @@ import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-component
 import { ModalAlert } from "../modal-alert/modal-alert";
 import PropTypes from "prop-types";
 
-export const ModalFullfilled = ({ children, closeModalHandler }) => (
+export const ModalFulfilled = ({ children, closeModalHandler }) => (
   <ModalAlert icon={<CheckMarkIcon />} closeModalHandler={closeModalHandler}>
     {children}
   </ModalAlert>
 );
 
-ModalFullfilled.propTypes = {
+ModalFulfilled.propTypes = {
   closeModalHandler: PropTypes.func.isRequired,
 };

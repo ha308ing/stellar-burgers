@@ -6,7 +6,7 @@ import {
   resetMessage,
   setStatusPending,
   setMessageRejected,
-  resetInputsFullfilled,
+  resetInputsFulfilled,
 } from "../actions";
 
 export const formLoginSlice = createSlice({
@@ -19,7 +19,7 @@ export const formLoginSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(submit.pending, setStatusPending);
     builder.addCase(submit.rejected, setMessageRejected);
-    builder.addCase(submit.fulfilled, resetInputsFullfilled(initialState));
+    builder.addCase(submit.fulfilled, resetInputsFulfilled(initialState));
   },
 });
 

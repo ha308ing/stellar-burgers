@@ -10,7 +10,7 @@ import {
 } from "../../services/forms/form-profile";
 import { dispatchInputAction } from "../../utils/dispatch-actions";
 import { STATUSES } from "../../utils";
-import { ModalPending, ModalRejected, ModalFullfilled } from "../../components";
+import { ModalPending, ModalRejected, ModalFulfilled } from "../../components";
 
 export const ProfileEdit = () => {
   const [disabled, setDisabled] = useState(true);
@@ -37,7 +37,7 @@ export const ProfileEdit = () => {
 
   const isPending = profileUpdateStatus === STATUSES.PENDING;
   const isRejected = profileUpdateStatus === STATUSES.REJECTED;
-  const isFullfilled = profileUpdateStatus === STATUSES.FULFILLED;
+  const isFulfilled = profileUpdateStatus === STATUSES.FULFILLED;
 
   const buttonText = isPending ? "Обновляем..." : "Сохранить";
 
@@ -55,14 +55,14 @@ export const ProfileEdit = () => {
 
   return (
     <>
-      {isFullfilled && (
-        <ModalFullfilled
+      {isFulfilled && (
+        <ModalFulfilled
           closeModalHandler={() => {
             dispatch(formProfileActions.resetMessage());
           }}
         >
           Данные обновлены
-        </ModalFullfilled>
+        </ModalFulfilled>
       )}
       {isPending && <ModalPending>Обновляем данные</ModalPending>}
       {isRejected && (
