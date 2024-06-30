@@ -1,4 +1,4 @@
-export { LinkOrdersFeed } from "./LinkOrdersFeed";
-export { LinkProfile } from "./LinkProfile";
-export { LinkRoot } from "./LinkRoot";
-export { LinkLogo } from "./LinkLogo";
+export { LinkOrdersFeed } from "./link-orders-feed";
+export { LinkProfile } from "./link-profile";
+export { LinkRoot } from "./link-root";
+export { LinkLogo } from "./link-logo";
