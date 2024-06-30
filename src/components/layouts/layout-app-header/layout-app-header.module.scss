@@ -3,26 +3,23 @@
 
 .header {
   width: 100%;
-  background-color: colors.$grey;
-  margin-inline: auto;
+  background-color: colors.$dark-blue;
 }
 
 .nav {
-  composes: py-5 from global;
   display: grid;
   align-items: center;
-  grid-area: nav;
-  grid-template:
-    "logo logo" auto
-    "left right" auto / 2fr 1fr;
-  margin-inline: auto;
-  max-inline-size: variables.$app-max-inline-size;
+  padding: 0.5rem;
+  block-size: 100%;
+  grid-template-columns: 1fr auto;
 }
 
 @media (min-width: variables.$breakpoint-md) {
   .nav {
-    align-items: center;
-    grid-template-areas: "left logo right";
-    grid-template-columns: repeat(3, 1fr);
+    composes: py-5 from global;
+    padding: initial;
+    grid-template: "left logo right" / 1fr 1fr 1fr;
+    margin-inline: auto;
+    max-inline-size: variables.$app-max-inline-size;
   }
 }

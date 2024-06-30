@@ -9,24 +9,18 @@
 }
 
 .centerNav {
-  grid-area: logo;
+  composes: navPart;
+  display: block;
+  margin: auto;
 }
 
-@media (min-width: variables.$breakpoint-md) {
-  .centerNav {
-    composes: navPart;
-    display: block;
-    margin: auto;
-  }
+.leftNav {
+  composes: navPart;
+  justify-content: flex-start;
+}
 
-  .leftNav {
-    composes: navPart;
-    justify-content: flex-start;
-  }
-
-  .rightNav {
-    composes: navPart;
-    justify-content: flex-end;
-    order: 1;
-  }
+.rightNav {
+  composes: navPart;
+  justify-content: flex-end;
+  order: 1;
 }
