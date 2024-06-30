@@ -18,6 +18,7 @@ import {
 import { ROUTES, STATUSES } from "../../utils";
 import { selectIgredientsGrouped } from "../../services/ingredients";
 import { appActions, selectLoadingStatus } from "../../services/app";
+import { MEDIA_QUERY_MD } from "../../config";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,22 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(appActions.load());
+
+    const dispatchMediaQuery = (mediaQuery) => {
+      if (mediaQuery.matches) {
+        dispatch(appActions.setIsDesktop());
+      } else {
+        dispatch(appActions.setIsMobile());
+      }
+    };
+
+    const mediaQuery = MEDIA_QUERY_MD;
+
+    dispatchMediaQuery(mediaQuery);
+
+    mediaQuery.addEventListener("change", dispatchMediaQuery);
+
+    return () => mediaQuery.removeEventListener("change", dispatchMediaQuery);
   }, [dispatch]);
 
   const from = location.state?.from;

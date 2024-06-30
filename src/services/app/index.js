@@ -6,9 +6,18 @@ import { STATUSES } from "../../utils";
 export const appSlice = createSlice({
   name: "app",
   initialState,
+  reducers: {
+    setIsMobile: (state) => {
+      state.isMobile = true;
+    },
+    setIsDesktop: (state) => {
+      state.isMobile = false;
+    },
+  },
   selectors: {
     selectLoadingStatus: (state) => state.loadingStatus,
     selectIsAuthChecked: (state) => state.isAuthChecked,
+    selectIsMobile: (state) => state.isMobile,
   },
   extraReducers: (builder) => {
     builder
@@ -27,5 +36,6 @@ export const appSlice = createSlice({
 });
 
 export const selectApp = appSlice.selectSlice;
-export const appActions = { load: loadApp };
-export const { selectLoadingStatus, selectIsAuthChecked } = appSlice.selectors;
+export const appActions = { ...appSlice.actions, load: loadApp };
+export const { selectLoadingStatus, selectIsAuthChecked, selectIsMobile } =
+  appSlice.selectors;
