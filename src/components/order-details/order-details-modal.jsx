@@ -1,19 +1,18 @@
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { OrderDetails } from "../order-details/order-details";
-import { burgerConstructorActions } from "../../services/burger-constructor";
 import { orderActions, selectOrderInfo } from "../../services/order";
-import { ModalAlert, ModalPending, ModalRejected } from "../modal";
+import { ModalPending, ModalRejected } from "../modal";
 import { STATUSES } from "../../utils";
+import { withMobileModal } from "../../hocs/withMobile";
 
-export const OrderDetailsModal = ({ closeModalHandler }) => {
+const Modal = withMobileModal(OrderDetails, "Заказ оформлен");
+
+export const OrderDetailsModal = () => {
   const dispatch = useDispatch();
   const { orderIdStatus } = useSelector(selectOrderInfo);
 
   const closeModalClearOrder = () => {
-    dispatch(burgerConstructorActions.clearBurger());
     dispatch(orderActions.clearOrder());
-    closeModalHandler();
   };
 
   if (orderIdStatus === STATUSES.PENDING)
@@ -31,13 +30,7 @@ export const OrderDetailsModal = ({ closeModalHandler }) => {
     );
 
   if (orderIdStatus === STATUSES.FULFILLED)
-    return (
-      <ModalAlert closeModalHandler={closeModalClearOrder}>
-        <OrderDetails />
-      </ModalAlert>
-    );
-};
+    return <Modal closeModalHandler={closeModalClearOrder} />;
 
-OrderDetailsModal.propTypes = {
-  closeModalHandler: PropTypes.func.isRequired,
+  return null;
 };

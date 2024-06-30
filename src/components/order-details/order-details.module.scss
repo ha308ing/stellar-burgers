@@ -1,8 +1,11 @@
+@use "../../styles/variables";
+
 .container {
-  composes: pt-30 pb-30 from global;
+  composes: pt-5 pb-5 from global;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  margin: auto;
 }
 
 .header {
@@ -14,7 +17,7 @@
 }
 
 .subHeader {
-  composes: text text_type_main-medium mb-15 pl-10 pr-10 from global;
+  composes: text text_type_main-medium mb-15 pl-10 pr-10 custom_scroll from global;
   text-align: center;
 }
 
@@ -28,4 +31,15 @@
 
 .subMessage {
   composes: text text_type_main-default text_color_inactive from global;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .container {
+    max-inline-size: 70ch;
+  }
+
+  .subHeader {
+    max-height: 3.5em;
+    overflow-y: auto;
+  }
 }
