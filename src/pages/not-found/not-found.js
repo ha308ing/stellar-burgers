@@ -17,6 +17,7 @@ export const NotFoundPage = () => {
           className={styles.image}
         />
         <Button
+          htmlType="button"
           onClick={() => {
             navigate(ROUTES.ROOT, { replace: true });
           }}
