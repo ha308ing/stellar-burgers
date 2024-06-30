@@ -1,9 +1,13 @@
 import React from "react";
 import styles from "./burger-ingredients-group.module.scss";
 import PropTypes from "prop-types";
-import { BurgerIngredientDrag as BurgerIngredient } from "../burger-ingredient/burger-ingredient-drag";
+import { BurgerIngredientDrag } from "../burger-ingredient/burger-ingredient-drag";
 import { useSelector } from "react-redux";
 import { selectGroup } from "../../../services/ingredients";
+import { withMobile } from "../../../hocs/withMobile";
+import { BurgerIngredientAdd } from "../burger-ingredient/burger-ingredient-add/burger-ingredinet-add";
+
+const BurgerIngredient = withMobile(BurgerIngredientDrag, BurgerIngredientAdd);
 
 export const BurgerIngredientsGroup = React.forwardRef(
   ({ groupIndex }, ref) => {

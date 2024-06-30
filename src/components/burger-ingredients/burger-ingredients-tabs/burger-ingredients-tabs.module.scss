@@ -1,9 +1,14 @@
 .container {
+  composes: custom_scroll from global;
   display: flex;
   flex-flow: row nowrap;
+  overflow-x: auto;
   text-transform: capitalize;
 }
 
 .container > * {
-  flex-grow: 1;
+  $min-width: 15ch;
+
+  min-width: $min-width;
+  flex: 1 0 $min-width;
 }
