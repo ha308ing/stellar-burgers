@@ -1,6 +1,8 @@
-import { ModalAlert } from "../modal/modal-alert/modal-alert";
+import { withMobileModal } from "../../hocs/withMobile";
 import { IngredientDetailsParams } from "./ingredient-details-params";
 import { useNavigate } from "react-router-dom";
+
+const Modal = withMobileModal(IngredientDetailsParams);
 
 export const IngredientDetailsModal = () => {
   const navigate = useNavigate();
@@ -9,9 +11,5 @@ export const IngredientDetailsModal = () => {
     navigate(-1);
   };
 
-  return (
-    <ModalAlert closeModalHandler={handleModalClose}>
-      <IngredientDetailsParams />
-    </ModalAlert>
-  );
+  return <Modal closeModalHandler={handleModalClose} />;
 };

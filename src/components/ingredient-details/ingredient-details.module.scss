@@ -1,3 +1,5 @@
+@use "../../styles/variables";
+
 .container {
   composes: pt-10 pl-10 pr-10 pb-15 from global;
   display: flex;
@@ -5,11 +7,11 @@
   align-items: center;
   justify-content: space-between;
   margin: auto;
-  inline-size: clamp(60ch, 45vw, 70ch);
+  inline-size: 100%;
 }
 
 .title {
-  composes: text text_type_main-large mb-2 mr-10 from global;
+  composes: text text_type_main-large mb-2 from global;
   line-height: 2;
   text-align: center;
 }
@@ -26,18 +28,24 @@
 
 .details {
   composes: text text_type_main-default text_color_inactive from global;
-  display: flex;
-  width: 100%;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  display: grid;
+  gap: 1em;
+  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
 }
 
 .detailsItem {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: space-between;
 }
 
 .detailsItem_value {
   composes: text text_type_digits-default from global;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .details {
+    grid-template: auto / repeat(4, 1fr);
+  }
 }

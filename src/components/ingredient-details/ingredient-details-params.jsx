@@ -7,5 +7,5 @@ export const IngredientDetailsParams = () => {
   const { ingredientId } = useParams();
   const ingredient = useSelector(selectIngredient(ingredientId));
 
-  return <IngredientDetails ingredient={ingredient} />;
+  return ingredient && <IngredientDetails ingredient={ingredient} />;
 };
