@@ -6,7 +6,7 @@ export const ModalAlert = ({ icon, closeModalHandler, children }) => {
   return (
     <ModalPortal closeModalHandler={closeModalHandler}>
       <div className={styles.container}>
-        <div className={styles.icon}>{icon}</div>
+        {icon}
         <div className={styles.message}>{children}</div>
       </div>
     </ModalPortal>
