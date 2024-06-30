@@ -3,9 +3,10 @@
 .container {
   display: grid;
   grid-template:
-    "nav" auto
-    "content" auto
-    "footer " auto / 1fr;
+    "nav" 0
+    "content" 2fr
+    "footer " 1fr / 1fr;
+  inline-size: 100%;
   justify-items: center;
   margin-inline: auto;
   max-inline-size: variables.$app-max-inline-size;
