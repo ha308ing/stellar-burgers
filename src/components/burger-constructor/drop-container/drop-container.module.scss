@@ -1,3 +1,5 @@
+@use "../../../styles/variables";
+
 .dropContainer {
   composes: text text_type_main-medium p-2 from global;
   background: transparent;
@@ -6,19 +8,19 @@
 
 .dropContainer_top,
 .dropContainer_bottom {
-  margin-inline: 2em 1.5em;
+  margin-inline: 1em 1.5em;
 }
 
 .dropContainer_top {
-  border-radius: 70px 70px 30px 30px;
+  border-radius: variables.$bun-top-border-radius;
 }
 
 .dropContainer_bottom {
-  border-radius: 30px 30px 70px 70px;
+  border-radius: variables.$bun-bottom-border-radius;
 }
 
 .dropContainer_middle {
-  border-radius: 30px;
+  border-radius: variables.$inner-border-radius;
 }
 
 .canDrop {
@@ -35,4 +37,11 @@
     0 0 10px 5px #ffe600 inset,
     0 0 20px 10px #e92264 inset,
     0 0 5px 5px #e99de9;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .dropContainer_top,
+  .dropContainer_bottom {
+    margin-inline: 2em 1.5em;
+  }
 }
