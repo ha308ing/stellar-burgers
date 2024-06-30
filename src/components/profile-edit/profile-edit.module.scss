@@ -2,6 +2,7 @@
 
 .profileContainer {
   display: grid;
+  gap: 2rem;
   grid-template:
     "inputs" 1fr
     "buttons" auto / 1fr;
@@ -16,12 +17,16 @@
 
 .buttonsContainer {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   align-items: center;
   justify-content: flex-end;
   gap: 2em;
   grid-area: buttons;
   margin-block-start: 2em;
+
+  [type="submit"] {
+    order: -1;
+  }
 }
 
 @media (min-width: variables.$breakpoint-md) {
@@ -29,5 +34,13 @@
     grid-template:
       "inputs ." 1fr
       "buttons ." auto / 1fr 1fr;
+  }
+
+  .buttonsContainer {
+    flex-direction: row;
+
+    [type="submit"] {
+      order: initial;
+    }
   }
 }
