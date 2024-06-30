@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { withMobile } from "../../hocs/withMobile";
 import { LayoutAppHeader as Header } from "../layouts/layout-app-header";
 import { MenuHamburger } from "./hamburger/hamburger";
@@ -20,12 +21,16 @@ const HeaderDesktop = () => (
   </Header>
 );
 
-const HeaderMobile = () => (
-  <Header>
-    <LinkLogo />
+const HeaderMobile = () => {
+  const location = useLocation();
 
-    <MenuHamburger />
-  </Header>
-);
+  return (
+    <Header>
+      <LinkLogo />
+
+      <MenuHamburger key={location.key} />
+    </Header>
+  );
+};
 
 export const AppHeader = withMobile(HeaderDesktop, HeaderMobile);
