@@ -1,3 +1,4 @@
+@use "./styles/variables";
 @import "../node_modules/minireset.css/minireset.sass";
 
 .custom_scroll {
@@ -13,6 +14,7 @@
 
   .custom_scroll::-webkit-scrollbar {
     width: 12px;
+    height: 12px;
   }
 
   .custom_scroll::-webkit-scrollbar-track {
@@ -27,6 +29,7 @@
 
   .body::-webkit-scrollbar {
     width: 12px;
+    height: 12px;
   }
 
   .body::-webkit-scrollbar-track {
@@ -48,12 +51,37 @@ a:active {
 }
 
 body {
-  margin: 0;
-  cursor: default;
+  composes: custom_scroll from global;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-size: 100%;
+  font-size: 80%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-block-size: 100vh;
+}
+
+svg,
+img {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+#root {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.input__container,
+.input_size_default {
+  width: clamp(40ch, 30ch + 15vw, 60ch) !important;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  /* stylelint-disable-next-line selector-class-pattern */
+  .input__container,
+  .input_size_default {
+    width: 480px !important;
+  }
 }

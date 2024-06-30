@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { burgersApiService } from "../../../utils/api/burgers-api-service";
+import { burgersApiController } from "../../../utils/api/burgers-api-controller";
 
 export const getIngredientsThunk = createAsyncThunk(
   "ingredients/get",
-  burgersApiService.fetchIngredients,
+  burgersApiController.getIngredients,
 );

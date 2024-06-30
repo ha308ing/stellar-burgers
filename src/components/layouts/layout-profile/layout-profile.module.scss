@@ -1,0 +1,21 @@
+@use "../../../styles/variables";
+
+.container {
+  display: grid;
+  grid-template:
+    "nav" 0
+    "content" 2fr
+    "footer " 1fr / 1fr;
+  inline-size: 100%;
+  justify-items: center;
+  margin-inline: auto;
+  max-inline-size: variables.$app-max-inline-size;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .container {
+    grid-template:
+      "nav content content" auto
+      "footer content content" 1fr / 1fr variables.$input-width 1fr;
+  }
+}

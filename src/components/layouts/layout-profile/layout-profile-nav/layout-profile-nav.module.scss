@@ -1,0 +1,16 @@
+@use "../../../../styles/variables";
+@use "../../../../styles/colors";
+
+.nav {
+  display: none;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .nav {
+    composes: text_type_main-medium text_color_inactive mb-10 from global;
+    display: initial;
+    grid-area: nav;
+    inline-size: 100%;
+    margin-block: variables.$profile-edit-top-space;
+  }
+}

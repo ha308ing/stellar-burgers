@@ -1,26 +1,36 @@
-import PropTypes from "prop-types";
-import { ModalPortal } from "../modal-portal/modal-portal";
+import { useDispatch, useSelector } from "react-redux";
 import { OrderDetails } from "../order-details/order-details";
-import { useDispatch } from "react-redux";
-import { burgerConstructorActions } from "../../services/burger-constructor";
-import { orderActions } from "../../services/order";
+import { orderActions, selectOrderInfo } from "../../services/order";
+import { ModalPending, ModalRejected } from "../modal";
+import { STATUSES } from "../../utils";
+import { withMobileModal } from "../../hocs/withMobile";
 
-export const OrderDetailsModal = ({ closeModalHandler }) => {
+const Modal = withMobileModal(OrderDetails, "Заказ оформлен");
+
+export const OrderDetailsModal = () => {
   const dispatch = useDispatch();
+  const { orderIdStatus } = useSelector(selectOrderInfo);
 
   const closeModalClearOrder = () => {
-    dispatch(burgerConstructorActions.clearBurger());
     dispatch(orderActions.clearOrder());
-    closeModalHandler();
   };
 
-  return (
-    <ModalPortal closeModalHandler={closeModalClearOrder}>
-      <OrderDetails />
-    </ModalPortal>
-  );
-};
+  if (orderIdStatus === STATUSES.PENDING)
+    return <ModalPending>оформляем заказ</ModalPending>;
 
-OrderDetailsModal.propTypes = {
-  closeModalHandler: PropTypes.func.isRequired,
+  if (orderIdStatus === STATUSES.REJECTED)
+    return (
+      <ModalRejected
+        closeModalHandler={() => {
+          dispatch(orderActions.resetOrderIdStatus());
+        }}
+      >
+        не удалось оформить заказ
+      </ModalRejected>
+    );
+
+  if (orderIdStatus === STATUSES.FULFILLED)
+    return <Modal closeModalHandler={closeModalClearOrder} />;
+
+  return null;
 };

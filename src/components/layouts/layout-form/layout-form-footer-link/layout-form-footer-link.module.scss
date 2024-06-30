@@ -1,0 +1,14 @@
+@use "../../../../styles/colors";
+
+.footerLink {
+  color: colors.$violet;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    text-shadow: 0 0 0.3em colors.$violet;
+  }
+
+  &:active {
+    color: colors.$white;
+  }
+}

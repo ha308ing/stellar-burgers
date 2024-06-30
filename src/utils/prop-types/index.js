@@ -1,0 +1,1 @@
+export { IngredientShape } from "./ingredient";

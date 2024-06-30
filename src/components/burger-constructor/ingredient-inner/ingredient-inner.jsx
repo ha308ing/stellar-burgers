@@ -3,12 +3,16 @@ import styles from "../burger-constructor.module.scss";
 import { useDrag, useDrop } from "react-dnd";
 import { useRef } from "react";
 import {
-  ConstructorElement,
+  ConstructorElement as Element,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { burgerConstructorActions } from "../../../services/burger-constructor";
 import { DRAG_TYPES } from "../../../utils/drag-types";
 import PropTypes from "prop-types";
+import { ConstructorElementMobile as ElementMobile } from "../constructor-element-mobile/constructor-element-mobile";
+import { withMobile } from "../../../hocs/withMobile";
+
+const ConstructorElement = withMobile(Element, ElementMobile);
 
 export const IngredientInner = ({ ingredient, index }) => {
   const { internalId, price, name, image } = ingredient;

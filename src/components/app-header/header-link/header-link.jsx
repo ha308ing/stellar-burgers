@@ -1,20 +1,24 @@
 import styles from "./header-link.module.scss";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
+import { ROUTES } from "../../../utils";
 
-export const HeaderLink = ({ Icon, label, isActive }) => (
-  <a
-    className={`${styles.link} ${isActive ? "text_color_primary" : "text_color_inactive"}`}
-    href="/"
-  >
-    <div className={styles.link_icon}>
-      <Icon type={isActive ? "primary" : "secondary"} />
-    </div>
-    <div className={styles.link_label}>{label}</div>
-  </a>
+export const HeaderLink = ({ Icon, label, to, title }) => (
+  <NavLink className={styles.link} to={to} title={title ?? label}>
+    {({ isActive }) => (
+      <>
+        <div className={styles.link_icon}>
+          <Icon type={isActive ? "primary" : "secondary"} />
+        </div>
+        <div className={isActive ? styles.active : null}>{label}</div>
+      </>
+    )}
+  </NavLink>
 );
 
 HeaderLink.propTypes = {
   Icon: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
+  to: PropTypes.oneOf(Object.values(ROUTES)).isRequired,
+  title: PropTypes.string,
 };

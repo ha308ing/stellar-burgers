@@ -1,9 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { burgersApiService } from "../../../utils/api/burgers-api-service";
+import { burgersApiController } from "../../../utils/api/burgers-api-controller";
+import { burgerConstructorActions } from "../../burger-constructor";
 
-export const postOrderThunk = createAsyncThunk("order/post", (orderIds) => {
-  const { requestPromise } = burgersApiService.postOrder(
-    JSON.stringify({ ingredients: orderIds }),
-  );
-  return requestPromise;
-});
+export const postOrderThunk = createAsyncThunk(
+  "order/post",
+  async (orderIds, thunkApi) => {
+    const response = await burgersApiController.postOrder(orderIds);
+    thunkApi.dispatch(burgerConstructorActions.clearBurger());
+    return response;
+  },
+);

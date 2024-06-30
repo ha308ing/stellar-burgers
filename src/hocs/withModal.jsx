@@ -8,7 +8,6 @@ export const withModal = (Component, ModalComponent) => (props) => {
   };
 
   const handleClick = () => {
-    if (props.handleClick) props.handleClick();
     toggleModal();
   };
 

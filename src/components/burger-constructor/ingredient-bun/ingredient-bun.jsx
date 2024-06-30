@@ -4,7 +4,12 @@ import {
   selectBurger,
 } from "../../../services/burger-constructor";
 import styles from "./ingredient-bun.module.scss";
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement as Element } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElementMobile as ElementMobile } from "../constructor-element-mobile/constructor-element-mobile";
+import { withMobile } from "../../../hocs/withMobile";
+import PropTypes from "prop-types";
+
+const ConstructorElement = withMobile(Element, ElementMobile);
 
 export const IngredientBun = ({ type }) => {
   const { bun } = useSelector(selectBurger);
@@ -24,6 +29,12 @@ export const IngredientBun = ({ type }) => {
       }
     />
   ) : (
-    <div className={styles.noIngredient}>выберете булку</div>
+    <div className={styles.noIngredient} data-type={type}>
+      выберете булку
+    </div>
   );
+};
+
+ConstructorElement.propTypes = {
+  type: PropTypes.oneOf(["top", "bottom"]).isRequired,
 };

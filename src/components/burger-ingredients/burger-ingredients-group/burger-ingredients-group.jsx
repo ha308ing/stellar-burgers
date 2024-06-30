@@ -1,9 +1,13 @@
 import React from "react";
 import styles from "./burger-ingredients-group.module.scss";
 import PropTypes from "prop-types";
-import { BurgerIngredientWithModal } from "../burger-ingredient/burger-ingredient-with-modal";
+import { BurgerIngredientDrag } from "../burger-ingredient/burger-ingredient-drag";
 import { useSelector } from "react-redux";
 import { selectGroup } from "../../../services/ingredients";
+import { withMobile } from "../../../hocs/withMobile";
+import { BurgerIngredientAdd } from "../burger-ingredient/burger-ingredient-add/burger-ingredinet-add";
+
+const BurgerIngredient = withMobile(BurgerIngredientDrag, BurgerIngredientAdd);
 
 export const BurgerIngredientsGroup = React.forwardRef(
   ({ groupIndex }, ref) => {
@@ -14,10 +18,7 @@ export const BurgerIngredientsGroup = React.forwardRef(
         <header className={styles.header}>{groupName}</header>
         <div className={styles.group}>
           {ingredients.map((ingredient) => (
-            <BurgerIngredientWithModal
-              key={ingredient._id}
-              ingredientId={ingredient._id}
-            />
+            <BurgerIngredient key={ingredient._id} ingredient={ingredient} />
           ))}
         </div>
       </section>

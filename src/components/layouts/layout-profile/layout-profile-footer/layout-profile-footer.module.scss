@@ -1,0 +1,23 @@
+@use "../../../../styles/variables";
+
+.footer {
+  composes: text text_type_main-small text_color_inactive mt-10 from global;
+  grid-area: footer;
+  inline-size: 100%;
+  text-align: center;
+}
+
+br {
+  display: none;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .footer {
+    margin-block-start: 0;
+    text-align: left;
+  }
+
+  br {
+    display: initial;
+  }
+}

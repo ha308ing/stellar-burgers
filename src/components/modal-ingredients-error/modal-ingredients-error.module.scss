@@ -1,0 +1,22 @@
+.content {
+  composes: pt-10 pb-8 from global;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.header {
+  composes: text text_type_main-large mb-10 from global;
+}
+
+.text {
+  composes: text text_type_main-default mb-5 from global;
+  max-inline-size: 50ch;
+  text-align: center;
+}
+
+.notes {
+  composes: text text_type_main-small text_color_inactive mb-10 from global;
+  list-style: circle;
+  max-inline-size: 40ch;
+}
