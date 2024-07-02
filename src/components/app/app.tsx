@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
   Navigate,
   Route,
@@ -19,19 +18,22 @@ import { ROUTES, STATUSES } from "../../utils";
 import { selectIgredientsGrouped } from "../../services/ingredients";
 import { appActions, selectLoadingStatus } from "../../services/app";
 import { MEDIA_QUERY_MD } from "../../config";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
-export const App = () => {
-  const dispatch = useDispatch();
+export const App = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const location = useLocation();
-  const { status: ingredientsStatus, ingredientsQty } = useSelector(
+  const { status: ingredientsStatus, ingredientsQty } = useAppSelector(
     selectIgredientsGrouped,
   );
-  const appLoadingStatus = useSelector(selectLoadingStatus);
+  const appLoadingStatus = useAppSelector(selectLoadingStatus);
 
   useEffect(() => {
     dispatch(appActions.load());
 
-    const dispatchMediaQuery = (mediaQuery) => {
+    const dispatchMediaQuery = (
+      mediaQuery: MediaQueryList | MediaQueryListEvent,
+    ) => {
       if (mediaQuery.matches) {
         dispatch(appActions.setIsDesktop());
       } else {
