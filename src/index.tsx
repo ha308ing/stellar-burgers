@@ -4,13 +4,10 @@ import "./index.scss";
 import { App } from "./components";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from "./services/root-reducer";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { BrowserRouter } from "react-router-dom";
-
-const store = configureStore({ reducer: rootReducer });
+import { store } from "./store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
