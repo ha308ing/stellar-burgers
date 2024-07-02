@@ -1,7 +1,8 @@
-import styles from "./drop-container.module.css";
+import styles from "./drop-container.module.scss";
 import { useDrop } from "react-dnd";
 import { burgerConstructorActions } from "../../../services/burger-constructor";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 export const DropContainer = ({ type, ingredientType, children }) => {
   const dispatch = useDispatch();
@@ -23,4 +24,9 @@ export const DropContainer = ({ type, ingredientType, children }) => {
       {children}
     </div>
   );
+};
+
+DropContainer.propTypes = {
+  type: PropTypes.oneOf(["top", "bottom", "middle"]).isRequired,
+  ingredientType: PropTypes.string.isRequired,
 };

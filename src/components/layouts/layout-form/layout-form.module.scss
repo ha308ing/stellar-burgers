@@ -1,0 +1,15 @@
+.formContainer {
+  display: grid;
+  block-size: 90%;
+  place-items: center;
+}
+
+.main {
+  composes: p-8 from global;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+  gap: 1em;
+  max-inline-size: 80ch;
+  text-align: center;
+}

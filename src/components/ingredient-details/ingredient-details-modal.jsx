@@ -1,24 +1,15 @@
-import PropTypes from "prop-types";
-import { ModalPortal } from "../modal-portal/modal-portal";
-import { IngredientDetails } from "../ingredient-details/ingredient-details";
-import { useDispatch } from "react-redux";
-import { ingredientActions } from "../../services/ingredient";
+import { withMobileModal } from "../../hocs/withMobile";
+import { IngredientDetailsParams } from "./ingredient-details-params";
+import { useNavigate } from "react-router-dom";
 
-export const IngredientDetailsModal = ({ closeModalHandler }) => {
-  const dispatch = useDispatch();
+const Modal = withMobileModal(IngredientDetailsParams);
 
-  const closeModalResetIngredient = () => {
-    dispatch(ingredientActions.resetIngredient());
-    closeModalHandler();
+export const IngredientDetailsModal = () => {
+  const navigate = useNavigate();
+
+  const handleModalClose = () => {
+    navigate(-1);
   };
 
-  return (
-    <ModalPortal closeModalHandler={closeModalResetIngredient}>
-      <IngredientDetails />
-    </ModalPortal>
-  );
-};
-
-IngredientDetailsModal.propTypes = {
-  closeModalHandler: PropTypes.func.isRequired,
+  return <Modal closeModalHandler={handleModalClose} />;
 };

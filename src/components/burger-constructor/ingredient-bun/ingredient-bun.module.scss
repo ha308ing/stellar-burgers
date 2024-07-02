@@ -1,3 +1,12 @@
+@use "../../../styles/colors";
+@use "../../../styles/variables";
+
 .noIngredient {
   padding: 1em;
+  border-radius: variables.$bun-top-border-radius;
+  background: colors.$dark-blue-cc;
+
+  &[data-type="bottom"] {
+    border-radius: variables.$bun-bottom-border-radius;
+  }
 }

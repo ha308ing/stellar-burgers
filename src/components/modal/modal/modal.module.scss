@@ -1,0 +1,21 @@
+@use "../../../styles/colors";
+
+.container {
+  position: relative;
+  padding: 2rem;
+  border-radius: 40px;
+  background: colors.$dark-blue;
+}
+
+.closeIconContainer {
+  position: absolute;
+  margin-top: 3rem;
+  margin-right: 3rem;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+}
+
+.content {
+  display: grid;
+  place-content: center;
+}

@@ -1,15 +1,26 @@
+@use "../../../styles/variables";
+@use "../../../styles/colors";
+
 .innersContainer {
   composes: custom_scroll from global;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   gap: 0.5em;
-  max-block-size: calc(100vh - 22em);
   overflow-y: auto;
   padding-inline-end: 1.5em;
 }
 
 .noIngredient {
+  width: 90%;
   padding: 1.5em;
-  margin: 0.5em 0 0.5em 1.5em;
+  border-radius: 30px;
+  margin: 0.5em 0 0.5em 2em;
+  background: colors.$dark-blue-cc;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .innersContainer {
+    max-block-size: calc(100vh - 25em);
+  }
 }

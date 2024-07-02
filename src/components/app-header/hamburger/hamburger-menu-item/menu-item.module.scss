@@ -1,0 +1,10 @@
+.menuItem {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submenu {
+  padding-inline-start: 3rem;
+}

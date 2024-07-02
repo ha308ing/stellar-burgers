@@ -1,0 +1,25 @@
+.constructorElementMobile {
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.image {
+  width: 5ch;
+  height: auto;
+}
+
+.name {
+  composes: text text_type_main-default from global;
+  text-align: left;
+}
+
+.price {
+  composes: text text_type_digits-default from global;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.3ch;
+  margin-inline: auto 0.3ch;
+}

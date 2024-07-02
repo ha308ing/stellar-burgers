@@ -1,0 +1,26 @@
+@use "../../../styles/variables";
+
+.navPart {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  justify-content: space-around;
+  white-space: nowrap;
+}
+
+.centerNav {
+  composes: navPart;
+  display: block;
+  margin: auto;
+}
+
+.leftNav {
+  composes: navPart;
+  justify-content: flex-start;
+}
+
+.rightNav {
+  composes: navPart;
+  justify-content: flex-end;
+  order: 1;
+}

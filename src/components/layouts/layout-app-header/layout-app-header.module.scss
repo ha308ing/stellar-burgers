@@ -1,0 +1,25 @@
+@use "../../../styles/variables";
+@use "../../../styles/colors";
+
+.header {
+  width: 100%;
+  background-color: colors.$dark-blue;
+}
+
+.nav {
+  display: grid;
+  align-items: center;
+  padding: 0.5rem;
+  block-size: 100%;
+  grid-template-columns: 1fr auto;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .nav {
+    composes: py-5 from global;
+    padding: initial;
+    grid-template: "left logo right" / 1fr 1fr 1fr;
+    margin-inline: auto;
+    max-inline-size: variables.$app-max-inline-size;
+  }
+}
