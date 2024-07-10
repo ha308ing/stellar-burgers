@@ -20,6 +20,10 @@ _линтеры, форматтеры_:
 - `npm run prettier`
 - `npm run lint` - все параллельно с [npm-run-all](https://www.npmjs.com/package/npm-run-all)
 
+# Спринт 4. Шаг 1.
+
+Миграция на typescript
+
 # Спринт 3. Шаг 1.
 
 ## Задачи
