@@ -1,14 +1,17 @@
 import { useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
-import PropTypes from "prop-types";
-import { Modal } from "../modal/modal";
+import { Modal, IProps as IModalProps } from "../modal/modal";
 import { ModalOverlay } from "../modal-overlay/modal-overlay";
 import { MODAL_ROOT_ELEMENT } from "../../../config";
 import styles from "./modal-portal.module.scss";
+import type { FC } from "react";
 
-export const ModalPortal = ({ children, closeModalHandler = null }) => {
+interface IProps extends IModalProps {}
+
+export const ModalPortal: FC<IProps> = ({ children, closeModalHandler }) => {
   const keyHandler = useCallback(
-    (e) => {
+    (e: KeyboardEvent) => {
+      if (e.key == null || closeModalHandler == null) return;
       const isCloseKey = e.key && e.key === "Escape";
       if (isCloseKey) closeModalHandler();
     },
@@ -16,7 +19,7 @@ export const ModalPortal = ({ children, closeModalHandler = null }) => {
   );
 
   useEffect(() => {
-    if (!closeModalHandler) return;
+    if (closeModalHandler == null) return;
 
     document.addEventListener("keyup", keyHandler);
 
@@ -32,8 +35,4 @@ export const ModalPortal = ({ children, closeModalHandler = null }) => {
     </div>,
     MODAL_ROOT_ELEMENT,
   );
-};
-
-ModalPortal.propTypes = {
-  closeModalHandler: PropTypes.func,
 };

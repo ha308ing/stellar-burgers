@@ -1,8 +1,17 @@
 import { ModalPortal } from "../modal-portal/modal-portal";
-import PropTypes from "prop-types";
 import styles from "./modal-alert.module.scss";
+import type { FC, PropsWithChildren, ReactNode } from "react";
 
-export const ModalAlert = ({ icon, closeModalHandler, children }) => {
+export interface IProps extends PropsWithChildren {
+  icon?: ReactNode;
+  closeModalHandler?: () => void;
+}
+
+export const ModalAlert: FC<IProps> = ({
+  icon,
+  closeModalHandler,
+  children,
+}) => {
   return (
     <ModalPortal closeModalHandler={closeModalHandler}>
       <div className={styles.container}>
@@ -11,12 +20,4 @@ export const ModalAlert = ({ icon, closeModalHandler, children }) => {
       </div>
     </ModalPortal>
   );
-};
-
-ModalAlert.propTypes = {
-  icon: PropTypes.oneOfType([
-    PropTypes.element.isRequired,
-    PropTypes.string.isRequired,
-  ]),
-  closeModalHandler: PropTypes.func,
 };
