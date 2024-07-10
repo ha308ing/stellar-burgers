@@ -5,7 +5,7 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ROUTES, STATUSES } from "../../utils";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   registerActions,
   selectFormRegister,
@@ -15,16 +15,18 @@ import {
   dispatchFormAction,
   dispatchInputAction,
 } from "../../utils/dispatch-actions";
+import type { FC } from "react";
+import { IFormRegisterState } from "../../services/forms/form-register/initial-state";
 
-export const RegisterPage = () => {
+export const RegisterPage: FC = () => {
   const {
     inputs: { name, email, password },
     status,
     message,
-  } = useSelector(selectFormRegister);
-  const dispatch = useDispatch();
+  } = useAppSelector(selectFormRegister);
+  const dispatch = useAppDispatch();
 
-  const handleSubmit = dispatchFormAction(
+  const handleSubmit = dispatchFormAction<IFormRegisterState>(
     dispatch,
     registerActions.submit,
   )({ name, email, password });

@@ -8,7 +8,7 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ROUTES, STATUSES } from "../../utils";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   formPasswordResetActions,
   selectFormPasswordReset,
@@ -17,14 +17,16 @@ import {
   dispatchFormAction,
   dispatchInputAction,
 } from "../../utils/dispatch-actions";
+import type { FC } from "react";
+import { IFormPasswordResetState } from "../../services/forms/form-password-reset/initial-state";
 
-export const ResetPasswordPage = () => {
+export const ResetPasswordPage: FC = () => {
   const {
     inputs: { password, token },
     message,
     status,
-  } = useSelector(selectFormPasswordReset);
-  const dispatch = useDispatch();
+  } = useAppSelector(selectFormPasswordReset);
+  const dispatch = useAppDispatch();
 
   const handleModalClose = () => {
     dispatch(formPasswordResetActions.resetMessage());
@@ -35,7 +37,7 @@ export const ResetPasswordPage = () => {
     formPasswordResetActions.change,
   );
 
-  const handleSubmit = dispatchFormAction(
+  const handleSubmit = dispatchFormAction<IFormPasswordResetState>(
     dispatch,
     formPasswordResetActions.submit,
   )({ password, token });

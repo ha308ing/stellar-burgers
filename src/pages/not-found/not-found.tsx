@@ -3,8 +3,9 @@ import { LayoutMain } from "../../components";
 import styles from "./not-found.module.scss";
 import { ROUTES } from "../../utils";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import type { FC } from "react";
 
-export const NotFoundPage = () => {
+export const NotFoundPage: FC = () => {
   const navigate = useNavigate();
 
   return (

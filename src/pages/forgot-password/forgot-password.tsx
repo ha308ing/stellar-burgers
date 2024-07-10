@@ -5,7 +5,7 @@ import {
 } from "../../components";
 import { EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ROUTES, STATUSES } from "../../utils";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   formPasswordForgotActions,
   selectFormPasswordForgot,
@@ -15,21 +15,23 @@ import {
   dispatchInputAction,
 } from "../../utils/dispatch-actions";
 import { ModalFulfilled } from "./components";
+import type { FC } from "react";
+import type { IFormPasswordForgotState } from "../../services/forms/form-password-forgot/initial-state";
 
-export const ForgotPasswordPage = () => {
+export const ForgotPasswordPage: FC = () => {
   const {
     inputs: { email },
     message,
     status,
-  } = useSelector(selectFormPasswordForgot);
-  const dispatch = useDispatch();
+  } = useAppSelector(selectFormPasswordForgot);
+  const dispatch = useAppDispatch();
 
   const handleChange = dispatchInputAction(
     dispatch,
     formPasswordForgotActions.change,
   );
 
-  const handleSubmit = dispatchFormAction(
+  const handleSubmit = dispatchFormAction<IFormPasswordForgotState>(
     dispatch,
     formPasswordForgotActions.submit,
   )({ email });

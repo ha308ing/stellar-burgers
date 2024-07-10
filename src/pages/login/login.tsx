@@ -1,26 +1,28 @@
+import { FC } from "react";
 import { LayoutForm as LF, ModalRejected } from "../../components";
 import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ROUTES, STATUSES } from "../../utils";
-import { useDispatch, useSelector } from "react-redux";
 import { loginActions, selectFormLogin } from "../../services/forms/form-login";
 import { Navigate } from "react-router-dom";
 import {
   dispatchFormAction,
   dispatchInputAction,
 } from "../../utils/dispatch-actions";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { IFormLogin } from "../../services/forms/form-login/initial-state";
 
-export const LoginPage = () => {
+export const LoginPage: FC = () => {
   const {
     inputs: { email, password },
     status,
     message,
-  } = useSelector(selectFormLogin);
-  const dispatch = useDispatch();
+  } = useAppSelector(selectFormLogin);
+  const dispatch = useAppDispatch();
 
-  const handleSubmit = dispatchFormAction(
+  const handleSubmit = dispatchFormAction<IFormLogin>(
     dispatch,
     loginActions.submit,
   )({ email, password });
@@ -59,18 +61,20 @@ export const LoginPage = () => {
           <LF.Button disabled={isButtonDisabled}>{buttonText}</LF.Button>
         </LF.Form>
         <LF.Footer>
-          <LF.FooterString>
-            Вы - новый пользователь?{" "}
-            <LF.FooterLink to={ROUTES.REGISTER}>
-              Зарегистрироваться
-            </LF.FooterLink>
-          </LF.FooterString>
-          <LF.FooterString>
-            Забыли пароль?{" "}
-            <LF.FooterLink to={ROUTES.FORGOT_PASSWORD}>
-              Восстановить пароль
-            </LF.FooterLink>
-          </LF.FooterString>
+          <>
+            <LF.FooterString>
+              Вы - новый пользователь?{" "}
+              <LF.FooterLink to={ROUTES.REGISTER}>
+                Зарегистрироваться
+              </LF.FooterLink>
+            </LF.FooterString>
+            <LF.FooterString>
+              Забыли пароль?{" "}
+              <LF.FooterLink to={ROUTES.FORGOT_PASSWORD}>
+                Восстановить пароль
+              </LF.FooterLink>
+            </LF.FooterString>
+          </>
         </LF.Footer>
       </LF>
     </>

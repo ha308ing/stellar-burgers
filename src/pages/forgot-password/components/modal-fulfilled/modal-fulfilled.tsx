@@ -3,14 +3,19 @@ import { ModalFulfilled as Modal } from "../../../../components";
 import styles from "./modal-fulfilled.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { formPasswordForgotActions } from "../../../../services/forms/form-password-forgot";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../../hooks";
 import { ROUTES } from "../../../../utils";
-import PropTypes from "prop-types";
+import type { FC } from "react";
+import { IUserData } from "../../../../utils/api/types";
 
-export const ModalFulfilled = ({ email }) => {
+interface IProps {
+  email: IUserData["email"];
+}
+
+export const ModalFulfilled: FC<IProps> = ({ email }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const closeModalHandler = () => {
     dispatch(formPasswordForgotActions.resetMessage());
@@ -36,8 +41,4 @@ export const ModalFulfilled = ({ email }) => {
       </div>
     </Modal>
   );
-};
-
-ModalFulfilled.propTypes = {
-  email: PropTypes.string.isRequired,
 };
