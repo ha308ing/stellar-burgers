@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./layout-profile-menu.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import {
   ModalFulfilled,
   ModalPending,
@@ -10,11 +10,12 @@ import {
 import { profileActions, selectProfile } from "../../../../services/profile";
 import { RESET_STORE } from "../../../../services/root-reducer";
 import { ROUTES, STATUSES } from "../../../../utils";
+import type { FC } from "react";
 
-export const LayoutProfileMenu = () => {
-  const dispatch = useDispatch();
+export const LayoutProfileMenu: FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { logoutStatus, message } = useSelector(selectProfile);
+  const { logoutStatus, message } = useAppSelector(selectProfile);
 
   const handleModalClose = () => {
     dispatch(profileActions.resetLogoutMessage());

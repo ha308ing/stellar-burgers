@@ -1,8 +1,13 @@
+import { FC, PropsWithChildren, ComponentProps } from "react";
 import styles from "./layout-form-button.module.scss";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 
-export const LayoutFormButton = ({
+interface IProps extends PropsWithChildren {
+  type?: ComponentProps<"button">["type"];
+  disabled?: boolean;
+}
+
+export const LayoutFormButton: FC<IProps> = ({
   children,
   type = "submit",
   disabled = false,
@@ -11,8 +16,3 @@ export const LayoutFormButton = ({
     {children}
   </Button>
 );
-
-LayoutFormButton.propTypes = {
-  type: PropTypes.oneOf(["submit", "button"]),
-  disabled: PropTypes.bool,
-};
