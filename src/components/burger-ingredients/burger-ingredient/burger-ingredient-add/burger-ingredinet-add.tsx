@@ -4,7 +4,7 @@ import { useAppDispatch } from "hooks";
 import { burgerConstructorActions } from "services";
 import styles from "./burger-ingredinet-add.module.scss";
 import type { FC } from "react";
-import { IIngredient } from "types";
+import type { IIngredient } from "types";
 
 interface IProps {
   ingredient: IIngredient;

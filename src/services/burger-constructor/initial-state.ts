@@ -1,4 +1,4 @@
-import { IIngredient } from "types";
+import type { IIngredient } from "types";
 
 export interface IConstructorIngredient extends IIngredient {
   internalId: string;

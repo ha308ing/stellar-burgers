@@ -6,7 +6,8 @@ import {
   ConstructorElement as Element,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { burgerConstructorActions, IConstructorIngredient } from "services";
+import type { IConstructorIngredient } from "services";
+import { burgerConstructorActions } from "services";
 import { DRAG_TYPES } from "utils";
 import { ConstructorElementMobile as ElementMobile } from "../constructor-element-mobile/constructor-element-mobile";
 import { withMobile } from "hocs";

@@ -1,5 +1,5 @@
-import { IUserDataPassword } from "utils";
-import { IFormState } from "../types";
+import type { IUserDataPassword } from "utils";
+import type { IFormState } from "../types";
 
 export interface IFormRegisterInputs extends IUserDataPassword {}
 

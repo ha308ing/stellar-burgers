@@ -1,7 +1,7 @@
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 import styles from "./layout-form-footer-link.module.scss";
 import { Link } from "react-router-dom";
-import { TRoutes } from "utils";
+import type { TRoutes } from "utils";
 
 interface IProps extends PropsWithChildren {
   to: TRoutes;

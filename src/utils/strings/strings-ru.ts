@@ -1,4 +1,5 @@
-import { STRINGS, TStringsTranslate } from "./strings";
+import type { TStringsTranslate } from "./strings";
+import { STRINGS } from "./strings";
 
 const failDefault = "не удалось выполнить запрос";
 

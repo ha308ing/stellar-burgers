@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
+import type {
   IBurgerConstructorState,
   IConstructorIngredient,
-  initialState,
 } from "./initial-state";
+import { initialState } from "./initial-state";
 import * as reducers from "./reducers";
 import * as selectors from "./selectors";
 export type {

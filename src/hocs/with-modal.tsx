@@ -1,4 +1,5 @@
-import { useState, FC } from "react";
+import type { FC } from "react";
+import { useState } from "react";
 
 // add modal to component
 // component must accept handleClick (to show modal)

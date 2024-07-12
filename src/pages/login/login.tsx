@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { LayoutForm as LF, ModalRejected } from "components";
 import {
   EmailInput,
@@ -13,7 +13,7 @@ import {
 import { loginActions, selectFormLogin } from "services";
 import { Navigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "hooks";
-import { IFormLogin } from "services";
+import type { IFormLogin } from "services";
 
 export const LoginPage: FC = () => {
   const {

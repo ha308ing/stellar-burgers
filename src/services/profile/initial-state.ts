@@ -1,4 +1,4 @@
-import { TConnectionStatus, IUserDataPassword } from "utils";
+import type { TConnectionStatus, IUserDataPassword } from "utils";
 
 export interface IProfileState {
   user: IUserDataPassword | null;

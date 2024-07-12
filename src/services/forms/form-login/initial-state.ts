@@ -1,4 +1,4 @@
-import { IFormState } from "../types";
+import type { IFormState } from "../types";
 
 export interface IFormLoginInputs {
   email: string;

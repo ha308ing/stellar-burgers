@@ -1,4 +1,5 @@
-import { Action, combineSlices } from "@reduxjs/toolkit";
+import type { Action } from "@reduxjs/toolkit";
+import { combineSlices } from "@reduxjs/toolkit";
 import { ingredientsSlice } from "./ingredients";
 import { orderSlice } from "./order";
 import { burgerConstructorSlice } from "./burger-constructor";

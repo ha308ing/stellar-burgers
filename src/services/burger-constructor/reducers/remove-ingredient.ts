@@ -1,5 +1,5 @@
-import { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
-import {
+import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
+import type {
   IBurgerConstructorState,
   IConstructorIngredient,
 } from "../initial-state";

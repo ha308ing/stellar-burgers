@@ -6,7 +6,7 @@ import styles from "./burger-ingredient.module.scss";
 import { selectIngredientQty } from "services";
 import { useAppSelector } from "hooks";
 import type { FC } from "react";
-import { IIngredient } from "types";
+import type { IIngredient } from "types";
 
 interface IProps {
   ingredient: IIngredient;

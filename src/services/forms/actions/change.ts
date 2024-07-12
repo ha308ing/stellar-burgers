@@ -1,5 +1,5 @@
-import { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
-import { IFormState } from "../types";
+import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
+import type { IFormState } from "../types";
 
 export type TChangeCaseReducer<
   T extends IFormState,

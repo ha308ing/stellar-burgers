@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ComponentProps } from "react";
+import type { FC, PropsWithChildren, ComponentProps } from "react";
 import styles from "./layout-form-button.module.scss";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 

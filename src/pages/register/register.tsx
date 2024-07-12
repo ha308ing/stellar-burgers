@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "hooks";
 import { registerActions, selectFormRegister } from "services";
 import { Navigate } from "react-router-dom";
 import type { FC } from "react";
-import { IFormRegisterState } from "services";
+import type { IFormRegisterState } from "services";
 
 export const RegisterPage: FC = () => {
   const {

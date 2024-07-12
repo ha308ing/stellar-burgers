@@ -10,7 +10,7 @@ import { useAppSelector } from "hooks";
 import { selectProfile } from "services";
 import { MenuItem } from "./hamburger-menu-item/menu-item";
 import { HamburgerButton } from "./hamburger-button/hamburger-button";
-import { FC } from "react";
+import type { FC } from "react";
 
 interface IProps {
   closeModalHandler?: () => void;

@@ -1,9 +1,10 @@
 import { STRINGS } from "../strings";
-import { API, TAPI } from "./endpoints";
+import type { TAPI } from "./endpoints";
+import { API } from "./endpoints";
 import { burgersApiController } from "./burgers-api-controller";
 import { ErrorLocal } from "./error-local";
 import type { IIngredient } from "types";
-import {
+import type {
   IIngredientsResponse,
   ILoginResponse,
   ILogoutResponse,
@@ -13,10 +14,9 @@ import {
   IRegisterResponse,
   IUpdateTokenResponse,
   IUserResponse,
-  HTTP_METHOD,
-  isError,
   THTTP_METHOD,
 } from "./types";
+import { HTTP_METHOD, isError } from "./types";
 
 class BurgersApiService {
   basicRequest = <U = unknown, T = null>(

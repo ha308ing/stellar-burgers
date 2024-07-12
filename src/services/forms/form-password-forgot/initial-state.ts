@@ -1,5 +1,5 @@
-import { IUserData } from "utils";
-import { IFormState } from "../types";
+import type { IUserData } from "utils";
+import type { IFormState } from "../types";
 
 export interface IFormPasswordForgotInputs {
   email: IUserData["email"];

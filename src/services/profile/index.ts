@@ -1,7 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./initial-state";
 import { get, logout } from "./thunks";
-import { STATUSES, IUserDataPassword } from "utils";
+import type { IUserDataPassword } from "utils";
+import { STATUSES } from "utils";
 
 export const profileSlice = createSlice({
   name: "profile",

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { burgersApiController } from "utils";
 import { burgerConstructorActions } from "services";
-import { IIngredient } from "types";
+import type { IIngredient } from "types";
 
 export const postOrderThunk = createAsyncThunk(
   "order/post",

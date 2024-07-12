@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { selectBurger } from "./index";
-import { IConstructorIngredient } from "../initial-state";
+import type { IConstructorIngredient } from "../initial-state";
 
 export const selectBurgerKeyValue = createSelector([selectBurger], (burger) => {
   const { bun, inner } = burger;

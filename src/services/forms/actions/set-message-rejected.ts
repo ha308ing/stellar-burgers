@@ -1,6 +1,6 @@
 import { STATUSES } from "utils";
-import { IFormState } from "../types";
-import {
+import type { IFormState } from "../types";
+import type {
   AnyAsyncThunk,
   RejectedActionFromAsyncThunk,
 } from "@reduxjs/toolkit/dist/matchers";

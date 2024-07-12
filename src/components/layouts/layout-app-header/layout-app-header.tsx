@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 import styles from "./layout-app-header.module.scss";
 
 export const LayoutAppHeader: FC<PropsWithChildren> = ({ children }) => {

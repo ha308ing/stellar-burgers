@@ -12,7 +12,7 @@ import {
 import { useAppDispatch, useAppSelector } from "hooks";
 import { formPasswordResetActions, selectFormPasswordReset } from "services";
 import type { FC } from "react";
-import { IFormPasswordResetState } from "services";
+import type { IFormPasswordResetState } from "services";
 
 export const ResetPasswordPage: FC = () => {
   const {

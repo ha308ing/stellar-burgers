@@ -1,5 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IFormProfileInputs, initialState } from "./initial-state";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { IFormProfileInputs } from "./initial-state";
+import { initialState } from "./initial-state";
 import {
   change,
   resetMessage,

@@ -1,5 +1,6 @@
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ModalAlert, IProps as IModalProps } from "../modal-alert/modal-alert";
+import type { IProps as IModalProps } from "../modal-alert/modal-alert";
+import { ModalAlert } from "../modal-alert/modal-alert";
 import PropTypes from "prop-types";
 import type { FC } from "react";
 

@@ -5,7 +5,7 @@ import { ConstructorElement as Element } from "@ya.praktikum/react-developer-bur
 import { ConstructorElementMobile as ElementMobile } from "../constructor-element-mobile/constructor-element-mobile";
 import { withMobile } from "hocs";
 import type { FC } from "react";
-import { TComponentProps } from "types";
+import type { TComponentProps } from "types";
 
 interface IProps {
   type: "bottom" | "top";

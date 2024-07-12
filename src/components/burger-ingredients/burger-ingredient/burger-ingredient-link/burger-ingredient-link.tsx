@@ -3,7 +3,7 @@ import { BurgerIngredient } from "../burger-ingredient";
 import { Link, useLocation } from "react-router-dom";
 import { ROUTES } from "utils";
 import type { FC } from "react";
-import { IIngredient } from "types";
+import type { IIngredient } from "types";
 
 interface IProps {
   ingredient: IIngredient;

@@ -4,7 +4,8 @@ import styles from "./modal-fulfilled.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { formPasswordForgotActions } from "services";
 import { useAppDispatch } from "hooks";
-import { ROUTES, IUserData } from "utils";
+import type { IUserData } from "utils";
+import { ROUTES } from "utils";
 import type { FC } from "react";
 
 interface IProps {

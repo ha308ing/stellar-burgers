@@ -1,8 +1,8 @@
 import styles from "./header-link.module.scss";
 import { NavLink } from "react-router-dom";
-import { TRoutes } from "utils";
+import type { TRoutes } from "utils";
 import type { FC } from "react";
-import { TIconProps } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/utils";
+import type { TIconProps } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/utils";
 
 interface IProps {
   Icon: React.ComponentType<TIconProps>;

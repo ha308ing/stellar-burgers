@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { selectIngredients } from "./index";
-import { IIngredient } from "types";
+import type { IIngredient } from "types";
 
 export const selectIngredientById = createSelector(
   [selectIngredients, (_, ingredientId: IIngredient["_id"]) => ingredientId],

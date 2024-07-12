@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IIngredientsState, initialState } from "./initial-state";
+import type { IIngredientsState } from "./initial-state";
+import { initialState } from "./initial-state";
 import * as selectors from "./selectors";
 import { getIngredientsThunk } from "./thunks";
 import { STATUSES } from "utils";
-import { IIngredient } from "types";
+import type { IIngredient } from "types";
 
 export const ingredientsSlice = createSlice({
   name: "ingredients",

@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, FormEventHandler } from "react";
+import type { FC, PropsWithChildren, FormEventHandler } from "react";
 import styles from "./layout-form-form.module.scss";
 
 interface IProps extends PropsWithChildren {
