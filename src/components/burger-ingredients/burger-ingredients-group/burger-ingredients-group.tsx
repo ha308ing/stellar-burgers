@@ -1,20 +1,8 @@
 import React from "react";
 import styles from "./burger-ingredients-group.module.scss";
-import { BurgerIngredientDrag } from "../burger-ingredient/burger-ingredient-drag";
 import { useAppSelector } from "hooks";
 import { selectGroup } from "services";
-import { withMobile } from "hocs";
-import { BurgerIngredientAdd } from "../burger-ingredient/burger-ingredient-add/burger-ingredinet-add";
-import type { IIngredient } from "types";
-
-interface IIngredientProps {
-  ingredient: IIngredient;
-}
-
-const BurgerIngredient = withMobile<IIngredientProps>(
-  BurgerIngredientDrag,
-  BurgerIngredientAdd,
-);
+import { BurgerIngredient } from "../burger-ingredient";
 
 interface IProps {
   groupIndex: number;

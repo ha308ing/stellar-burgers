@@ -1,7 +1,7 @@
 export { App } from "./app/app";
 export * from "./app-header";
 export * from "./burger-constructor";
-export { BurgerIngredients } from "./burger-ingredients/burger-ingredients";
+export * from "./burger-ingredients";
 export { OrderDetails } from "./order-details/order-details";
 export { LayoutForm, LayoutMain, LayoutProfile } from "./layouts";
 export { ModalFulfilled, ModalPending, ModalRejected } from "./modal";
