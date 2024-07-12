@@ -1,7 +1,7 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./constructor-element-mobile.module.scss";
 import type { FC } from "react";
-import type { IIngredient } from "../../../types";
+import type { IIngredient } from "types";
 
 interface IProps {
   price: IIngredient["price"];

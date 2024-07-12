@@ -1,5 +1,5 @@
 import { useAppSelector } from "hooks";
-import { selectIsMobile } from "services/app";
+import { selectIsMobile } from "services";
 import { ModalMobile } from "components/modal/modal-mobile";
 import { ModalAlert } from "components/modal";
 import type { FC } from "react";

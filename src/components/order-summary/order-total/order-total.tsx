@@ -1,7 +1,7 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./order-total.module.scss";
-import { useAppSelector } from "../../../hooks";
-import { selectBurgerTotal } from "../../../services/burger-constructor";
+import { useAppSelector } from "hooks";
+import { selectBurgerTotal } from "services";
 import type { FC } from "react";
 
 export const OrderTotal: FC = () => {

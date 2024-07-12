@@ -3,18 +3,16 @@ import {
   Input,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ROUTES, STATUSES } from "utils";
-import { useAppDispatch, useAppSelector } from "hooks";
 import {
-  formPasswordResetActions,
-  selectFormPasswordReset,
-} from "services/forms/form-password-reset";
-import {
+  ROUTES,
+  STATUSES,
   dispatchFormAction,
   dispatchInputAction,
-} from "utils/dispatch-actions";
+} from "utils";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { formPasswordResetActions, selectFormPasswordReset } from "services";
 import type { FC } from "react";
-import { IFormPasswordResetState } from "services/forms/form-password-reset/initial-state";
+import { IFormPasswordResetState } from "services";
 
 export const ResetPasswordPage: FC = () => {
   const {

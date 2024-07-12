@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Modal, IProps as IModalProps } from "../modal/modal";
 import { ModalOverlay } from "../modal-overlay/modal-overlay";
-import { MODAL_ROOT_ELEMENT } from "../../../config";
+import { MODAL_ROOT_ELEMENT } from "config";
 import styles from "./modal-portal.module.scss";
 import type { FC } from "react";
 

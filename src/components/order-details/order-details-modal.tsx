@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "hooks";
 import { OrderDetails } from "../order-details/order-details";
-import { orderActions, selectOrderInfo } from "../../services/order";
-import { ModalPending, ModalRejected } from "../modal";
-import { STATUSES } from "../../utils";
-import { withMobileModal } from "../../hocs/with-mobile";
+import { orderActions, selectOrderInfo } from "services";
+import { ModalPending, ModalRejected } from "components/modal";
+import { STATUSES } from "utils";
+import { withMobileModal } from "hocs";
 import type { FC } from "react";
 
 const Modal = withMobileModal(OrderDetails, "Заказ оформлен");

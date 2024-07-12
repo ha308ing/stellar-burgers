@@ -4,19 +4,17 @@ import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ROUTES, STATUSES } from "utils";
-import { useAppDispatch, useAppSelector } from "hooks";
 import {
-  registerActions,
-  selectFormRegister,
-} from "services/forms/form-register";
-import { Navigate } from "react-router-dom";
-import {
+  ROUTES,
+  STATUSES,
   dispatchFormAction,
   dispatchInputAction,
-} from "utils/dispatch-actions";
+} from "utils";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { registerActions, selectFormRegister } from "services";
+import { Navigate } from "react-router-dom";
 import type { FC } from "react";
-import { IFormRegisterState } from "services/forms/form-register/initial-state";
+import { IFormRegisterState } from "services";
 
 export const RegisterPage: FC = () => {
   const {

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { burgersApiController } from "utils/api/burgers-api-controller";
-import { profileActions } from "services/profile";
+import { burgersApiController } from "utils";
+import { profileActions } from "services";
 import { IFormProfileInputs } from "../initial-state";
 
 export const submit = createAsyncThunk(

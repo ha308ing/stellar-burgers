@@ -1,9 +1,8 @@
 import styles from "./burger-ingredients.module.scss";
 import { BurgerIngredientsTabs } from "./burger-ingredients-tabs/burger-ingredients-tabs";
 import { BurgerIngredientsGroup } from "./burger-ingredients-group/burger-ingredients-group";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { selectGroups } from "../../services/ingredients";
-import { ingredientsTabsActions } from "../../services/ingredients-tabs";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { selectGroups, ingredientsTabsActions } from "services";
 import type { FC, WheelEvent } from "react";
 
 export const BurgerIngredients: FC = () => {

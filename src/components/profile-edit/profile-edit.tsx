@@ -2,15 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { ProfileEditInput as Input } from "./profile-edit-input/profile-edit-input";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./profile-edit.module.scss";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { selectProfile } from "../../services/profile";
-import {
-  formProfileActions,
-  selectFormProfile,
-} from "../../services/forms/form-profile";
-import { dispatchInputAction } from "../../utils/dispatch-actions";
-import { STATUSES } from "../../utils";
-import { ModalPending, ModalRejected, ModalFulfilled } from "../../components";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { selectProfile, formProfileActions, selectFormProfile } from "services";
+import { STATUSES, dispatchInputAction } from "utils";
+import { ModalPending, ModalRejected, ModalFulfilled } from "components";
 import type { FC, FormEvent, MutableRefObject, SyntheticEvent } from "react";
 
 export const ProfileEdit: FC = () => {

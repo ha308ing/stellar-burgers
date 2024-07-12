@@ -1,5 +1,4 @@
-import { selectIsBurgerValid } from "services/burger-constructor";
-import { selectProfile } from "services/profile";
+import { selectIsBurgerValid, selectProfile } from "services";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "utils";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";

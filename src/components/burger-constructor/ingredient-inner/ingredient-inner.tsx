@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../../../hooks";
+import { useAppDispatch } from "hooks";
 import styles from "../burger-constructor.module.scss";
 import { useDrag, useDrop } from "react-dnd";
 import { useRef } from "react";
@@ -6,13 +6,12 @@ import {
   ConstructorElement as Element,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { burgerConstructorActions } from "../../../services/burger-constructor";
-import { DRAG_TYPES } from "../../../utils/drag-types";
+import { burgerConstructorActions, IConstructorIngredient } from "services";
+import { DRAG_TYPES } from "utils";
 import { ConstructorElementMobile as ElementMobile } from "../constructor-element-mobile/constructor-element-mobile";
-import { withMobile } from "../../../hocs/with-mobile";
+import { withMobile } from "hocs";
 import type { FC } from "react";
-import type { IConstructorIngredient } from "../../../services/burger-constructor/initial-state";
-import type { TComponentProps } from "../../../types";
+import type { TComponentProps } from "types";
 
 const ConstructorElement = withMobile<TComponentProps<typeof Element>>(
   Element,

@@ -1,7 +1,7 @@
 import styles from "./modal-mobile.module.scss";
 import { createContext, useContext } from "react";
 import { createPortal } from "react-dom";
-import { MODAL_ROOT_ELEMENT } from "../../../config";
+import { MODAL_ROOT_ELEMENT } from "config";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import type { FC, PropsWithChildren } from "react";
 

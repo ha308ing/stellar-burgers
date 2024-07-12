@@ -1,7 +1,7 @@
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./modal.module.scss";
 import type { FC, PropsWithChildren } from "react";
-import type { TComponentProps } from "../../../types";
+import type { TComponentProps } from "types";
 
 export interface IProps extends PropsWithChildren {
   closeModalHandler?: TComponentProps<typeof CloseIcon>["onClick"];

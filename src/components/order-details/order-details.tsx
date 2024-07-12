@@ -1,7 +1,7 @@
 import styles from "./order-details.module.scss";
-import doneImage from "../../images/done.png";
-import { useAppSelector } from "../../hooks";
-import { selectOrderInfo } from "../../services/order";
+import doneImage from "images/done.png";
+import { useAppSelector } from "hooks";
+import { selectOrderInfo } from "services";
 import type { FC } from "react";
 
 export const OrderDetails: FC = () => {

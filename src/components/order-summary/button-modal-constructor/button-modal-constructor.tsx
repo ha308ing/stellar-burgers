@@ -1,6 +1,5 @@
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { withModal } from "../../../hocs/with-modal";
-import { withOrderValidate } from "../../../hocs/with-order-validate";
+import { withModal, withOrderValidate } from "hocs";
 import { ModalConstructor } from "../modal-constructor/modal-constructor";
 import type { FC } from "react";
 

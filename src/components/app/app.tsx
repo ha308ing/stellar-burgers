@@ -6,19 +6,22 @@ import {
   useLocation,
   useRoutes,
 } from "react-router-dom";
-import * as Pages from "../../pages";
+import * as Pages from "pages";
 import {
   OnlyAuthorizedElement,
   OnlyUnauthorizedElement,
   IngredientDetailsModal,
   ModalIngredientsError,
   ModalPending,
-} from "../index";
-import { ROUTES, STATUSES } from "../../utils";
-import { selectIgredientsGrouped } from "../../services/ingredients";
-import { appActions, selectLoadingStatus } from "../../services/app";
-import { MEDIA_QUERY_MD } from "../../config";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+} from "components";
+import { ROUTES, STATUSES } from "utils";
+import {
+  appActions,
+  selectLoadingStatus,
+  selectIgredientsGrouped,
+} from "services";
+import { MEDIA_QUERY_MD } from "config";
+import { useAppDispatch, useAppSelector } from "hooks";
 
 export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();

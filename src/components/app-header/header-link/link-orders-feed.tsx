@@ -1,6 +1,6 @@
 import { ListIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { HeaderLink } from "./header-link";
-import { ROUTES } from "../../../utils";
+import { ROUTES } from "utils";
 import type { FC } from "react";
 
 export const LinkOrdersFeed: FC = () => {

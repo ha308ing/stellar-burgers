@@ -8,6 +8,10 @@ import {
 } from "../actions";
 import { submit } from "./thunks/submit";
 import { initialState } from "./initial-state";
+export type {
+  IFormPasswordResetInputs,
+  IFormPasswordResetState,
+} from "./initial-state";
 
 export const formPasswordResetSlice = createSlice({
   name: "formPasswordReset",

@@ -8,6 +8,7 @@ import {
 } from "../actions";
 import { submit } from "./thunks/submit";
 import { STATUSES } from "utils";
+export type { IFormProfileInputs, IFormProfileState } from "./initial-state";
 
 export const formProfileSlice = createSlice({
   name: "formProfile",

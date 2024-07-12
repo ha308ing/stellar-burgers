@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { formatIngredients } from "utils/format-ingredients";
+import { formatIngredients } from "utils";
 import { selectIngredients, selectStatus } from "./index";
 
 export const selectIgredientsGrouped = createSelector(

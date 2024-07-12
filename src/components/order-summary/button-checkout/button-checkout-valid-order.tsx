@@ -1,4 +1,4 @@
-import { withOrderValidate } from "../../../hocs/with-order-validate";
+import { withOrderValidate } from "hocs";
 import { ButtonCheckout } from "./button-checkout";
 
 export const ButtonCheckoutValidOrder = withOrderValidate(ButtonCheckout);

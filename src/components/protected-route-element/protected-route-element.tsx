@@ -1,9 +1,8 @@
-import { useAppSelector } from "../../hooks";
+import { useAppSelector } from "hooks";
 import { useLocation, Navigate } from "react-router-dom";
-import { ModalPending } from "../../components";
-import { selectProfile } from "../../services/profile";
-import { selectIsAuthChecked } from "../../services/app";
-import { ROUTES } from "../../utils";
+import { ModalPending } from "components";
+import { selectProfile, selectIsAuthChecked } from "services";
+import { ROUTES } from "utils";
 import type { FC } from "react";
 
 interface IPropsElement {

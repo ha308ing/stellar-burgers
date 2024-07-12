@@ -1,8 +1,7 @@
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredients-tabs.module.scss";
-import { useAppSelector } from "../../../hooks";
-import { selectGroups } from "../../../services/ingredients";
-import { selectActiveTabIndex } from "../../../services/ingredients-tabs";
+import { useAppSelector } from "hooks";
+import { selectGroups, selectActiveTabIndex } from "services";
 import type { FC } from "react";
 
 interface IProps {

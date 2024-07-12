@@ -4,15 +4,16 @@ import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ROUTES, STATUSES } from "utils";
-import { loginActions, selectFormLogin } from "services/forms/form-login";
-import { Navigate } from "react-router-dom";
 import {
+  ROUTES,
+  STATUSES,
   dispatchFormAction,
   dispatchInputAction,
-} from "utils/dispatch-actions";
+} from "utils";
+import { loginActions, selectFormLogin } from "services";
+import { Navigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "hooks";
-import { IFormLogin } from "services/forms/form-login/initial-state";
+import { IFormLogin } from "services";
 
 export const LoginPage: FC = () => {
   const {

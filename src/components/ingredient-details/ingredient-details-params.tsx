@@ -1,7 +1,7 @@
-import { useAppSelector } from "../../hooks";
+import { useAppSelector } from "hooks";
 import { useParams } from "react-router-dom";
 import { IngredientDetails } from "./ingredient-details";
-import { selectIngredient } from "../../services/ingredients";
+import { selectIngredient } from "services";
 import type { FC } from "react";
 
 export const IngredientDetailsParams: FC = () => {

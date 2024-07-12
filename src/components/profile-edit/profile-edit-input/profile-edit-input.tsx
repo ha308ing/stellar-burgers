@@ -1,7 +1,7 @@
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useRef } from "react";
 import type { FC, LegacyRef, MutableRefObject } from "react";
-import { TComponentProps } from "../../../types";
+import { TComponentProps } from "types";
 
 interface IProps
   extends Pick<

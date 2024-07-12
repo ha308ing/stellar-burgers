@@ -6,6 +6,10 @@ import {
 } from "./initial-state";
 import * as reducers from "./reducers";
 import * as selectors from "./selectors";
+export type {
+  IBurgerConstructorState,
+  IConstructorIngredient,
+} from "./initial-state";
 
 export const burgerConstructorSlice = createSlice({
   name: "burgerConstructor",

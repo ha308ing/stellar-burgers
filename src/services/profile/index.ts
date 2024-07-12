@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./initial-state";
 import { get, logout } from "./thunks";
-import { STATUSES } from "utils";
-import { IUserDataPassword } from "utils/api/types";
+import { STATUSES, IUserDataPassword } from "utils";
 
 export const profileSlice = createSlice({
   name: "profile",

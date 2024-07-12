@@ -1,8 +1,8 @@
-import { useAppSelector } from "../../../hooks";
+import { useAppSelector } from "hooks";
 import { ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { HeaderLink } from "./header-link";
-import { ROUTES } from "../../../utils";
-import { selectName } from "../../../services/profile";
+import { ROUTES } from "utils";
+import { selectName } from "services";
 import React from "react";
 
 export const LinkProfile = React.memo(() => {

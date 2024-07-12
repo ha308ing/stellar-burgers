@@ -1,10 +1,10 @@
 import styles from "./drop-container.module.scss";
 import { useDrop } from "react-dnd";
-import { burgerConstructorActions } from "../../../services/burger-constructor";
-import { useAppDispatch } from "../../../hooks";
+import { burgerConstructorActions } from "services";
+import { useAppDispatch } from "hooks";
 import type { FC, PropsWithChildren } from "react";
-import type { IIngredient } from "../../../types";
-import type { TDragType } from "../../../utils/drag-types";
+import type { IIngredient } from "types";
+import type { TDragType } from "utils";
 
 interface IProps extends PropsWithChildren {
   type: "top" | "bottom" | "middle";

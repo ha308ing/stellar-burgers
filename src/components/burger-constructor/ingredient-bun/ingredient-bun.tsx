@@ -1,14 +1,11 @@
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import {
-  burgerConstructorActions,
-  selectBurger,
-} from "../../../services/burger-constructor";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { burgerConstructorActions, selectBurger } from "services";
 import styles from "./ingredient-bun.module.scss";
 import { ConstructorElement as Element } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ConstructorElementMobile as ElementMobile } from "../constructor-element-mobile/constructor-element-mobile";
-import { withMobile } from "../../../hocs/with-mobile";
+import { withMobile } from "hocs";
 import type { FC } from "react";
-import { TComponentProps } from "../../../types";
+import { TComponentProps } from "types";
 
 interface IProps {
   type: "bottom" | "top";

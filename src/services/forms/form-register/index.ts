@@ -8,6 +8,7 @@ import {
 } from "../actions";
 import { submit } from "./thunks/submit";
 import { initialState } from "./initial-state";
+export type { IFormRegisterInputs, IFormRegisterState } from "./initial-state";
 
 export const formRegisterSlice = createSlice({
   name: "formRegister",

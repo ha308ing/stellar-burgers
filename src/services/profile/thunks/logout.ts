@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { burgersApiController } from "utils/api/burgers-api-controller";
+import { burgersApiController } from "utils";
 
 export const logout = createAsyncThunk(
   "profile/logout",

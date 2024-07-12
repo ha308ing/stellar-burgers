@@ -8,6 +8,7 @@ import {
   setMessageRejected,
   resetInputsFulfilled,
 } from "../actions";
+export type { IFormLogin, IFormLoginInputs } from "./initial-state";
 
 export const formLoginSlice = createSlice({
   name: "formLogin",

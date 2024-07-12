@@ -3,10 +3,10 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingredient.module.scss";
-import { selectIngredientQty } from "../../../services/burger-constructor";
-import { useAppSelector } from "../../../hooks";
+import { selectIngredientQty } from "services";
+import { useAppSelector } from "hooks";
 import type { FC } from "react";
-import { IIngredient } from "../../../types";
+import { IIngredient } from "types";
 
 interface IProps {
   ingredient: IIngredient;

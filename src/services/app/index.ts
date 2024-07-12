@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./initial-state";
 import { loadApp } from "./thunks/load-app";
 import { STATUSES } from "utils";
+export type { ILoadAppState } from "./initial-state";
 
 export const appSlice = createSlice({
   name: "app",

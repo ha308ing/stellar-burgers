@@ -1,8 +1,8 @@
 import { useDrag } from "react-dnd";
-import { INGREDIENT_TYPES, DRAG_TYPES } from "../../../utils";
+import { INGREDIENT_TYPES, DRAG_TYPES } from "utils";
 import { BurgerIngredientLink } from "./burger-ingredient-link/burger-ingredient-link";
 import type { FC } from "react";
-import { IIngredient } from "../../../types";
+import { IIngredient } from "types";
 
 interface IProps {
   ingredient: IIngredient;

@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
-import { LayoutMain } from "../layout-main/layout-main";
+import { LayoutMain } from "components/layouts";
 import styles from "./layout-form.module.scss";
 
 export const LayoutForm: FC<PropsWithChildren> = ({ children }) => (

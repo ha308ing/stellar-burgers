@@ -1,8 +1,8 @@
 import styles from "./modal-ingredients-error.module.scss";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ModalRejected } from "../modal";
-import { useAppDispatch } from "../../hooks";
-import { ingredientsActions } from "../../services/ingredients";
+import { ModalRejected } from "components/modal";
+import { useAppDispatch } from "hooks";
+import { ingredientsActions } from "services";
 import type { FC } from "react";
 
 export const ModalIngredientsError: FC = () => {

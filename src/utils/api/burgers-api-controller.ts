@@ -3,7 +3,7 @@ import type {
   IFormPasswordForgotInputs,
   IFormPasswordResetInputs,
   IFormRegisterInputs,
-} from "services/forms/types";
+} from "services";
 import type { IIngredient } from "types";
 import { burgersApiService } from "./burgers-api-service";
 import { ErrorLocal } from "./error-local";

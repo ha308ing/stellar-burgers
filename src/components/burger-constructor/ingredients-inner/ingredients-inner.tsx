@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../../hooks";
-import { selectBurger } from "../../../services/burger-constructor";
+import { useAppSelector } from "hooks";
+import { selectBurger } from "services";
 import { IngredientInner } from "../ingredient-inner/ingredient-inner";
 import styles from "./ingredients-inner.module.scss";
 import type { FC } from "react";

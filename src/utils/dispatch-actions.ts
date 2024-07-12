@@ -4,7 +4,7 @@
 import type { ChangeEvent, FormEvent } from "react";
 import type { AppDispatch } from "store";
 import type { ActionCreatorWithPayload, AsyncThunk } from "@reduxjs/toolkit";
-import type { IFormState } from "services/forms/types";
+import type { IFormState } from "services";
 import type { AsyncThunkConfig } from "@reduxjs/toolkit/dist/createAsyncThunk";
 
 export const dispatchInputAction =

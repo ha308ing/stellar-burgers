@@ -1,6 +1,6 @@
 import { useAppSelector } from "hooks";
 import { useParams } from "react-router-dom";
-import { selectIngredient, selectStatus } from "services/ingredients";
+import { selectIngredient, selectStatus } from "services";
 import { STATUSES } from "utils";
 import { LayoutMain, IngredientDetails } from "components";
 import { ModalPending, ModalRejected } from "./components";

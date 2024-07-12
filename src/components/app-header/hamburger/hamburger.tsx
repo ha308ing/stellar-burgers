@@ -1,13 +1,13 @@
-import { withModal } from "../../../hocs/with-modal";
-import { ModalMobile as Modal } from "../../modal/modal-mobile";
+import { withModal } from "hocs";
+import { ModalMobile as Modal } from "components/modal/modal-mobile";
 import {
   LinkOrdersFeed,
   LinkProfile,
   LinkRoot,
-} from "../../app-header/header-link";
-import { LayoutProfileMenu } from "../../layouts/layout-profile/layout-profile-menu/layout-profile-menu";
-import { useAppSelector } from "../../../hooks";
-import { selectProfile } from "../../../services/profile";
+} from "components/app-header/header-link";
+import { LayoutProfileMenu } from "components/layouts/layout-profile/layout-profile-menu/layout-profile-menu";
+import { useAppSelector } from "hooks";
+import { selectProfile } from "services";
 import { MenuItem } from "./hamburger-menu-item/menu-item";
 import { HamburgerButton } from "./hamburger-button/hamburger-button";
 import { FC } from "react";
