@@ -3,7 +3,7 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./layout-profile-menu.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { ModalFulfilled, ModalPending, ModalRejected } from "components";
-import { profileActions, selectProfile, RESET_STORE } from "services";
+import { profileActions, selectProfile, resetStore } from "services";
 import { ROUTES, STATUSES } from "utils";
 import type { FC } from "react";
 
@@ -17,7 +17,7 @@ export const LayoutProfileMenu: FC = () => {
   };
 
   const handleModalCloseNavigate = () => {
-    dispatch({ type: RESET_STORE });
+    dispatch(resetStore());
     navigate(ROUTES.ROOT);
   };
 
