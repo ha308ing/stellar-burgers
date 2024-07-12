@@ -9,7 +9,7 @@ import {
 import { burgerConstructorActions } from "../../../services/burger-constructor";
 import { DRAG_TYPES } from "../../../utils/drag-types";
 import { ConstructorElementMobile as ElementMobile } from "../constructor-element-mobile/constructor-element-mobile";
-import { withMobile } from "../../../hocs/withMobile";
+import { withMobile } from "../../../hocs/with-mobile";
 import type { FC } from "react";
 import type { IConstructorIngredient } from "../../../services/burger-constructor/initial-state";
 import type { TComponentProps } from "../../../types";

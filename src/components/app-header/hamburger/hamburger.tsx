@@ -1,4 +1,4 @@
-import { withModal } from "../../../hocs/withModal";
+import { withModal } from "../../../hocs/with-modal";
 import { ModalMobile as Modal } from "../../modal/modal-mobile";
 import {
   LinkOrdersFeed,

@@ -3,7 +3,7 @@ import { OrderDetails } from "../order-details/order-details";
 import { orderActions, selectOrderInfo } from "../../services/order";
 import { ModalPending, ModalRejected } from "../modal";
 import { STATUSES } from "../../utils";
-import { withMobileModal } from "../../hocs/withMobile";
+import { withMobileModal } from "../../hocs/with-mobile";
 import type { FC } from "react";
 
 const Modal = withMobileModal(OrderDetails, "Заказ оформлен");

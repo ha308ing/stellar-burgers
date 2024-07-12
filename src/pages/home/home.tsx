@@ -4,7 +4,7 @@ import {
   BurgerConstructor,
   LayoutMain,
 } from "../../components";
-import { withMobile } from "../../hocs/withMobile";
+import { withMobile } from "../../hocs/with-mobile";
 import { OrderSummaryConstructor } from "../../components/order-summary/order-summary-constructor";
 import { OrderSummaryCheckout } from "../../components/order-summary/order-summary-checkout";
 import { OrderDetailsModal } from "../../components/order-details/order-details-modal";

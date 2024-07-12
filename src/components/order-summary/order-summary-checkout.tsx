@@ -1,4 +1,4 @@
-import { withMobile } from "../../hocs/withMobile";
+import { withMobile } from "../../hocs/with-mobile";
 import { ButtonCheckout } from "./button-checkout";
 import {
   OrderSummaryLayout,

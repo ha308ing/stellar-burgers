@@ -6,7 +6,7 @@ import {
 import styles from "./ingredient-bun.module.scss";
 import { ConstructorElement as Element } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ConstructorElementMobile as ElementMobile } from "../constructor-element-mobile/constructor-element-mobile";
-import { withMobile } from "../../../hocs/withMobile";
+import { withMobile } from "../../../hocs/with-mobile";
 import type { FC } from "react";
 import { TComponentProps } from "../../../types";
 

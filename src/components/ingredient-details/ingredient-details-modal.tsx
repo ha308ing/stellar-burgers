@@ -1,4 +1,4 @@
-import { withMobileModal } from "../../hocs/withMobile";
+import { withMobileModal } from "../../hocs/with-mobile";
 import { IngredientDetailsParams } from "./ingredient-details-params";
 import { useNavigate } from "react-router-dom";
 import type { FC } from "react";

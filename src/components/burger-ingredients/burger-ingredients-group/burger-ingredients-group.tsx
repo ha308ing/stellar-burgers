@@ -3,7 +3,7 @@ import styles from "./burger-ingredients-group.module.scss";
 import { BurgerIngredientDrag } from "../burger-ingredient/burger-ingredient-drag";
 import { useAppSelector } from "../../../hooks";
 import { selectGroup } from "../../../services/ingredients";
-import { withMobile } from "../../../hocs/withMobile";
+import { withMobile } from "../../../hocs/with-mobile";
 import { BurgerIngredientAdd } from "../burger-ingredient/burger-ingredient-add/burger-ingredinet-add";
 import type { IIngredient } from "../../../types";
 
