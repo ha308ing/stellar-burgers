@@ -1,5 +1,5 @@
-import { IIngredient } from "../../types";
-import { TConnectionStatus } from "../../utils/connection-statuses";
+import { IIngredient } from "types";
+import { TConnectionStatus } from "utils";
 
 export interface IIngredientsState {
   status: TConnectionStatus | null;

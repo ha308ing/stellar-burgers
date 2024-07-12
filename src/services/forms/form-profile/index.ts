@@ -7,7 +7,7 @@ import {
   setStatusPending,
 } from "../actions";
 import { submit } from "./thunks/submit";
-import { STATUSES } from "../../../utils";
+import { STATUSES } from "utils";
 
 export const formProfileSlice = createSlice({
   name: "formProfile",

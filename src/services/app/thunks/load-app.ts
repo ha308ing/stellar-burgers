@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { burgersApiController } from "../../../utils/api/burgers-api-controller";
-import { STATUSES } from "../../../utils";
-import { ingredientsActions } from "../../ingredients";
-import { profileActions } from "../../profile";
-import { formProfileActions } from "../../forms/form-profile";
+import { burgersApiController } from "utils/api/burgers-api-controller";
+import { STATUSES } from "utils";
+import { ingredientsActions } from "services/ingredients";
+import { profileActions } from "services/profile";
+import { formProfileActions } from "services/forms/form-profile";
 
 export const loadApp = createAsyncThunk(
   "profile/loadApp",

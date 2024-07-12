@@ -1,4 +1,4 @@
-import type { TConnectionStatus } from "../../utils";
+import type { TConnectionStatus } from "utils";
 export type { IFormLoginInputs } from "./form-login/initial-state";
 export type { IFormPasswordForgotInputs } from "./form-password-forgot/initial-state";
 export type { IFormPasswordResetInputs } from "./form-password-reset/initial-state";

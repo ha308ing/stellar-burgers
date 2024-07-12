@@ -1,4 +1,4 @@
-import { STATUSES } from "../../../utils";
+import { STATUSES } from "utils";
 import { IFormState } from "../types";
 import {
   AnyAsyncThunk,

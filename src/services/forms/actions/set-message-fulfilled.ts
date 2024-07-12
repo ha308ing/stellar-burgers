@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { STATUSES } from "../../../utils";
+import { STATUSES } from "utils";
 import { IFormState } from "../types";
 
 export const setMessageFulfilled = <T extends IFormState>(

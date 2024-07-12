@@ -3,7 +3,7 @@ import { initialState } from "./initial-state";
 import * as reducers from "./reducers";
 import * as selectors from "./selectors";
 import { postOrderThunk } from "./thunks";
-import { STATUSES } from "../../utils";
+import { STATUSES } from "utils";
 
 export const orderSlice = createSlice({
   name: "order",

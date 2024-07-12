@@ -1,5 +1,5 @@
 import { CaseReducer } from "@reduxjs/toolkit";
-import { STATUSES } from "../../../utils";
+import { STATUSES } from "utils";
 import { IFormState } from "../types";
 
 export const resetInputsFulfilled =

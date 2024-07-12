@@ -1,4 +1,4 @@
-import { TConnectionStatus } from "../../utils/connection-statuses";
+import { TConnectionStatus } from "utils";
 
 export interface IOrderState {
   orderId: number | null;

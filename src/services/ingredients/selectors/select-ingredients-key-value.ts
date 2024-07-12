@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { selectIngredients } from "./index";
-import { IIngredient } from "../../../types";
+import { IIngredient } from "types";
 
 export const selectIngredientsKeyValue = createSelector(
   [selectIngredients],

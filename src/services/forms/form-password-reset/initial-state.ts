@@ -1,4 +1,4 @@
-import { IUserDataPassword } from "../../../utils/api/types";
+import { IUserDataPassword } from "utils/api/types";
 import { IFormState } from "../types";
 
 export interface IFormPasswordResetInputs {

@@ -1,5 +1,5 @@
-import { IUserDataPassword } from "../../utils/api/types";
-import { TConnectionStatus } from "../../utils/connection-statuses";
+import { IUserDataPassword } from "utils/api/types";
+import { TConnectionStatus } from "utils";
 
 export interface IProfileState {
   user: IUserDataPassword | null;
