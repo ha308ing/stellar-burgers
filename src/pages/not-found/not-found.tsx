@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { LayoutMain } from "../../components";
+import { LayoutMain } from "components";
 import styles from "./not-found.module.scss";
-import { ROUTES } from "../../utils";
+import { ROUTES } from "utils";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import type { FC } from "react";
 

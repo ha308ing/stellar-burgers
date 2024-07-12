@@ -1,8 +1,8 @@
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ModalRejected as Modal } from "../../../../components";
+import { ModalRejected as Modal } from "components";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./modal-rejected.module.scss";
-import { ROUTES } from "../../../../utils";
+import { ROUTES } from "utils";
 import type { FC } from "react";
 
 export const ModalRejected: FC = () => {

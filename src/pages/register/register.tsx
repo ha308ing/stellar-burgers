@@ -1,22 +1,22 @@
-import { LayoutForm as LF, ModalRejected } from "../../components";
+import { LayoutForm as LF, ModalRejected } from "components";
 import {
   Input,
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ROUTES, STATUSES } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { ROUTES, STATUSES } from "utils";
+import { useAppDispatch, useAppSelector } from "hooks";
 import {
   registerActions,
   selectFormRegister,
-} from "../../services/forms/form-register";
+} from "services/forms/form-register";
 import { Navigate } from "react-router-dom";
 import {
   dispatchFormAction,
   dispatchInputAction,
-} from "../../utils/dispatch-actions";
+} from "utils/dispatch-actions";
 import type { FC } from "react";
-import { IFormRegisterState } from "../../services/forms/form-register/initial-state";
+import { IFormRegisterState } from "services/forms/form-register/initial-state";
 
 export const RegisterPage: FC = () => {
   const {

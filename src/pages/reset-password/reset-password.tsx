@@ -1,24 +1,20 @@
-import {
-  LayoutForm as LF,
-  ModalRejected,
-  ModalPending,
-} from "../../components";
+import { LayoutForm as LF, ModalRejected, ModalPending } from "components";
 import {
   Input,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ROUTES, STATUSES } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { ROUTES, STATUSES } from "utils";
+import { useAppDispatch, useAppSelector } from "hooks";
 import {
   formPasswordResetActions,
   selectFormPasswordReset,
-} from "../../services/forms/form-password-reset";
+} from "services/forms/form-password-reset";
 import {
   dispatchFormAction,
   dispatchInputAction,
-} from "../../utils/dispatch-actions";
+} from "utils/dispatch-actions";
 import type { FC } from "react";
-import { IFormPasswordResetState } from "../../services/forms/form-password-reset/initial-state";
+import { IFormPasswordResetState } from "services/forms/form-password-reset/initial-state";
 
 export const ResetPasswordPage: FC = () => {
   const {

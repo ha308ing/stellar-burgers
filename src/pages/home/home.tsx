@@ -1,13 +1,9 @@
 import styles from "./home.module.scss";
-import {
-  BurgerIngredients,
-  BurgerConstructor,
-  LayoutMain,
-} from "../../components";
-import { withMobile } from "../../hocs/with-mobile";
-import { OrderSummaryConstructor } from "../../components/order-summary/order-summary-constructor";
-import { OrderSummaryCheckout } from "../../components/order-summary/order-summary-checkout";
-import { OrderDetailsModal } from "../../components/order-details/order-details-modal";
+import { BurgerIngredients, BurgerConstructor, LayoutMain } from "components";
+import { withMobile } from "hocs/with-mobile";
+import { OrderSummaryConstructor } from "components/order-summary/order-summary-constructor";
+import { OrderSummaryCheckout } from "components/order-summary/order-summary-checkout";
+import { OrderDetailsModal } from "components/order-details/order-details-modal";
 import type { FC } from "react";
 
 const MainMobile: FC = () => (

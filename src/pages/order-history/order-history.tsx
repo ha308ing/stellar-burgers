@@ -1,4 +1,4 @@
-import { LayoutProfile as LP } from "../../components";
+import { LayoutProfile as LP } from "components";
 import type { FC } from "react";
 
 export const OrderHistoryPage: FC = () => (

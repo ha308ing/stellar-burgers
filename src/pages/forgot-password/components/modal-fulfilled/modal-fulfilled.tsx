@@ -1,12 +1,12 @@
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ModalFulfilled as Modal } from "../../../../components";
+import { ModalFulfilled as Modal } from "components";
 import styles from "./modal-fulfilled.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import { formPasswordForgotActions } from "../../../../services/forms/form-password-forgot";
-import { useAppDispatch } from "../../../../hooks";
-import { ROUTES } from "../../../../utils";
+import { formPasswordForgotActions } from "services/forms/form-password-forgot";
+import { useAppDispatch } from "hooks";
+import { ROUTES } from "utils";
 import type { FC } from "react";
-import { IUserData } from "../../../../utils/api/types";
+import { IUserData } from "utils/api/types";
 
 interface IProps {
   email: IUserData["email"];

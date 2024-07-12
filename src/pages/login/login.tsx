@@ -1,18 +1,18 @@
 import { FC } from "react";
-import { LayoutForm as LF, ModalRejected } from "../../components";
+import { LayoutForm as LF, ModalRejected } from "components";
 import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ROUTES, STATUSES } from "../../utils";
-import { loginActions, selectFormLogin } from "../../services/forms/form-login";
+import { ROUTES, STATUSES } from "utils";
+import { loginActions, selectFormLogin } from "services/forms/form-login";
 import { Navigate } from "react-router-dom";
 import {
   dispatchFormAction,
   dispatchInputAction,
-} from "../../utils/dispatch-actions";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { IFormLogin } from "../../services/forms/form-login/initial-state";
+} from "utils/dispatch-actions";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { IFormLogin } from "services/forms/form-login/initial-state";
 
 export const LoginPage: FC = () => {
   const {

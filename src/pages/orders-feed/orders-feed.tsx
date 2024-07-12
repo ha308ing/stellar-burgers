@@ -1,4 +1,4 @@
-import { LayoutMain } from "../../components";
+import { LayoutMain } from "components";
 import type { FC } from "react";
 
 export const OrdersFeedPage: FC = () => (

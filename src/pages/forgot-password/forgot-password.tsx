@@ -1,22 +1,18 @@
-import {
-  LayoutForm as LF,
-  ModalRejected,
-  ModalPending,
-} from "../../components";
+import { LayoutForm as LF, ModalRejected, ModalPending } from "components";
 import { EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ROUTES, STATUSES } from "../../utils";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { ROUTES, STATUSES } from "utils";
+import { useAppDispatch, useAppSelector } from "hooks";
 import {
   formPasswordForgotActions,
   selectFormPasswordForgot,
-} from "../../services/forms/form-password-forgot";
+} from "services/forms/form-password-forgot";
 import {
   dispatchFormAction,
   dispatchInputAction,
-} from "../../utils/dispatch-actions";
+} from "utils/dispatch-actions";
 import { ModalFulfilled } from "./components";
 import type { FC } from "react";
-import type { IFormPasswordForgotState } from "../../services/forms/form-password-forgot/initial-state";
+import type { IFormPasswordForgotState } from "services/forms/form-password-forgot/initial-state";
 
 export const ForgotPasswordPage: FC = () => {
   const {
