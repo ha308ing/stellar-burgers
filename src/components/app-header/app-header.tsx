@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import { withMobile } from "hocs";
-import { LayoutAppHeader as Header } from "../layouts/layout-app-header";
-import { MenuHamburger } from "./hamburger/hamburger";
+import { LayoutAppHeader as Header } from "./layout-app-header";
+import { HamburgerButtonMenu } from "./hamburger-button-menu";
 import { LinkOrdersFeed, LinkProfile, LinkRoot, LinkLogo } from "./header-link";
+import { withMobile } from "hocs";
 import type { FC } from "react";
 
 const HeaderDesktop: FC = () => (
@@ -28,7 +28,7 @@ const HeaderMobile: FC = () => {
   return (
     <Header>
       <LinkLogo />
-      <MenuHamburger key={location.key} />
+      <HamburgerButtonMenu key={location.key} />
     </Header>
   );
 };

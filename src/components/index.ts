@@ -1,5 +1,5 @@
 export { App } from "./app/app";
-export { AppHeader } from "./app-header/app-header";
+export * from "./app-header";
 export { BurgerConstructor } from "./burger-constructor/burger-constructor";
 export { BurgerIngredients } from "./burger-ingredients/burger-ingredients";
 export { OrderDetails } from "./order-details/order-details";

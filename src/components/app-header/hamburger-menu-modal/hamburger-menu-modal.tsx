@@ -1,4 +1,3 @@
-import { withModal } from "hocs";
 import { ModalMobile as Modal } from "components/modal/modal-mobile";
 import {
   LinkOrdersFeed,
@@ -9,14 +8,13 @@ import { LayoutProfileMenu } from "components/layouts/layout-profile/layout-prof
 import { useAppSelector } from "hooks";
 import { selectProfile } from "services";
 import { MenuItem } from "./hamburger-menu-item/menu-item";
-import { HamburgerButton } from "./hamburger-button/hamburger-button";
 import type { FC } from "react";
 
 interface IProps {
   closeModalHandler?: () => void;
 }
 
-const HamburgerModal: FC<IProps> = ({ closeModalHandler }) => {
+export const HamburgerMenuModal: FC<IProps> = ({ closeModalHandler }) => {
   const { user } = useAppSelector(selectProfile);
 
   return (
@@ -32,5 +30,3 @@ const HamburgerModal: FC<IProps> = ({ closeModalHandler }) => {
     </Modal>
   );
 };
-
-export const MenuHamburger = withModal(HamburgerButton, HamburgerModal);
