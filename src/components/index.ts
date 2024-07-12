@@ -1,6 +1,6 @@
 export { App } from "./app/app";
 export * from "./app-header";
-export { BurgerConstructor } from "./burger-constructor/burger-constructor";
+export * from "./burger-constructor";
 export { BurgerIngredients } from "./burger-ingredients/burger-ingredients";
 export { OrderDetails } from "./order-details/order-details";
 export { LayoutForm, LayoutMain, LayoutProfile } from "./layouts";
