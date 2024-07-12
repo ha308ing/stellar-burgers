@@ -1,4 +1,4 @@
-import { LayoutMain } from "../layout-main/layout-main";
+import { LayoutMain } from "components/layouts";
 import { LayoutProfileNav } from "./layout-profile-nav/layout-profile-nav";
 import styles from "./layout-profile.module.scss";
 import type { FC, PropsWithChildren } from "react";
