@@ -1,4 +1,4 @@
-import { IIngredient } from "../../types";
+import type { IIngredient } from "types";
 
 export const HTTP_METHOD = {
   GET: "GET",

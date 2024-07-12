@@ -1,14 +1,11 @@
 // wrapper of dispatch and action
 // to not to repeat event.target in every form
 
-import { ChangeEvent, FormEvent } from "react";
-import type { AppDispatch } from "../store";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { IFormState } from "../services/forms/types";
-import {
-  AsyncThunk,
-  AsyncThunkConfig,
-} from "@reduxjs/toolkit/dist/createAsyncThunk";
+import type { ChangeEvent, FormEvent } from "react";
+import type { AppDispatch } from "store";
+import type { ActionCreatorWithPayload, AsyncThunk } from "@reduxjs/toolkit";
+import type { IFormState } from "services/forms/types";
+import type { AsyncThunkConfig } from "@reduxjs/toolkit/dist/createAsyncThunk";
 
 export const dispatchInputAction =
   <T extends IFormState>(

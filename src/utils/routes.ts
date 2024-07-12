@@ -1,4 +1,4 @@
-import type { TObjectValues } from "../types";
+import type { TObjectValues } from "types";
 
 const ingredientsRoot = "/ingredients";
 const PROFILE = "/profile";

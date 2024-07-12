@@ -1,4 +1,4 @@
-import type { TObjectValues } from "../../types";
+import type { TObjectValues } from "types";
 
 const BURGERS_API_ROOT = "https://norma.nomoreparties.space/api";
 const AUTH_API_ROOT = `${BURGERS_API_ROOT}/auth`;

@@ -2,7 +2,7 @@ import { STRINGS } from "../strings";
 import { API, TAPI } from "./endpoints";
 import { burgersApiController } from "./burgers-api-controller";
 import { ErrorLocal } from "./error-local";
-import type { IIngredient } from "../../types";
+import type { IIngredient } from "types";
 import {
   IIngredientsResponse,
   ILoginResponse,

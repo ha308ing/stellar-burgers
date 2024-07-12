@@ -3,8 +3,8 @@ import type {
   IFormPasswordForgotInputs,
   IFormPasswordResetInputs,
   IFormRegisterInputs,
-} from "../../services/forms/types";
-import type { IIngredient } from "../../types";
+} from "services/forms/types";
+import type { IIngredient } from "types";
 import { burgersApiService } from "./burgers-api-service";
 import { ErrorLocal } from "./error-local";
 import type { ITokens, IUserData, IOrderInfo } from "./types";

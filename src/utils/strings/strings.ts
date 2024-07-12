@@ -1,4 +1,4 @@
-import type { TObjectValues } from "../../types";
+import type { TObjectValues } from "types";
 
 export const STRINGS = {
   REQUEST_FAILED: "Failed to execute request",

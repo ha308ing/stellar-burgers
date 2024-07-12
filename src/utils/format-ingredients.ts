@@ -1,5 +1,5 @@
 import { getGroupNamePriority } from "./ingredients-groups-priority";
-import type { IIngredient } from "../types/ingredient";
+import type { IIngredient } from "types";
 
 interface IIngredientWithGoupName extends IIngredient {
   groupName: string;
