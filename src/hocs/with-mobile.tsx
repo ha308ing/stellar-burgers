@@ -1,7 +1,7 @@
-import { useAppSelector } from "../hooks";
-import { selectIsMobile } from "../services/app";
-import { ModalMobile } from "../components/modal/modal-mobile";
-import { ModalAlert } from "../components/modal";
+import { useAppSelector } from "hooks";
+import { selectIsMobile } from "services/app";
+import { ModalMobile } from "components/modal/modal-mobile";
+import { ModalAlert } from "components/modal";
 import type { FC } from "react";
 
 // render alternaive component for isMobile

@@ -1,9 +1,9 @@
-import { selectIsBurgerValid } from "../services/burger-constructor";
-import { selectProfile } from "../services/profile";
+import { selectIsBurgerValid } from "services/burger-constructor";
+import { selectProfile } from "services/profile";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../utils";
+import { ROUTES } from "utils";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "hooks";
 
 export const withOrderValidate =
   <T extends {}>(Component: React.JSXElementConstructor<T>): React.FC<T> =>
