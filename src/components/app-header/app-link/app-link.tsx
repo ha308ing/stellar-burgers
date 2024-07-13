@@ -1,4 +1,4 @@
-import styles from "./header-link.module.scss";
+import styles from "./app-link.module.scss";
 import { NavLink } from "react-router-dom";
 import type { TRoutes } from "utils";
 import type { FC } from "react";
@@ -11,7 +11,7 @@ interface IProps {
   title?: string;
 }
 
-export const HeaderLink: FC<IProps> = ({ Icon, label, to, title }) => (
+export const AppLink: FC<IProps> = ({ Icon, label, to, title }) => (
   <NavLink className={styles.link} to={to} title={title ?? label}>
     {({ isActive }) => (
       <>

@@ -1,13 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./layout-profile-menu.module.scss";
+import styles from "./profile-menu.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks";
-import { ModalFulfilled, ModalPending, ModalRejected } from "components";
+import { ModalFulfilled, ModalPending, ModalRejected } from "components/modal";
 import { profileActions, selectProfile, resetStore } from "services";
 import { ROUTES, STATUSES } from "utils";
 import type { FC } from "react";
 
-export const LayoutProfileMenu: FC = () => {
+export const ProfileMenu: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { logoutStatus, message } = useAppSelector(selectProfile);

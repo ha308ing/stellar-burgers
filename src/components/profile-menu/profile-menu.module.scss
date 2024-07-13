@@ -1,5 +1,5 @@
-@use "../../../../styles/variables";
-@use "../../../../styles/colors";
+@use "../../styles/variables";
+@use "../../styles/colors";
 
 .button {
   composes: text text_type_main-default text_color_inactive from global;

@@ -1,13 +1,13 @@
-import { ModalMobile as Modal } from "components/modal/modal-mobile";
+import { ModalMobile as Modal } from "components/modal";
+import { ProfileMenu } from "components/profile-menu";
 import {
-  LinkOrdersFeed,
   LinkProfile,
   LinkRoot,
-} from "components/app-header/header-link";
-import { LayoutProfileMenu } from "components/layouts/layout-profile/layout-profile-menu/layout-profile-menu";
+  LinkOrdersFeed,
+} from "components/app-header/app-link";
 import { useAppSelector } from "hooks";
 import { selectProfile } from "services";
-import { MenuItem } from "./hamburger-menu-item/menu-item";
+import { MenuItem } from "./hamburger-menu-item";
 import type { FC } from "react";
 
 interface IProps {
@@ -20,10 +20,7 @@ export const HamburgerMenuModal: FC<IProps> = ({ closeModalHandler }) => {
   return (
     <Modal closeModalHandler={closeModalHandler} title="Меню">
       <ul>
-        <MenuItem
-          link={<LinkProfile />}
-          submenu={user && <LayoutProfileMenu />}
-        />
+        <MenuItem link={<LinkProfile />} submenu={user && <ProfileMenu />} />
         <MenuItem link={<LinkRoot />} />
         <MenuItem link={<LinkOrdersFeed />} />
       </ul>

@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { LayoutAppHeader as Header } from "./layout-app-header";
 import { HamburgerButtonMenu } from "./hamburger-button-menu";
-import { LinkOrdersFeed, LinkProfile, LinkRoot, LinkLogo } from "./header-link";
+import { LinkOrdersFeed, LinkProfile, LinkRoot, LinkLogo } from "./app-link";
 import { withMobile } from "hocs";
 import type { FC } from "react";
 

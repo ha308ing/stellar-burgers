@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "hooks";
-import { OrderDetails } from "../order-details/order-details";
 import { orderActions, selectOrderInfo } from "services";
 import { ModalPending, ModalRejected } from "components/modal";
+import { OrderDetails } from "components/order-details";
 import { STATUSES } from "utils";
 import { withMobileModal } from "hocs";
 import type { FC } from "react";

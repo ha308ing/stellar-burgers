@@ -1,8 +1,8 @@
 import { useAppSelector } from "hooks";
 import { OrderSummaryCheckout } from "../order-summary-checkout";
 import { selectIsBurgerValid } from "services";
-import { ModalMobile as Modal } from "../../modal/modal-mobile";
-import { BurgerConstructor } from "components";
+import { ModalMobile as Modal } from "components/modal";
+import { BurgerConstructor } from "components/burger-constructor";
 import type { FC } from "react";
 
 interface IProps {

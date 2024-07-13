@@ -1,6 +1,6 @@
 import { useAppSelector } from "hooks";
 import { useLocation, Navigate } from "react-router-dom";
-import { ModalPending } from "components";
+import { ModalPending } from "components/modal";
 import { selectProfile, selectIsAuthChecked } from "services";
 import { ROUTES } from "utils";
 import type { FC } from "react";

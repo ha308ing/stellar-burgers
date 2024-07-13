@@ -5,7 +5,7 @@ import styles from "./profile-edit.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { selectProfile, formProfileActions, selectFormProfile } from "services";
 import { STATUSES, dispatchInputAction } from "utils";
-import { ModalPending, ModalRejected, ModalFulfilled } from "components";
+import { ModalPending, ModalRejected, ModalFulfilled } from "components/modal";
 import type { FC, FormEvent, MutableRefObject, SyntheticEvent } from "react";
 
 export const ProfileEdit: FC = () => {
