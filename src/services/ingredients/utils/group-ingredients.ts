@@ -12,15 +12,15 @@ type TIngredientsGrouped = {
 type TIngredientsGroups = string[];
 
 /**
- * format ingredientsRaw by group and return list of groups
+ * format ingredients by group and return list of groups
  */
-export const formatIngredients = (
-  ingredientsRaw: IIngredient[],
+export const groupIngredients = (
+  ingredients: IIngredient[],
 ): {
   ingredientsGrouped: TIngredientsGrouped;
   groups: TIngredientsGroups;
 } => {
-  const ingredientsGrouped = ingredientsRaw.reduce(
+  const ingredientsGrouped = ingredients.reduce(
     (acc: [TIngredientsGrouped, TIngredientsGroups], entry) => {
       const groupType = entry.type;
       const { groupName, groupPriority } = getGroupNamePriority(groupType);

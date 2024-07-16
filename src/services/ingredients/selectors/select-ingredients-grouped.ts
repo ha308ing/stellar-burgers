@@ -1,17 +1,14 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { formatIngredients } from "utils";
-import { selectIngredients, selectStatus } from "./index";
+import { createDraftSafeSelector } from "@reduxjs/toolkit";
+import { groupIngredients } from "services/ingredients/utils";
+import { selectIngredientsArray } from "./select-ingredients";
 
-export const selectIgredientsGrouped = createSelector(
-  [selectIngredients, selectStatus],
-  (ingredients, status) => {
-    const { ingredientsGrouped, groups } = formatIngredients(ingredients);
-    const ingredientsQty = ingredients.length;
+export const selectIgredientsGrouped = createDraftSafeSelector(
+  [selectIngredientsArray],
+  (ingredients) => {
+    const { ingredientsGrouped, groups } = groupIngredients(ingredients);
     return {
       ingredientsGrouped,
       groups,
-      ingredientsQty,
-      status,
     };
   },
 );

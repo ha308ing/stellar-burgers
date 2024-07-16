@@ -18,7 +18,7 @@ import { ROUTES, STATUSES } from "utils";
 import {
   appActions,
   selectLoadingStatus,
-  selectIgredientsGrouped,
+  selectIngredientsStatus,
 } from "services";
 import { MEDIA_QUERY_MD } from "config";
 import { useAppDispatch, useAppSelector } from "hooks";
@@ -26,9 +26,7 @@ import { useAppDispatch, useAppSelector } from "hooks";
 export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const { status: ingredientsStatus, ingredientsQty } = useAppSelector(
-    selectIgredientsGrouped,
-  );
+  const { isNoIngredients } = useAppSelector(selectIngredientsStatus);
   const appLoadingStatus = useAppSelector(selectLoadingStatus);
 
   useEffect(() => {
@@ -104,14 +102,10 @@ export const App = (): JSX.Element => {
     background || location,
   );
 
-  if (appLoadingStatus === STATUSES.PENDING)
+  if (!appLoadingStatus || appLoadingStatus === STATUSES.PENDING)
     return <ModalPending>грузим приложение</ModalPending>;
 
-  if (
-    ingredientsStatus === STATUSES.REJECTED ||
-    (ingredientsStatus === STATUSES.FULFILLED && ingredientsQty === 0)
-  )
-    return <ModalIngredientsError />;
+  if (isNoIngredients) return <ModalIngredientsError />;
 
   return (
     <>

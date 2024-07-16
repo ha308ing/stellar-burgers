@@ -3,10 +3,12 @@ import type { TConnectionStatus } from "utils";
 
 export interface IIngredientsState {
   status: TConnectionStatus | null;
-  ingredients: IIngredient[];
+  ingredients: Record<IIngredient["_id"], IIngredient>;
+  ingredientIds: IIngredient["_id"][];
 }
 
 export const initialState: IIngredientsState = {
   status: null,
-  ingredients: [],
+  ingredients: {},
+  ingredientIds: [],
 };

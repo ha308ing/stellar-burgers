@@ -1,7 +1,7 @@
 import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
 import { nanoid } from "@reduxjs/toolkit";
-import { INGREDIENT_TYPES } from "utils";
-import type { IBurgerConstructorState } from "../initial-state";
+import { INGREDIENT_TYPES } from "services/ingredients/utils";
+import type { IBurgerConstructorState } from "services/burger-constructor/initial-state";
 import type { IIngredient } from "types";
 
 export const addIngredient: CaseReducer<

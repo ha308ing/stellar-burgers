@@ -1,5 +1,8 @@
-export { selectIngredients } from "./select-ingredients";
-export { selectStatus } from "./select-status";
+export {
+  selectIngredients,
+  selectIngredientsArray,
+} from "./select-ingredients";
+export { selectIngredientsStatus } from "./select-status";
 export { selectIgredientsGrouped } from "./select-ingredients-grouped";
 export { selectGroups } from "./select-groups";
 export { selectIngredientById } from "./select-ingredient-by-id";
