@@ -13,6 +13,7 @@ import {
 } from "./forms";
 import { profileSlice } from "./profile";
 import { appSlice } from "./app";
+import { ordersFeedSlice, ordersHistorySlice } from "./feeds";
 
 type TAppReducer = ReturnType<typeof appReducer>;
 
@@ -30,6 +31,8 @@ const appReducer = combineSlices(
   formPasswordForgotSlice,
   formPasswordResetSlice,
   appSlice,
+  ordersFeedSlice,
+  ordersHistorySlice,
 );
 
 const RESET_STORE = "RESET_STORE";

@@ -6,3 +6,4 @@ export * from "./order";
 export * from "./profile";
 export * from "./forms";
 export * from "./root-reducer";
+export * from "./feeds";
