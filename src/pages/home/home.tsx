@@ -29,13 +29,10 @@ const Main = withMobile(MainDesktop, MainMobile);
 
 export const HomePage: FC = () => (
   <>
-    <LayoutMain>
-      <div className={styles.container}>
-        <h1 className={styles.heading}>Соберите бургер</h1>
-        <main className={styles.main}>
-          <Main />
-        </main>
-      </div>
+    <LayoutMain title="Соберите бургер">
+      <main className={styles.main}>
+        <Main />
+      </main>
     </LayoutMain>
     <OrderDetailsModal />
   </>
