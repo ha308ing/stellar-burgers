@@ -50,3 +50,6 @@ pre-commit:
       run: npx stylelint {staged_files}
     format:
       run: npx prettier {staged_files} --check
+    ts:
+      glob: "*.{ts,tsx}"
+      run: tsc --noEmit

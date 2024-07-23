@@ -78,6 +78,13 @@ img {
   width: clamp(40ch, 30ch + 15vw, 60ch) !important;
 }
 
+.shadowed_text {
+  text-shadow:
+    0 0 8px #3333ff80,
+    0 0 16px #3333ff40,
+    0 8px 8px #3333ff40;
+}
+
 @media (min-width: variables.$breakpoint-md) {
   /* stylelint-disable-next-line selector-class-pattern */
   .input__container,
