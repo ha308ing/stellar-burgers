@@ -22,3 +22,11 @@
   justify-content: space-around;
   gap: 1em;
 }
+
+@media (min-width: variables.$breakpoint-md) {
+  .button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.25;
+  }
+}
