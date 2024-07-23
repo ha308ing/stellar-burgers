@@ -145,6 +145,14 @@ class BurgersApiController {
 
     return { userInfo, ingredients };
   };
+
+  getToken = (noBearer = false) => {
+    let accessToken = localStorage.getItem(KEY_ACCESS);
+
+    if (accessToken == null) return "";
+
+    return noBearer ? accessToken.substring(7) : accessToken;
+  };
 }
 
 export const burgersApiController = new BurgersApiController();
