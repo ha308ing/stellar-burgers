@@ -29,6 +29,10 @@
   composes: text text_type_main-default text_color_inactive from global;
 }
 
+.link {
+  color: inherit;
+}
+
 @media (min-width: variables.$breakpoint-md) {
   .container {
     max-inline-size: 70ch;
