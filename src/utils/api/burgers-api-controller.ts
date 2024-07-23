@@ -8,6 +8,7 @@ import type { IIngredient } from "types";
 import { burgersApiService } from "./burgers-api-service";
 import { ErrorLocal } from "./error-local";
 import type { ITokens, IUserData, IOrderInfo } from "./types";
+import { translateOrderStatus } from "utils/strings";
 
 const KEY_ACCESS = "accessToken";
 const KEY_REFRESH = "refreshToken";
@@ -122,9 +123,12 @@ class BurgersApiController {
 
   postOrder = async (orderIds: IIngredient["_id"][]): Promise<IOrderInfo> => {
     const orderIdsString = JSON.stringify({ ingredients: orderIds });
+    const accessToken = localStorage.getItem(KEY_ACCESS);
 
-    const { orderName, orderNumber } =
-      await burgersApiService.postOrder(orderIdsString);
+    const { orderName, orderNumber } = await burgersApiService.postOrder(
+      accessToken!,
+      orderIdsString,
+    );
 
     return { orderName, orderNumber };
   };
@@ -152,6 +156,12 @@ class BurgersApiController {
     if (accessToken == null) return "";
 
     return noBearer ? accessToken.substring(7) : accessToken;
+  };
+
+  getOrder = async (orderNumber: string) => {
+    const { owner, ...order } = await burgersApiService.getOrder(orderNumber);
+    const statusLocal = translateOrderStatus(order.status);
+    return { ...order, statusLocal };
   };
 }
 

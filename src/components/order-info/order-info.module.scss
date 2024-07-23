@@ -1,0 +1,70 @@
+.container {
+  composes: text_type_main-default from global;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.number {
+  composes: text_type_digits-default from global;
+  margin-bottom: 2rem;
+}
+
+.name {
+  composes: text_type_main-medium from global;
+  margin-bottom: 1rem;
+  max-inline-size: 50ch;
+  text-align: center;
+}
+
+.status {
+  width: 100%;
+  margin-bottom: 3rem;
+  text-align: left;
+  text-transform: capitalize;
+
+  &[data-status="done"] {
+    color: var(--colors-interface-success);
+  }
+}
+
+.content {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.contentTitle {
+  composes: text_type_main-medium from global;
+  margin-bottom: 1rem;
+}
+
+.contentList {
+  composes: custom_scroll from global;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  max-block-size: 42vh;
+  overflow-y: auto;
+  padding-inline-end: 3ch;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 3ch;
+}
+
+.date {
+  composes: text_color_inactive from global;
+}
+
+.price {
+  composes: text_type_digits-default from global;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 1rem;
+}

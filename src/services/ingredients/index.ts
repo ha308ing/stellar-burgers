@@ -74,6 +74,7 @@ export const {
   selectIgredientsGrouped,
   selectGroups,
   selectIngredientsStatus,
+  selectIngredients,
 } = ingredientsSlice.selectors;
 
 type TSelectorState = { [ingredientsSlice.reducerPath]: IIngredientsState };

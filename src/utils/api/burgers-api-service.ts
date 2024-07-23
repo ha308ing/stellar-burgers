@@ -8,6 +8,8 @@ import type {
   IIngredientsResponse,
   ILoginResponse,
   ILogoutResponse,
+  IOrder,
+  IOrderInfoResponce,
   IOrderResponse,
   IPasswordRenewResponse,
   IPasswordResetResponse,
@@ -20,7 +22,7 @@ import { HTTP_METHOD, isError } from "./types";
 
 class BurgersApiService {
   basicRequest = <U = unknown, T = null>(
-    url: TAPI,
+    url: TAPI | string,
     method: THTTP_METHOD = HTTP_METHOD.GET,
     options: Omit<RequestInit, "method"> = {},
     dataTransformator: null | ((data: U) => T) = null,
@@ -49,7 +51,7 @@ class BurgersApiService {
     );
 
   fetch = async <T = null, U = unknown>(
-    url: TAPI,
+    url: TAPI | string,
     method: THTTP_METHOD = HTTP_METHOD.GET,
     options: Omit<RequestInit, "method"> = {},
     dataTransformator: null | ((data: U) => T) = null,
@@ -107,16 +109,21 @@ class BurgersApiService {
     }
   };
 
-  postOrder = (orderIdsString: string) =>
+  postOrder = (accessToken: string, orderIdsString: string) =>
     this.basicRequest<
       IOrderResponse,
       { orderName: string; orderNumber: number }
-    >(API.ORDERS, HTTP_METHOD.POST, { body: orderIdsString }, (data) => {
-      const { name, order } = data;
-      const { number } = order;
+    >(
+      API.ORDERS,
+      HTTP_METHOD.POST,
+      { body: orderIdsString, headers: { authorization: accessToken } },
+      (data) => {
+        const { name, order } = data;
+        const { number } = order;
 
-      return { orderName: name, orderNumber: number };
-    });
+        return { orderName: name, orderNumber: number };
+      },
+    );
 
   shouldUpdateToken = (error: Error) => {
     const hasRefreshToken = burgersApiController.hasRefreshToken();
@@ -226,6 +233,17 @@ class BurgersApiService {
       (data) => {
         const { message } = data;
         return message;
+      },
+    );
+
+  getOrder = (orderNumber: string) =>
+    this.basicRequest<IOrderInfoResponce, IOrder>(
+      `${API.ORDERS}/${orderNumber}`,
+      HTTP_METHOD.GET,
+      {},
+      (data) => {
+        const { orders } = data;
+        return orders[0];
       },
     );
 }

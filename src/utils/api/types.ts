@@ -74,3 +74,19 @@ export interface IOrderInfo {
   orderName: TOrderName["name"];
   orderNumber: TOrderNumber["number"];
 }
+
+export interface IOrder {
+  _id: string;
+  ingredients: IIngredient["_id"][];
+  owner: string;
+  status: "done" | "created" | "pending";
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  number: number;
+}
+
+export interface IOrderInfoResponce {
+  success: boolean;
+  orders: IOrder[];
+}
