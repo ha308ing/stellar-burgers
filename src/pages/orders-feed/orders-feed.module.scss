@@ -1,0 +1,65 @@
+@use "../../styles/variables";
+
+.orders {
+  composes: custom_scroll pr-2 from global;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2rem;
+  max-block-size: calc(100vh - 10rem);
+  overflow-y: auto;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .main {
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .summary {
+    composes: custom_scroll from global;
+    display: grid;
+    gap: 36px 60px;
+    grid-template:
+      "done pending" auto
+      "total total" auto
+      "totalToday totalToday" auto / 1fr 1fr;
+    max-block-size: calc(100vh - 10rem);
+    overflow-y: auto;
+    padding-inline-start: 60px;
+  }
+
+  .done {
+    grid-area: done;
+  }
+
+  .pending {
+    grid-area: pending;
+  }
+
+  .total {
+    grid-area: total;
+  }
+
+  .totalToday {
+    grid-area: totalToday;
+  }
+
+  .summaryDone {
+    composes: text_type_digits-default text_color_success from global;
+    columns: 2;
+  }
+
+  .summaryPending {
+    composes: text_type_digits-default from global;
+    columns: 2;
+  }
+
+  .summaryTitle {
+    composes: text_type_main-default mb-6 from global;
+  }
+
+  .summaryTotal {
+    composes: text_type_digits-large shadowed_text from global;
+  }
+}
