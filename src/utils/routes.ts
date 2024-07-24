@@ -3,6 +3,7 @@ import type { TObjectValues } from "types";
 const ingredientsRoot = "/ingredients";
 const PROFILE = "/profile";
 const ORDERS = `${PROFILE}/orders`;
+const ORDERS_FEED = "/feed";
 
 export const ROUTES = {
   ROOT: "/",
@@ -12,8 +13,9 @@ export const ROUTES = {
   RESET_PASSWORD: "/reset-password",
   PROFILE,
   ORDERS,
-  ORDER: `${ORDERS}/:orderId`,
-  ORDERS_FEED: "/orders-feed",
+  ORDER: `${ORDERS}/:orderNumber`,
+  ORDERS_FEED,
+  ORDER_FEED: `${ORDERS_FEED}/:orderNumber`,
   INGREDIENT: `${ingredientsRoot}/:ingredientId`,
   INGREDIENTS_ROOT: ingredientsRoot,
 } as const;
