@@ -1,8 +1,11 @@
+@use "../../styles/variables";
+
 .container {
   composes: text_type_main-default from global;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  padding-inline: 1rem;
 }
 
 .number {
@@ -67,4 +70,10 @@
   flex-flow: row nowrap;
   align-items: center;
   gap: 1rem;
+}
+
+@media (min-width: variables.$breakpoint-md) {
+  .container {
+    padding-inline: initial;
+  }
 }

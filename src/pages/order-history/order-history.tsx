@@ -41,15 +41,17 @@ export const OrderHistoryPage: FC = () => {
   return (
     <>
       <LP.Content>
-        {isLoading ? (
-          <FeedMessage message="грузим историю заказов" />
-        ) : isError ? (
-          <FeedMessage message={message} clickHandler={retryHandler} />
-        ) : isNoOrders ? (
-          <FeedMessage message="нет заказов" clickHandler={retryHandler} />
-        ) : (
-          <section className={styles.orders}>{ordersCards}</section>
-        )}
+        <section className={styles.orders}>
+          {isLoading ? (
+            <FeedMessage message="грузим историю заказов" />
+          ) : isError ? (
+            <FeedMessage message={message} clickHandler={retryHandler} />
+          ) : isNoOrders ? (
+            <FeedMessage message="нет заказов" clickHandler={retryHandler} />
+          ) : (
+            ordersCards
+          )}
+        </section>
       </LP.Content>
       <LP.Footer>
         В этом разделе вы можете

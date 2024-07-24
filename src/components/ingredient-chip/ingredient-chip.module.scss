@@ -22,7 +22,7 @@ $chip-size: 4rem;
   .label {
     position: absolute;
     inset: 0;
-    line-height: 5.2;
+    line-height: calc($chip-size / 1rem);
     text-align: center;
   }
 }
