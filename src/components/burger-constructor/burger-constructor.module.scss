@@ -13,18 +13,18 @@
 
 .ingredients {
   display: flex;
-  width: 100%;
   flex-flow: column nowrap;
+  inline-size: 100%;
   min-block-size: 20rem;
 }
 
 .ingredient {
   composes: noselect from global;
   display: flex;
-  width: 100%;
   flex-wrap: nowrap;
   align-items: center;
   cursor: grab;
+  inline-size: 100%;
 }
 
 @media (min-width: variables.$breakpoint-md) {

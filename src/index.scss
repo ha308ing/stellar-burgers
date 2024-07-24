@@ -13,8 +13,8 @@
   }
 
   .custom_scroll::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    block-size: 12px;
+    inline-size: 12px;
   }
 
   .custom_scroll::-webkit-scrollbar-track {
@@ -28,8 +28,8 @@
   }
 
   .body::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    block-size: 12px;
+    inline-size: 12px;
   }
 
   .body::-webkit-scrollbar-track {
@@ -62,20 +62,20 @@ body {
 svg,
 img {
   display: block;
-  width: auto;
-  height: 100%;
+  block-size: 100%;
+  inline-size: auto;
 }
 
 #root {
   overflow: hidden;
-  width: 100vw;
-  height: 100vh;
+  block-size: 100vh;
+  inline-size: 100vw;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
 .input__container,
 .input_size_default {
-  width: clamp(40ch, 30ch + 15vw, 60ch) !important;
+  inline-size: clamp(40ch, 30ch + 15vw, 60ch) !important;
 }
 
 .shadowed_text {
@@ -89,6 +89,6 @@ img {
   /* stylelint-disable-next-line selector-class-pattern */
   .input__container,
   .input_size_default {
-    width: 480px !important;
+    inline-size: 480px !important;
   }
 }

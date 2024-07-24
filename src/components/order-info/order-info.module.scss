@@ -7,20 +7,20 @@
 
 .number {
   composes: text_type_digits-default from global;
-  margin-bottom: 2rem;
+  margin-block-end: 2rem;
 }
 
 .name {
   composes: text_type_main-medium from global;
-  margin-bottom: 1rem;
+  margin-block-end: 1rem;
   max-inline-size: 50ch;
   text-align: center;
 }
 
 .status {
-  width: 100%;
-  margin-bottom: 3rem;
-  text-align: left;
+  inline-size: 100%;
+  margin-block-end: 3rem;
+  text-align: start;
   text-transform: capitalize;
 
   &[data-status="done"] {
@@ -29,13 +29,13 @@
 }
 
 .content {
-  width: 100%;
-  margin-bottom: 2rem;
+  inline-size: 100%;
+  margin-block-end: 2rem;
 }
 
 .contentTitle {
   composes: text_type_main-medium from global;
-  margin-bottom: 1rem;
+  margin-block-end: 1rem;
 }
 
 .contentList {
@@ -50,10 +50,10 @@
 
 .footer {
   display: flex;
-  width: 100%;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  inline-size: 100%;
   padding-inline: 3ch;
 }
 

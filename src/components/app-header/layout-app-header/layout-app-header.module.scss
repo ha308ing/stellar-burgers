@@ -2,8 +2,8 @@
 @use "../../../styles/colors";
 
 .header {
-  width: 100%;
   background-color: colors.$dark-blue;
+  inline-size: 100%;
 }
 
 .nav {

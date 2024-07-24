@@ -2,10 +2,10 @@ $chip-size: 4rem;
 
 .chip {
   position: relative;
-  width: $chip-size;
-  height: $chip-size;
   background-image: linear-gradient(to bottom, #0e5699, #d31bc4);
+  block-size: $chip-size;
   clip-path: circle($chip-size * 0.5);
+  inline-size: $chip-size;
 }
 
 .image {

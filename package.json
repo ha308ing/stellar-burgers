@@ -70,6 +70,9 @@
       "stylelint-config-css-modules",
       "stylelint-config-idiomatic-order"
     ],
+    "plugins": [
+      "stylelint-use-logical"
+    ],
     "rules": {
       "scss/dollar-variable-pattern": null,
       "selector-class-pattern": [
@@ -78,7 +81,8 @@
           "message": "Expected class selector \"%s\" to be camelCase or _"
         }
       ],
-      "value-keyword-case": null
+      "value-keyword-case": null,
+      "csstools/use-logical": true
     }
   },
   "commitlint": {
@@ -111,6 +115,7 @@
     "stylelint": "16.5.0",
     "stylelint-config-css-modules": "4.4.0",
     "stylelint-config-idiomatic-order": "10.0.0",
-    "stylelint-config-standard-scss": "13.1.0"
+    "stylelint-config-standard-scss": "13.1.0",
+    "stylelint-use-logical": "2.1.2"
   }
 }

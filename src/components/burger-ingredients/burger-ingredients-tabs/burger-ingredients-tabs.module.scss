@@ -9,6 +9,6 @@
 .container > * {
   $min-width: 15ch;
 
-  min-width: $min-width;
   flex: 1 0 $min-width;
+  min-inline-size: $min-width;
 }

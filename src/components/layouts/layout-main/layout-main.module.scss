@@ -4,11 +4,11 @@
 .container {
   position: relative;
   display: grid;
-  height: 100%;
-  max-height: 100vh;
+  block-size: 100%;
   grid-template:
     "header" auto
     "content" 1fr / 100%;
+  max-block-size: 100vh;
 }
 
 .content {
@@ -25,6 +25,6 @@
 
 @media (min-width: variables.$breakpoint-md) {
   .heading {
-    text-align: left;
+    text-align: start;
   }
 }

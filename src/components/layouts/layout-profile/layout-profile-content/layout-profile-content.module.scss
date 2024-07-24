@@ -1,12 +1,12 @@
 @use "../../../../styles/variables";
 
 .content {
-  padding-top: 3rem;
   grid-area: content;
+  padding-block-start: 3rem;
 }
 
 @media (min-width: variables.$breakpoint-md) {
   .content {
-    padding-top: initial;
+    padding-block-start: initial;
   }
 }

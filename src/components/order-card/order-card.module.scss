@@ -41,13 +41,13 @@
 .price {
   composes: text_type_digits-default from global;
   position: absolute;
-  right: 32px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   background-color: colors.$dark-blue;
   box-shadow: 0 0 16px 16px colors.$dark-blue;
   gap: 0.2em;
+  inset-inline-end: 32px;
 }
 
 .pending {
