@@ -1,0 +1,8 @@
+.tabs {
+  display: flex;
+  flex-flow: row nowrap;
+
+  & > * {
+    inline-size: 100%;
+  }
+}
