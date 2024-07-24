@@ -1,8 +1,21 @@
 import { LayoutMain, FeedMessage, OrderCardLink } from "components";
 import { useAppDispatch, useAppSelector } from "hooks";
-import { useEffect, type FC } from "react";
+import type { FC } from "react";
+import React, { useEffect } from "react";
 import { ordersFeedActions, selectOrdersFeed } from "services";
 import styles from "./orders-feed.module.scss";
+import { withTabs } from "hocs/with-tabs";
+import { withMobile } from "hocs";
+
+const ContainerMobile = withTabs(["Заказы", "Статистика"]);
+
+const ContainerDesktop: FC<{ children: React.ReactNode[] }> = ({
+  children,
+}) => {
+  return <main className={styles.main}>{children}</main>;
+};
+
+const Container = withMobile(ContainerDesktop, ContainerMobile);
 
 export const OrdersFeedPage: FC = () => {
   const {
@@ -54,7 +67,7 @@ export const OrdersFeedPage: FC = () => {
       ) : isNoOrders ? (
         <FeedMessage message="нет заказов" clickHandler={retryHandler} />
       ) : (
-        <main className={styles.main}>
+        <Container>
           <section className={styles.orders}>{ordersCards}</section>
 
           <section className={styles.summary}>
@@ -82,7 +95,7 @@ export const OrdersFeedPage: FC = () => {
               <div className={styles.summaryTotal}>{totalToday}</div>
             </div>
           </section>
-        </main>
+        </Container>
       )}
     </LayoutMain>
   );
