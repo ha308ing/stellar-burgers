@@ -41,8 +41,11 @@ export const onMessage = <
         order,
       ) => {
         const orderNumber = order.number;
-        const isOrderNumberLarger = orderNumber > previousOrderNumber;
-        previousOrderNumber = orderNumber;
+        const isOrderNumberLarger =
+          previousOrderNumber == null || orderNumber > previousOrderNumber;
+        previousOrderNumber = isOrderNumberLarger
+          ? orderNumber
+          : previousOrderNumber;
         const status = order.status;
         const statusLocal = translateOrderStatus(status);
         acc.ordersByNumber[orderNumber] = { ...order, statusLocal };
