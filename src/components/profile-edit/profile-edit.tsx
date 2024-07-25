@@ -2,72 +2,78 @@ import { useEffect, useRef, useState } from "react";
 import { ProfileEditInput as Input } from "./profile-edit-input/profile-edit-input";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./profile-edit.module.scss";
-import { useAppDispatch, useAppSelector } from "hooks";
-import { selectProfile, formProfileActions, selectFormProfile } from "services";
-import { STATUSES, dispatchInputAction } from "utils";
+import { useAppDispatch, useAppSelector, useForm } from "hooks";
+import { selectProfile, profileActions } from "services";
+import { burgersApiController } from "utils";
+import type { IUserDataPassword } from "utils";
 import { ModalPending, ModalRejected, ModalFulfilled } from "components/modal";
-import type { FC, FormEvent, MutableRefObject, SyntheticEvent } from "react";
+import type { FC, MutableRefObject, SyntheticEvent } from "react";
 
 export const ProfileEdit: FC = () => {
   const [disabled, setDisabled] = useState(true);
   const targetRef = useRef<MutableRefObject<HTMLInputElement>>();
   const { user } = useAppSelector(selectProfile);
-  const {
-    inputs: formInputs,
-    message: profileUpdateErrorMessage,
-    status: profileUpdateStatus,
-  } = useAppSelector(selectFormProfile);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (targetRef.current) targetRef.current.current.focus();
-  }, [disabled]);
 
   const toggleDisabled = () => {
     setDisabled(!disabled);
   };
 
-  const handleChange = dispatchInputAction(dispatch, formProfileActions.change);
+  const dispatch = useAppDispatch();
 
-  const { email, name, password } = disabled && user ? user : formInputs;
+  const submitProfile = async (user: IUserDataPassword) => {
+    const { email, name, password } = user;
+    await burgersApiController.updateUserInfo(
+      password.length === 0 ? { email, name } : user,
+    );
+    dispatch(profileActions.set({ email, name, password }));
+    dispatch(profileActions.get());
+    toggleDisabled();
+  };
 
-  const isPending = profileUpdateStatus === STATUSES.PENDING;
-  const isRejected = profileUpdateStatus === STATUSES.REJECTED;
-  const isFulfilled = profileUpdateStatus === STATUSES.FULFILLED;
+  const {
+    handleChange,
+    handleSubmit,
+    isFulfilled,
+    isPending,
+    isRejected,
+    values,
+    errorMessage,
+    resetStatus,
+    setValues,
+  } = useForm<IUserDataPassword>(
+    {
+      email: user?.email ?? "",
+      name: user?.name ?? "",
+      password: user?.password ?? "",
+    },
+    submitProfile,
+  );
+
+  useEffect(() => {
+    if (targetRef.current) targetRef.current.current.focus();
+  }, [disabled]);
+
+  const { email, name, password } = disabled && user ? user : values;
 
   const buttonText = isPending ? "Обновляем..." : "Сохранить";
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    dispatch(formProfileActions.submit({ email, name, password }));
-    setDisabled(true);
-  };
-
   const handleCancel = (event: SyntheticEvent) => {
     event.preventDefault();
-    if (user != null) dispatch(formProfileActions.set(user));
+    if (user !== null) setValues(user);
     setDisabled(true);
   };
 
   return (
     <>
       {isFulfilled && (
-        <ModalFulfilled
-          closeModalHandler={() => {
-            dispatch(formProfileActions.resetMessage());
-          }}
-        >
+        <ModalFulfilled closeModalHandler={resetStatus}>
           Данные обновлены
         </ModalFulfilled>
       )}
       {isPending && <ModalPending>Обновляем данные</ModalPending>}
       {isRejected && (
-        <ModalRejected
-          closeModalHandler={() => {
-            dispatch(formProfileActions.resetMessage());
-          }}
-        >
-          {profileUpdateErrorMessage}
+        <ModalRejected closeModalHandler={resetStatus}>
+          {errorMessage}
         </ModalRejected>
       )}
 
@@ -80,7 +86,7 @@ export const ProfileEdit: FC = () => {
             toggleDisabled={toggleDisabled}
             targetRef={targetRef}
             value={name}
-            onChange={handleChange}
+            onChange={handleChange("name")}
           />
           <Input
             placeholder="E-mail"
@@ -89,7 +95,7 @@ export const ProfileEdit: FC = () => {
             toggleDisabled={toggleDisabled}
             targetRef={targetRef}
             value={email}
-            onChange={handleChange}
+            onChange={handleChange("email")}
           />
           <Input
             placeholder="Пароль"
@@ -99,7 +105,7 @@ export const ProfileEdit: FC = () => {
             targetRef={targetRef}
             type="password"
             value={password}
-            onChange={handleChange}
+            onChange={handleChange("password")}
           />
         </div>
         {!disabled && (

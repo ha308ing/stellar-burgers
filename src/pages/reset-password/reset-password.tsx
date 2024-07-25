@@ -3,47 +3,33 @@ import {
   Input,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {
-  ROUTES,
-  STATUSES,
-  dispatchFormAction,
-  dispatchInputAction,
-} from "utils";
-import { useAppDispatch, useAppSelector } from "hooks";
-import { formPasswordResetActions, selectFormPasswordReset } from "services";
+import type { IFormPasswordResetInputs } from "utils";
+import { ROUTES, burgersApiController } from "utils";
+import { useForm } from "hooks";
 import type { FC } from "react";
-import type { IFormPasswordResetState } from "services";
 
 export const ResetPasswordPage: FC = () => {
   const {
-    inputs: { password, token },
-    message,
-    status,
-  } = useAppSelector(selectFormPasswordReset);
-  const dispatch = useAppDispatch();
-
-  const handleModalClose = () => {
-    dispatch(formPasswordResetActions.resetMessage());
-  };
-
-  const handleChange = dispatchInputAction(
-    dispatch,
-    formPasswordResetActions.change,
+    handleChange,
+    handleSubmit,
+    isPending,
+    isRejected,
+    errorMessage,
+    resetStatus,
+    values,
+  } = useForm<IFormPasswordResetInputs>(
+    { password: "", token: "" },
+    burgersApiController.resetPassword,
   );
 
-  const handleSubmit = dispatchFormAction<IFormPasswordResetState>(
-    dispatch,
-    formPasswordResetActions.submit,
-  )({ password, token });
+  const { password, token } = values;
 
   return (
     <>
-      {status === STATUSES.PENDING && (
-        <ModalPending>сбрасываем пароль</ModalPending>
-      )}
-      {status === STATUSES.REJECTED && (
-        <ModalRejected closeModalHandler={handleModalClose}>
-          {message}
+      {isPending && <ModalPending>сбрасываем пароль</ModalPending>}
+      {isRejected && (
+        <ModalRejected closeModalHandler={resetStatus}>
+          {errorMessage}
         </ModalRejected>
       )}
       <LF>
@@ -53,13 +39,13 @@ export const ResetPasswordPage: FC = () => {
             name="password"
             placeholder="Введите новый пароль"
             value={password}
-            onChange={handleChange}
+            onChange={handleChange("password")}
           />
           <Input
             name="token"
             placeholder="Введите код из письма"
             value={token}
-            onChange={handleChange}
+            onChange={handleChange("token")}
           />
           <LF.Button>Сохранить</LF.Button>
         </LF.Form>

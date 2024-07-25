@@ -1,48 +1,58 @@
 import { LayoutForm as LF, ModalRejected, ModalPending } from "components";
 import { EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import {
-  ROUTES,
-  STATUSES,
-  dispatchFormAction,
-  dispatchInputAction,
-} from "utils";
-import { useAppDispatch, useAppSelector } from "hooks";
-import { formPasswordForgotActions, selectFormPasswordForgot } from "services";
+import type { IFormPasswordForgotInputs } from "utils";
+import { ROUTES, burgersApiController } from "utils";
+import { useForm } from "hooks";
 import { ModalFulfilled } from "./components";
 import type { FC } from "react";
-import type { IFormPasswordForgotState } from "services";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const ForgotPasswordPage: FC = () => {
-  const {
-    inputs: { email },
-    message,
-    status,
-  } = useAppSelector(selectFormPasswordForgot);
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleChange = dispatchInputAction(
-    dispatch,
-    formPasswordForgotActions.change,
+  const {
+    handleChange,
+    handleSubmit,
+    isFulfilled,
+    isPending,
+    isRejected,
+    errorMessage,
+    resetStatus,
+    values,
+    setValues,
+  } = useForm<IFormPasswordForgotInputs>(
+    { email: "" },
+    burgersApiController.requestPasswordResetCode,
   );
 
-  const handleSubmit = dispatchFormAction<IFormPasswordForgotState>(
-    dispatch,
-    formPasswordForgotActions.submit,
-  )({ email });
+  const { email } = values;
 
-  const closeModal = () => {
-    dispatch(formPasswordForgotActions.resetMessage());
+  const closeModalFulfilledHandler = () => {
+    setValues({ email: "" });
+    resetStatus();
+    navigate(ROUTES.RESET_PASSWORD, {
+      state: { from: location.pathname },
+      replace: true,
+    });
   };
 
   return (
     <>
-      {status === STATUSES.PENDING && (
+      {isPending && (
         <ModalPending>отправляем код на почту {email}</ModalPending>
       )}
-      {status === STATUSES.REJECTED && (
-        <ModalRejected closeModalHandler={closeModal}>{message}</ModalRejected>
+      {isRejected && (
+        <ModalRejected closeModalHandler={resetStatus}>
+          {errorMessage}
+        </ModalRejected>
       )}
-      {status === STATUSES.FULFILLED && <ModalFulfilled email={email} />}
+      {isFulfilled && (
+        <ModalFulfilled
+          email={email}
+          closeModalHandler={closeModalFulfilledHandler}
+        />
+      )}
       <LF>
         <LF.Heading>Восстановление пароля</LF.Heading>
         <LF.Form onSubmit={handleSubmit}>
@@ -50,7 +60,7 @@ export const ForgotPasswordPage: FC = () => {
             name="email"
             placeholder="Укажите e-mail"
             value={email}
-            onChange={handleChange}
+            onChange={handleChange("email")}
           />
           <LF.Button>Восстановить</LF.Button>
         </LF.Form>

@@ -90,3 +90,16 @@ export interface IOrderInfoResponce {
   success: boolean;
   orders: IOrder[];
 }
+
+export interface IFormPasswordResetInputs
+  extends Pick<IUserDataPassword, "password"> {
+  token: string;
+}
+
+export interface IFormPasswordForgotInputs
+  extends Pick<IUserDataPassword, "email"> {}
+
+export interface IFormLoginInputs
+  extends Pick<IUserDataPassword, "email" | "password"> {}
+
+export interface IFormRegisterInputs extends IUserDataPassword {}

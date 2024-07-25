@@ -1,13 +1,15 @@
-import type {
-  IFormLoginInputs,
-  IFormPasswordForgotInputs,
-  IFormPasswordResetInputs,
-  IFormRegisterInputs,
-} from "services";
 import type { IIngredient } from "types";
 import { burgersApiService } from "./burgers-api-service";
 import { ErrorLocal } from "./error-local";
-import type { ITokens, IUserData, IOrderInfo } from "./types";
+import type {
+  ITokens,
+  IUserData,
+  IOrderInfo,
+  IFormLoginInputs,
+  IFormPasswordForgotInputs,
+  IFormRegisterInputs,
+  IFormPasswordResetInputs,
+} from "./types";
 import { translateOrderStatus } from "utils/strings";
 
 const KEY_ACCESS = "accessToken";
