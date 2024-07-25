@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./initial-state";
 import { loadApp } from "./thunks/load-app";
 import { STATUSES } from "utils";
+import * as selectors from "./selectors";
 export type { ILoadAppState } from "./initial-state";
 
 export const appSlice = createSlice({
@@ -15,11 +16,7 @@ export const appSlice = createSlice({
       state.isMobile = false;
     },
   },
-  selectors: {
-    selectLoadingStatus: (state) => state.loadingStatus,
-    selectIsAuthChecked: (state) => state.isAuthChecked,
-    selectIsMobile: (state) => state.isMobile,
-  },
+  selectors,
   extraReducers: (builder) => {
     builder
       .addCase(loadApp.pending, (state) => {
@@ -36,7 +33,9 @@ export const appSlice = createSlice({
   },
 });
 
-export const selectApp = appSlice.selectSlice;
 export const appActions = { ...appSlice.actions, load: loadApp };
-export const { selectLoadingStatus, selectIsAuthChecked, selectIsMobile } =
-  appSlice.selectors;
+export const {
+  selectLoadingStatus: selectAppLoadingStatus,
+  selectIsAuthChecked,
+  selectIsMobile,
+} = appSlice.selectors;

@@ -3,14 +3,15 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./profile-menu.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { ModalFulfilled, ModalPending, ModalRejected } from "components/modal";
-import { profileActions, selectProfile, resetStore } from "services";
-import { ROUTES, STATUSES } from "utils";
+import { profileActions, resetStore, selectLogoutStatus } from "services";
+import { ROUTES } from "utils";
 import type { FC } from "react";
 
 export const ProfileMenu: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { logoutStatus, message } = useAppSelector(selectProfile);
+  const { isPending, isRejected, isFulfilled, message } =
+    useAppSelector(selectLogoutStatus);
 
   const handleModalClose = () => {
     dispatch(profileActions.resetLogoutMessage());
@@ -27,15 +28,13 @@ export const ProfileMenu: FC = () => {
 
   return (
     <>
-      {logoutStatus === STATUSES.PENDING && (
-        <ModalPending>выполняется выход</ModalPending>
-      )}
-      {logoutStatus === STATUSES.REJECTED && (
+      {isPending && <ModalPending>выполняется выход</ModalPending>}
+      {isRejected && (
         <ModalRejected closeModalHandler={handleModalClose}>
           {message}
         </ModalRejected>
       )}
-      {logoutStatus === STATUSES.FULFILLED && (
+      {isFulfilled && (
         <ModalFulfilled closeModalHandler={handleModalCloseNavigate}>
           <Button htmlType="button" onClick={handleModalCloseNavigate}>
             На главную
