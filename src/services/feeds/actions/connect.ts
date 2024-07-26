@@ -8,6 +8,7 @@ interface IState {
 }
 
 export const connect = <T extends IState>(state: T) => {
+  state.message = "";
   state.status = STATUSES.PENDING;
 };
 

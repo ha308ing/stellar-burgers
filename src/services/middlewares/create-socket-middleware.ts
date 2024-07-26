@@ -21,14 +21,12 @@ export const createSocketMiddleware =
     actions: ISocketActions<I, O>,
     withToken = false,
   ): Middleware =>
-  (store) => {
+  ({ dispatch }) => {
     let socket: WebSocket | null = null;
+    const { connect, disconnect, send, onOpen, onClose, onError, onMessage } =
+      actions;
 
     return (next) => (action) => {
-      const { dispatch } = store;
-      const { connect, disconnect, send, onOpen, onClose, onError, onMessage } =
-        actions;
-
       if (connect.match(action)) {
         let tokenSlug = "";
         if (withToken) {
@@ -58,15 +56,20 @@ export const createSocketMiddleware =
       };
 
       socket.onmessage = (event: MessageEvent<string>) => {
-        const data = JSON.parse(event.data);
-        const { success, message } = data;
-        if (!success && message === "Invalid or missing token") {
-          burgersApiController
-            .updateToken()
-            .then(() => dispatch(connect()))
-            .catch(() => dispatch(connect()));
-        } else {
-          dispatch(onMessage(data));
+        try {
+          const data = JSON.parse(event.data);
+          const { success, message } = data;
+          if (!success && message === "Invalid or missing token") {
+            burgersApiController
+              .updateToken()
+              .then(() => dispatch(connect()))
+              .catch(() => dispatch(connect()));
+          } else {
+            dispatch(onMessage(data));
+          }
+        } catch (error) {
+          if (onError)
+            dispatch(dispatch(onError("не удалось получить данные")));
         }
       };
 
@@ -75,6 +78,6 @@ export const createSocketMiddleware =
         socket = null;
       }
 
-      next(action);
+      return next(action);
     };
   };
