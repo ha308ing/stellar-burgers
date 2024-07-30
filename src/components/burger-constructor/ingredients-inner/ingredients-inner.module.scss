@@ -21,6 +21,11 @@
 
 @media (min-width: variables.$breakpoint-md) {
   .innersContainer {
-    max-block-size: calc(100vh - 25em);
+    max-block-size: calc(100vh - 36rem);
+    min-block-size: 5rem;
+
+    &[data-isnoingredients="true"] {
+      min-block-size: 8rem;
+    }
   }
 }
