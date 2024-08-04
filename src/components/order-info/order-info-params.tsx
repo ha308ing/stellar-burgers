@@ -5,43 +5,37 @@ import { selectOrdersFeed, selectOrdersHistory } from "services";
 import { OrderInfo } from "./order-info";
 import { burgersApiController } from "utils";
 import type { IOrderLocal } from "types";
+import { Message } from "components/message";
 
 export const OrderInfoParams: FC = () => {
   const { orderNumber } = useParams();
-  const { ordersByNumbers: ordersFeed, isNoOrders: isNoFeedOrders } =
-    useAppSelector(selectOrdersFeed);
-  const { ordersByNumbers: ordersHistory, isNoOrders: isNoHistoryOrders } =
+  const { ordersByNumbers: ordersFeed } = useAppSelector(selectOrdersFeed);
+  const { ordersByNumbers: ordersHistory } =
     useAppSelector(selectOrdersHistory);
   const [order, setOrder] = useState<IOrderLocal | null>(null);
-
-  const isNoFeed = isNoFeedOrders && isNoHistoryOrders;
-
-  const isError =
-    order == null &&
-    (orderNumber == null ||
-      (orderNumber &&
-        ordersFeed[orderNumber] == null &&
-        ordersHistory[orderNumber] == null));
+  const [status, setStatus] = useState<"заказ не найден" | "загрузка" | null>(
+    "загрузка",
+  );
 
   useEffect(() => {
-    if (orderNumber == null) return;
-    if (isNoFeed) {
-      (async () => {
-        if (orderNumber == null) {
-          return setOrder(null);
-        }
-        const order = await burgersApiController.getOrder(orderNumber);
-        setOrder(order);
-      })();
-    } else {
-      setOrder(ordersFeed[orderNumber] || ordersHistory[orderNumber]);
-    }
-  }, [orderNumber, ordersFeed, ordersHistory, isNoFeed]);
+    if (orderNumber == null) return setStatus("заказ не найден");
+    (async () => {
+      let order =
+        (await burgersApiController.getOrder(orderNumber)) ||
+        ordersFeed[orderNumber] ||
+        ordersHistory[orderNumber];
+      if (order == null) {
+        return setStatus("заказ не найден");
+      }
+      setOrder(order);
+      setStatus(null);
+    })();
+  }, [orderNumber, ordersFeed, ordersHistory]);
 
-  return order == null ? (
-    <h1>загрузка</h1>
-  ) : isError ? (
-    <h1>заказ не найден</h1>
+  return !!status ? (
+    <Message message={status} />
+  ) : order == null ? (
+    <Message message="заказ не найден" />
   ) : (
     <main>
       <OrderInfo orderInfo={order} />
