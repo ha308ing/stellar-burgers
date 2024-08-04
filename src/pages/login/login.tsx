@@ -15,7 +15,7 @@ export const LoginPage: FC = () => {
 
   const loginSubmit = async (inputs: IFormLoginInputs) => {
     const userData = await burgersApiController.login(inputs);
-    dispatch(profileActions.set({ ...inputs, ...userData }));
+    dispatch(profileActions.set(userData));
   };
 
   const {

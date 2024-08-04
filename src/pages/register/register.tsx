@@ -16,8 +16,7 @@ export const RegisterPage: FC = () => {
 
   const registerSubmit = async (formData: IFormRegisterInputs) => {
     const response = await burgersApiController.register(formData);
-    const { password } = formData;
-    dispatch(profileActions.set({ ...response, password }));
+    dispatch(profileActions.set(response));
     dispatch(profileActions.get());
   };
 

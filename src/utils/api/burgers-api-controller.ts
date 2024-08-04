@@ -9,6 +9,7 @@ import type {
   IFormPasswordForgotInputs,
   IFormRegisterInputs,
   IFormPasswordResetInputs,
+  IUserDataPassword,
 } from "./types";
 import { translateOrderStatus } from "utils/strings";
 
@@ -21,8 +22,11 @@ class BurgersApiController {
     return ingredients;
   };
 
-  register = async (registerData: IFormRegisterInputs): Promise<IUserData> => {
+  register = async (
+    registerData: IFormRegisterInputs,
+  ): Promise<IUserDataPassword> => {
     const registerDataString = JSON.stringify(registerData);
+    const { password } = registerData;
 
     const { email, name, accessToken, refreshToken } =
       await burgersApiService.register(registerDataString);
@@ -30,11 +34,12 @@ class BurgersApiController {
     localStorage.setItem(KEY_ACCESS, accessToken);
     localStorage.setItem(KEY_REFRESH, refreshToken);
 
-    return { email, name };
+    return { email, name, password };
   };
 
-  login = async (loginData: IFormLoginInputs): Promise<IUserData> => {
+  login = async (loginData: IFormLoginInputs): Promise<IUserDataPassword> => {
     const loginDataString = JSON.stringify(loginData);
+    const { password } = loginData;
 
     const { email, name, accessToken, refreshToken } =
       await burgersApiService.login(loginDataString);
@@ -42,7 +47,7 @@ class BurgersApiController {
     localStorage.setItem(KEY_ACCESS, accessToken);
     localStorage.setItem(KEY_REFRESH, refreshToken);
 
-    return { email, name };
+    return { email, name, password };
   };
 
   updateToken = async (): Promise<ITokens> => {
@@ -161,7 +166,9 @@ class BurgersApiController {
   };
 
   getOrder = async (orderNumber: string) => {
-    const { owner, ...order } = await burgersApiService.getOrder(orderNumber);
+    const response = await burgersApiService.getOrder(orderNumber);
+    if (response == null) return null;
+    const { owner, ...order } = response;
     const statusLocal = translateOrderStatus(order.status);
     return { ...order, statusLocal };
   };
