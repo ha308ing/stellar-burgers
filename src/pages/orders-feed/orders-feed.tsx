@@ -1,4 +1,4 @@
-import { LayoutMain, FeedMessage, OrderCardLink } from "components";
+import { LayoutMain, Message, OrderCardLink } from "components";
 import { useAppDispatch, useAppSelector } from "hooks";
 import type { FC } from "react";
 import React, { useEffect } from "react";
@@ -61,11 +61,19 @@ export const OrdersFeedPage: FC = () => {
   return (
     <LayoutMain title="Лента заказов">
       {isLoading ? (
-        <FeedMessage message="грузим ленту заказов" />
+        <Message message="грузим ленту заказов" />
       ) : isError ? (
-        <FeedMessage message={message} clickHandler={retryHandler} />
+        <Message
+          message={message}
+          clickHandler={retryHandler}
+          buttonText="попробовать снова"
+        />
       ) : isNoOrders ? (
-        <FeedMessage message="нет заказов" clickHandler={retryHandler} />
+        <Message
+          message="нет заказов"
+          clickHandler={retryHandler}
+          buttonText="попробовать снова"
+        />
       ) : (
         <Container>
           <section className={styles.orders}>{ordersCards}</section>

@@ -1,4 +1,4 @@
-import { LayoutProfile as LP, FeedMessage, OrderCardLink } from "components";
+import { LayoutProfile as LP, Message, OrderCardLink } from "components";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { useEffect, type FC } from "react";
 import { selectOrdersHistory, ordersHistoryActions } from "services";
@@ -43,11 +43,19 @@ export const OrderHistoryPage: FC = () => {
       <LP.Content>
         <section className={styles.orders}>
           {isLoading ? (
-            <FeedMessage message="грузим историю заказов" />
+            <Message message="грузим историю заказов" />
           ) : isError ? (
-            <FeedMessage message={message} clickHandler={retryHandler} />
+            <Message
+              message={message}
+              clickHandler={retryHandler}
+              buttonText="попробовать снова"
+            />
           ) : isNoOrders ? (
-            <FeedMessage message="нет заказов" clickHandler={retryHandler} />
+            <Message
+              message="нет заказов"
+              clickHandler={retryHandler}
+              buttonText="попробовать снова"
+            />
           ) : (
             ordersCards
           )}

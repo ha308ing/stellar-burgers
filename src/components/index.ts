@@ -11,5 +11,5 @@ export * from "./profile-edit";
 export * from "./profile-menu";
 export * from "./protected-route-element";
 export * from "./order-card";
-export * from "./feed-message";
+export * from "./message";
 export * from "./order-info";
