@@ -43,5 +43,36 @@ Cypress.Commands.add("load", () => {
   cy.intercept("GET", API.AUTH.USER, { fixture: "user" });
   cy.intercept("GET", API.INGREDIENTS, { fixture: "ingredients" });
   cy.intercept("POST", API.ORDERS, { fixture: "order" });
-  cy.visit("http://localhost:3000");
+  cy.visit("/");
+
+  cy.getIngredients();
+  cy.getDropContainers();
+  cy.get("[data-test-id=order-total]").as("orderTotal");
+});
+
+Cypress.Commands.add("getModalControls", () => {
+  cy.get("[data-test-id=modal-button-close]").as("buttonModalClose");
+  cy.get("[data-test-id=modal-overlay]").as("modalOverlay");
+});
+
+Cypress.Commands.add("getIngredients", () => {
+  cy.get("[data-test-id=drag-ingredient-bun0]").as("bun0");
+  cy.get("[data-test-id=drag-ingredient-bun1]").as("bun1");
+  cy.get("[data-test-id=drag-ingredient-main1]").as("main1");
+});
+
+Cypress.Commands.add("getDropContainers", () => {
+  cy.get("[data-test-id=drop-container-top]").as("dropTop");
+  cy.get("[data-test-id=drop-container-middle]").as("dropMiddle");
+  cy.get("[data-test-id=drop-container-bottom]").as("dropBottom");
+});
+
+Cypress.Commands.add("getOrderControls", () => {
+  cy.get("[data-test-id=button-checkout]").as("buttonCheckout");
+});
+
+Cypress.Commands.add("getIngredientModal", () => {
+  cy.get("[data-test-id=order-total]").as("orderTotal");
+  cy.getModalControls();
+  cy.get("[data-test-id=ingredient-details]").as("ingredientDetails");
 });
