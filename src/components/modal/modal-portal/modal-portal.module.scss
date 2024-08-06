@@ -1,5 +1,8 @@
+@use "../../../styles/variables";
+
 .portal {
   position: fixed;
+  z-index: variables.$modal-z-index;
   display: grid;
   inset: 0;
   place-content: center;

@@ -4,37 +4,32 @@ import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {
-  ROUTES,
-  STATUSES,
-  dispatchFormAction,
-  dispatchInputAction,
-} from "utils";
-import { loginActions, selectFormLogin } from "services";
+import type { IFormLoginInputs } from "utils";
+import { ROUTES, burgersApiController } from "utils";
 import { Navigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "hooks";
-import type { IFormLogin } from "services";
+import { useAppDispatch, useForm } from "hooks";
+import { profileActions } from "services";
 
 export const LoginPage: FC = () => {
-  const {
-    inputs: { email, password },
-    status,
-    message,
-  } = useAppSelector(selectFormLogin);
   const dispatch = useAppDispatch();
 
-  const handleSubmit = dispatchFormAction<IFormLogin>(
-    dispatch,
-    loginActions.submit,
-  )({ email, password });
-
-  const handleChange = dispatchInputAction(dispatch, loginActions.change);
-
-  const handeModalClose = () => {
-    dispatch(loginActions.resetMessage());
+  const loginSubmit = async (inputs: IFormLoginInputs) => {
+    const userData = await burgersApiController.login(inputs);
+    dispatch(profileActions.set(userData));
   };
 
-  const isPending = status === STATUSES.PENDING;
+  const {
+    handleChange,
+    handleSubmit,
+    isFulfilled,
+    isPending,
+    isRejected,
+    errorMessage,
+    values,
+    resetStatus,
+  } = useForm<IFormLoginInputs>({ email: "", password: "" }, loginSubmit);
+
+  const { email, password } = values;
 
   const buttonText = isPending ? "Заходим..." : "Войти";
 
@@ -42,22 +37,24 @@ export const LoginPage: FC = () => {
 
   return (
     <>
-      {status === STATUSES.FULFILLED && (
-        <Navigate to={ROUTES.ROOT} replace={true} />
-      )}
-      {status === STATUSES.REJECTED && (
-        <ModalRejected closeModalHandler={handeModalClose}>
-          {message}
+      {isFulfilled && <Navigate to={ROUTES.ROOT} replace={true} />}
+      {isRejected && (
+        <ModalRejected closeModalHandler={resetStatus}>
+          {errorMessage}
         </ModalRejected>
       )}
       <LF>
         <LF.Heading>Вход</LF.Heading>
         <LF.Form onSubmit={handleSubmit}>
-          <EmailInput name="email" value={email} onChange={handleChange} />
+          <EmailInput
+            name="email"
+            value={email}
+            onChange={handleChange("email")}
+          />
           <PasswordInput
             name="password"
             value={password}
-            onChange={handleChange}
+            onChange={handleChange("password")}
           />
           <LF.Button disabled={isButtonDisabled}>{buttonText}</LF.Button>
         </LF.Form>

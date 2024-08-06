@@ -13,7 +13,7 @@ export const LinkProfile = React.memo(() => {
     <AppLink
       Icon={ProfileIcon}
       label={profileLinkLabel}
-      to={ROUTES.PROFILE}
+      to={ROUTES.ORDERS}
       title="Личный кабинет"
     />
   );

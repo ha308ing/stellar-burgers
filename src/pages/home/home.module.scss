@@ -8,10 +8,10 @@
 
 .main {
   display: grid;
-  max-width: 100vw;
   align-items: normal;
-  gap: 3vw;
+  gap: clamp(1rem, 1rem + 1vh, 2rem) 3vw;
   grid-template: "ingredients" 1fr "summary" auto / 1fr;
+  max-inline-size: 100vw;
 }
 
 .heading {
@@ -32,6 +32,6 @@
   }
 
   .heading {
-    text-align: left;
+    text-align: start;
   }
 }

@@ -9,3 +9,4 @@ export { NotFoundPage } from "./not-found/not-found";
 export { OrderHistoryPage } from "./order-history/order-history";
 export { OrdersFeedPage } from "./orders-feed/orders-feed";
 export { IngredientPage } from "./ingredient/ingredient";
+export { OrdersInfoPage } from "./order-info/order-info";

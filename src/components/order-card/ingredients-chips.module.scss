@@ -1,0 +1,24 @@
+@use "../../styles/variables";
+
+$chips: 6;
+
+.container {
+  composes: custom_scroll from global;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-inline-end: -100px;
+}
+
+.chip {
+  flex-shrink: 0;
+}
+
+@for $i from 1 through $chips {
+  .chip:nth-child(#{$i}) {
+    z-index: variables.$ingredients-chips-z-index - $i;
+  }
+
+  .chip:nth-child(#{$i + 1}) {
+    transform: translateX($i * -20px);
+  }
+}

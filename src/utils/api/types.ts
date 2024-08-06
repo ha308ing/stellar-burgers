@@ -74,3 +74,32 @@ export interface IOrderInfo {
   orderName: TOrderName["name"];
   orderNumber: TOrderNumber["number"];
 }
+
+export interface IOrder {
+  _id: string;
+  ingredients: IIngredient["_id"][];
+  owner: string;
+  status: "done" | "created" | "pending";
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  number: number;
+}
+
+export interface IOrderInfoResponce {
+  success: boolean;
+  orders: IOrder[];
+}
+
+export interface IFormPasswordResetInputs
+  extends Pick<IUserDataPassword, "password"> {
+  token: string;
+}
+
+export interface IFormPasswordForgotInputs
+  extends Pick<IUserDataPassword, "email"> {}
+
+export interface IFormLoginInputs
+  extends Pick<IUserDataPassword, "email" | "password"> {}
+
+export interface IFormRegisterInputs extends IUserDataPassword {}

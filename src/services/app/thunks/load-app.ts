@@ -1,42 +1,34 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { STATUSES, burgersApiController } from "utils";
-import {
-  ingredientsActions,
-  profileActions,
-  formProfileActions,
-} from "services";
+import { ingredientsActions, profileActions } from "services";
 
-export const loadApp = createAsyncThunk(
-  "profile/loadApp",
-  async (_, thunkApi) => {
-    const { userInfo, ingredients } = await burgersApiController.loadApp();
+export const loadApp = createAsyncThunk("app/loadApp", async (_, thunkApi) => {
+  const { userInfo, ingredients } = await burgersApiController.loadApp();
 
-    if (isRejectedPromise(ingredients)) {
-      thunkApi.dispatch(
-        ingredientsActions.set({
-          status: STATUSES.REJECTED,
-          ingredients: [],
-        }),
-      );
-    } else if (isFulfilledPromise(ingredients)) {
-      thunkApi.dispatch(
-        ingredientsActions.set({
-          status: STATUSES.FULFILLED,
-          ingredients: ingredients.value,
-        }),
-      );
-    }
+  if (isRejectedPromise(ingredients)) {
+    thunkApi.dispatch(
+      ingredientsActions.set({
+        status: STATUSES.REJECTED,
+        ingredients: [],
+      }),
+    );
+  } else if (isFulfilledPromise(ingredients)) {
+    thunkApi.dispatch(
+      ingredientsActions.set({
+        status: STATUSES.FULFILLED,
+        ingredients: ingredients.value,
+      }),
+    );
+  }
 
-    if (isRejectedPromise(userInfo)) {
-      thunkApi.dispatch(profileActions.setMessage(userInfo.reason.message));
-    } else if (isFulfilledPromise(userInfo)) {
-      const { email, name } = userInfo.value;
+  if (isRejectedPromise(userInfo)) {
+    thunkApi.dispatch(profileActions.setMessage(userInfo.reason.message));
+  } else if (isFulfilledPromise(userInfo)) {
+    const { email, name } = userInfo.value;
 
-      thunkApi.dispatch(profileActions.set({ email, name }));
-      thunkApi.dispatch(formProfileActions.set({ email, name }));
-    }
-  },
-);
+    thunkApi.dispatch(profileActions.set({ email, name }));
+  }
+});
 
 function isRejectedPromise(
   promiseResult: PromiseSettledResult<unknown>,

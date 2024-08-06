@@ -4,15 +4,9 @@ import { ingredientsSlice } from "./ingredients";
 import { orderSlice } from "./order";
 import { burgerConstructorSlice } from "./burger-constructor";
 import { ingredientsTabsSlice } from "./ingredients-tabs";
-import {
-  formLoginSlice,
-  formRegisterSlice,
-  formProfileSlice,
-  formPasswordForgotSlice,
-  formPasswordResetSlice,
-} from "./forms";
 import { profileSlice } from "./profile";
 import { appSlice } from "./app";
+import { ordersFeedSlice, ordersHistorySlice } from "./feeds";
 
 type TAppReducer = ReturnType<typeof appReducer>;
 
@@ -23,13 +17,10 @@ const appReducer = combineSlices(
   orderSlice,
   burgerConstructorSlice,
   ingredientsTabsSlice,
-  formRegisterSlice,
-  formLoginSlice,
   profileSlice,
-  formProfileSlice,
-  formPasswordForgotSlice,
-  formPasswordResetSlice,
   appSlice,
+  ordersFeedSlice,
+  ordersHistorySlice,
 );
 
 const RESET_STORE = "RESET_STORE";

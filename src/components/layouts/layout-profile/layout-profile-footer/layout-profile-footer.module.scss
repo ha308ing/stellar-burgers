@@ -14,7 +14,7 @@ br {
 @media (min-width: variables.$breakpoint-md) {
   .footer {
     margin-block-start: 0;
-    text-align: left;
+    text-align: start;
   }
 
   br {

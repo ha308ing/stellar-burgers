@@ -12,15 +12,20 @@
 }
 
 .noIngredient {
-  width: 90%;
   padding: 1.5em;
   border-radius: 30px;
   margin: 0.5em 0 0.5em 2em;
   background: colors.$dark-blue-cc;
+  inline-size: 90%;
 }
 
 @media (min-width: variables.$breakpoint-md) {
   .innersContainer {
-    max-block-size: calc(100vh - 25em);
+    max-block-size: calc(100vh - 36rem);
+    min-block-size: 5rem;
+
+    &[data-isnoingredients="true"] {
+      min-block-size: 8rem;
+    }
   }
 }

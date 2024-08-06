@@ -1,12 +1,5 @@
-@use "../../../../styles/variables";
-
 .content {
-  padding-top: 3rem;
+  align-self: self-start;
   grid-area: content;
-}
-
-@media (min-width: variables.$breakpoint-md) {
-  .content {
-    padding-top: initial;
-  }
+  inline-size: 100%;
 }

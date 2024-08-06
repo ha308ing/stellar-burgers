@@ -9,13 +9,13 @@
 .ingredients {
   composes: custom_scroll from global;
   overflow: auto;
-  min-height: 50vh;
-  max-height: calc(100vh - 18rem);
-  padding-bottom: 3rem;
+  max-block-size: calc(100vh - 18rem);
+  min-block-size: 50vh;
+  padding-block-end: 3rem;
 }
 
 @media (min-width: variables.$breakpoint-md) {
   .ingredients {
-    padding-bottom: auto;
+    padding-block-end: auto;
   }
 }

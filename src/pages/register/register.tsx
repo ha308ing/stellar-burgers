@@ -4,52 +4,49 @@ import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {
-  ROUTES,
-  STATUSES,
-  dispatchFormAction,
-  dispatchInputAction,
-} from "utils";
-import { useAppDispatch, useAppSelector } from "hooks";
-import { registerActions, selectFormRegister } from "services";
+import { ROUTES, burgersApiController } from "utils";
+import { useAppDispatch, useForm } from "hooks";
+import { profileActions } from "services";
 import { Navigate } from "react-router-dom";
 import type { FC } from "react";
-import type { IFormRegisterState } from "services";
+import type { IFormRegisterInputs } from "utils";
 
 export const RegisterPage: FC = () => {
-  const {
-    inputs: { name, email, password },
-    status,
-    message,
-  } = useAppSelector(selectFormRegister);
   const dispatch = useAppDispatch();
 
-  const handleSubmit = dispatchFormAction<IFormRegisterState>(
-    dispatch,
-    registerActions.submit,
-  )({ name, email, password });
-
-  const handleChange = dispatchInputAction(dispatch, registerActions.change);
-
-  const handeModalClose = () => {
-    dispatch(registerActions.resetMessage());
+  const registerSubmit = async (formData: IFormRegisterInputs) => {
+    const response = await burgersApiController.register(formData);
+    dispatch(profileActions.set(response));
+    dispatch(profileActions.get());
   };
 
-  const buttonText =
-    status === STATUSES.PENDING ? "Регистрируемся..." : "Зарегистрироваться";
+  const {
+    handleChange,
+    handleSubmit,
+    isFulfilled,
+    isPending,
+    isRejected,
+    errorMessage,
+    values,
+    resetStatus,
+  } = useForm<IFormRegisterInputs>(
+    { email: "", name: "", password: "" },
+    registerSubmit,
+  );
+  const { email, name, password } = values;
 
-  const isButtonDisabled = status === STATUSES.PENDING;
+  const buttonText = isPending ? "Регистрируемся..." : "Зарегистрироваться";
+
+  const isButtonDisabled = isPending;
 
   return (
     <>
-      {status === STATUSES.REJECTED && (
-        <ModalRejected closeModalHandler={handeModalClose}>
-          {message}
+      {isRejected && (
+        <ModalRejected closeModalHandler={resetStatus}>
+          {errorMessage}
         </ModalRejected>
       )}
-      {status === STATUSES.FULFILLED && (
-        <Navigate to={ROUTES.ROOT} replace={true} />
-      )}
+      {isFulfilled && <Navigate to={ROUTES.ROOT} replace={true} />}
       <LF>
         <LF.Heading>Регистрация</LF.Heading>
         <LF.Form onSubmit={handleSubmit}>
@@ -57,13 +54,17 @@ export const RegisterPage: FC = () => {
             name="name"
             placeholder="Имя"
             value={name}
-            onChange={handleChange}
+            onChange={handleChange("name")}
           />
-          <EmailInput name="email" value={email} onChange={handleChange} />
+          <EmailInput
+            name="email"
+            value={email}
+            onChange={handleChange("email")}
+          />
           <PasswordInput
             name="password"
             value={password}
-            onChange={handleChange}
+            onChange={handleChange("password")}
           />
           <LF.Button disabled={isButtonDisabled}>{buttonText}</LF.Button>
         </LF.Form>

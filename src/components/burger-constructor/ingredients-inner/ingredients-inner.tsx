@@ -8,7 +8,10 @@ export const IngredientsInner: FC = () => {
   const { inner } = useAppSelector(selectBurger);
 
   return (
-    <div className={styles.innersContainer}>
+    <div
+      className={styles.innersContainer}
+      data-isnoingredients={inner.length === 0}
+    >
       {inner.length > 0 ? (
         inner.map((ingredient, index) => (
           <IngredientInner

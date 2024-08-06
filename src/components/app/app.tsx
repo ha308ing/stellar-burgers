@@ -13,11 +13,12 @@ import {
   IngredientDetailsModal,
   ModalIngredientsError,
   ModalPending,
+  OrderInfoModal,
 } from "components";
-import { ROUTES, STATUSES } from "utils";
+import { ROUTES } from "utils";
 import {
   appActions,
-  selectLoadingStatus,
+  selectAppLoadingStatus,
   selectIngredientsStatus,
 } from "services";
 import { MEDIA_QUERY_MD } from "config";
@@ -27,7 +28,7 @@ export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const { isNoIngredients } = useAppSelector(selectIngredientsStatus);
-  const appLoadingStatus = useAppSelector(selectLoadingStatus);
+  const { isPending } = useAppSelector(selectAppLoadingStatus);
 
   useEffect(() => {
     dispatch(appActions.load());
@@ -87,14 +88,23 @@ export const App = (): JSX.Element => {
           />
         ),
       },
+      { path: ROUTES.ORDER, element: <Pages.OrdersInfoPage /> },
+      { path: ROUTES.ORDER_FEED, element: <Pages.OrdersInfoPage /> },
       { path: ROUTES.ORDERS_FEED, element: <Pages.OrdersFeedPage /> },
       { path: ROUTES.INGREDIENT, element: <Pages.IngredientPage /> },
       {
         path: ROUTES.PROFILE,
         element: <OnlyAuthorizedElement element={<Pages.ProfilePage />} />,
         children: [
-          { index: true, element: <Pages.ProfileEditPage /> },
-          { path: ROUTES.ORDERS, element: <Pages.OrderHistoryPage /> },
+          {
+            path: ROUTES.PROFILE,
+            element: <Pages.ProfileEditPage />,
+          },
+          {
+            index: true,
+            path: ROUTES.ORDERS,
+            element: <Pages.OrderHistoryPage />,
+          },
         ],
       },
       { path: "*", element: <Pages.NotFoundPage /> },
@@ -102,8 +112,7 @@ export const App = (): JSX.Element => {
     background || location,
   );
 
-  if (!appLoadingStatus || appLoadingStatus === STATUSES.PENDING)
-    return <ModalPending>грузим приложение</ModalPending>;
+  if (isPending) return <ModalPending>грузим приложение</ModalPending>;
 
   if (isNoIngredients) return <ModalIngredientsError />;
 
@@ -117,6 +126,8 @@ export const App = (): JSX.Element => {
             path={ROUTES.INGREDIENT}
             element={<IngredientDetailsModal />}
           />
+          <Route path={ROUTES.ORDER} element={<OrderInfoModal />} />
+          <Route path={ROUTES.ORDER_FEED} element={<OrderInfoModal />} />
         </Routes>
       )}
     </>

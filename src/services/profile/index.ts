@@ -4,6 +4,7 @@ import { initialState } from "./initial-state";
 import { get, logout } from "./thunks";
 import type { IUserDataPassword } from "utils";
 import { STATUSES } from "utils";
+import * as selectors from "./selectors";
 
 export const profileSlice = createSlice({
   name: "profile",
@@ -32,6 +33,7 @@ export const profileSlice = createSlice({
     },
   },
   selectors: {
+    ...selectors,
     selectName: (state) => state.user?.name ?? null,
   },
   extraReducers: (builder) => {
@@ -66,7 +68,7 @@ export const profileSlice = createSlice({
 
 export const { selectSlice: selectProfile } = profileSlice;
 export const profileActions = { ...profileSlice.actions, get, logout };
-export const { selectName } = profileSlice.selectors;
+export const { selectName, selectLogoutStatus } = profileSlice.selectors;
 
 function getNewValue<
   S extends P | null,
