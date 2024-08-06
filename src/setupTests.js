@@ -6,6 +6,7 @@
 import "@testing-library/jest-dom";
 import "mocks/fetch-mock";
 import "mocks/localstorage-mock";
+import "mocks/nanoid-mock";
 
 afterEach(() => {
   jest.restoreAllMocks();
