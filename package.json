@@ -44,7 +44,10 @@
     "cypress:open": "cypress open cache clear '--' --e2e -b electron",
     "cypress:run": "cypress run -- --e2e -b electron",
     "cypress:build": "cross-env BROWSER=NONE run-p start:build cypress:open",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "image:build": "docker build --pull --rm -f Dockerfile -t \"stellar-burgers:latest\" .",
+    "image:run": "docker run --rm -it -p 80:80/tcp \"stellar-burgers:latest\"",
+    "image:rund": "docker run --rm -d -p 80:80/tcp \"stellar-burgers:latest\""
   },
   "eslintConfig": {
     "extends": [
