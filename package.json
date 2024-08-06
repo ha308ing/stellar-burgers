@@ -30,14 +30,21 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "test": "react-scripts test --watchAll=false",
+    "test:ui": "cross-env BROWSER=NONE run-p start cypress:open",
     "lint": "run-p prettier eslint stylelint",
+    "start:build": "run-s build serve",
     "stylelint": "stylelint \"./src/**/*.{css,scss}\"",
     "prettier": "prettier ./src --check",
     "eslint": "eslint ./src",
     "serve": "serve -s build",
-    "start-prod": "run-s build serve"
+    "test:watch": "npm run test",
+    "test:verbose": "npm run test -- --verbose",
+    "test:coverage": "npm run test -- --coverage",
+    "cypress:open": "cypress open cache clear '--' --e2e -b electron",
+    "cypress:run": "cypress run -- --e2e -b electron",
+    "cypress:build": "cross-env BROWSER=NONE run-p start:build cypress:open",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
