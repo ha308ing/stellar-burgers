@@ -11,8 +11,14 @@ export const LayoutFormButton: FC<IProps> = ({
   children,
   type = "submit",
   disabled = false,
+  ...props
 }) => (
-  <Button extraClass={styles.button} disabled={disabled} htmlType={type}>
+  <Button
+    extraClass={styles.button}
+    disabled={disabled}
+    htmlType={type}
+    {...props}
+  >
     {children}
   </Button>
 );

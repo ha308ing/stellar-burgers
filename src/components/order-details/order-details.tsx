@@ -11,7 +11,7 @@ export const OrderDetails: FC = () => {
   const location = useLocation();
 
   return (
-    <section className={styles.container}>
+    <section className={styles.container} data-test-id="order-details">
       <span className={styles.subHeader}>{orderName}</span>
       <h1 className={styles.header}>
         <Link

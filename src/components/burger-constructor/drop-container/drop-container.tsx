@@ -31,6 +31,7 @@ export const DropContainer: FC<IProps> = ({
     <div
       className={`${styles.dropContainer} ${type === "top" ? styles.dropContainer_top : type === "bottom" ? styles.dropContainer_bottom : styles.dropContainer_middle} ${canDrop ? styles.canDrop : ""} ${isOver ? styles.isOver : ""}`}
       ref={dropRef}
+      data-test-id={`drop-container-${type}`}
     >
       {children}
     </div>

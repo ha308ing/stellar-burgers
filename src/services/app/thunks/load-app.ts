@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { STATUSES, burgersApiController } from "utils";
-import { ingredientsActions, profileActions } from "services";
+import { ingredientsActions } from "services/ingredients";
+import { profileActions } from "services/profile";
 
 export const loadApp = createAsyncThunk("app/loadApp", async (_, thunkApi) => {
   const { userInfo, ingredients } = await burgersApiController.loadApp();

@@ -19,7 +19,7 @@ export const BurgerIngredientDrag: FC<IProps> = ({ ingredient }) => {
   });
 
   return (
-    <section ref={dragRef}>
+    <section ref={dragRef} data-test-id={`drag-ingredient-${ingredient._id}`}>
       <BurgerIngredientLink ingredient={ingredient} />
     </section>
   );

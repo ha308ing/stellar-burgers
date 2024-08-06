@@ -11,7 +11,7 @@ export const IngredientDetails: FC<IProps> = ({ ingredient }) => {
     ingredient;
 
   return (
-    <section className={styles.container}>
+    <section className={styles.container} data-test-id="ingredient-details">
       <h1 className={styles.title}>Детали ингридиента</h1>
       <div className={styles.smallerWidth}>
         <img src={image_large} className={styles.image} alt={name} />

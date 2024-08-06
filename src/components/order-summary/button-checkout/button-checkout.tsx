@@ -17,6 +17,7 @@ export const ButtonCheckout: FC = () => {
       size="medium"
       htmlType="button"
       onClick={handleClick}
+      data-test-id="button-checkout"
     >
       Оформить заказ
     </Button>

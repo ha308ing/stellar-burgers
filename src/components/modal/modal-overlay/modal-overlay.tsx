@@ -6,5 +6,9 @@ interface IProps {
 }
 
 export const ModalOverlay: FC<IProps> = ({ closeModalHandler }) => (
-  <div className={styles.container} onClick={closeModalHandler}></div>
+  <div
+    className={styles.container}
+    onClick={closeModalHandler}
+    data-test-id="modal-overlay"
+  ></div>
 );
