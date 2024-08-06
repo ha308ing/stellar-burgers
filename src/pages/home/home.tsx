@@ -29,7 +29,7 @@ const Main = withMobile(MainDesktop, MainMobile);
 
 export const HomePage: FC = () => (
   <>
-    <LayoutMain title="Соберите бургер 🍔">
+    <LayoutMain title="Соберите бургер">
       <main className={styles.main}>
         <Main />
       </main>
