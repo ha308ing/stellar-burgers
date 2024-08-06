@@ -11,7 +11,10 @@ export const Modal: FC<IProps> = ({ children, closeModalHandler = null }) => (
   <section className={styles.container}>
     <section className={styles.content}>{children}</section>
     {closeModalHandler && (
-      <div className={styles.closeIconContainer}>
+      <div
+        className={styles.closeIconContainer}
+        data-test-id="modal-button-close"
+      >
         <CloseIcon onClick={closeModalHandler} type="primary" />
       </div>
     )}

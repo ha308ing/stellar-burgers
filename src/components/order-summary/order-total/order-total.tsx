@@ -8,7 +8,7 @@ export const OrderTotal: FC = () => {
   const total = useAppSelector(selectBurgerTotal);
 
   return (
-    <div className={styles.total}>
+    <div className={styles.total} data-test-id="order-total">
       {total} <CurrencyIcon type="primary" />
     </div>
   );

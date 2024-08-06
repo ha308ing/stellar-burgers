@@ -1,0 +1,103 @@
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "bun0",
+      "name": "Булка 1",
+      "type": "bun",
+      "proteins": 80,
+      "fat": 24,
+      "carbohydrates": 53,
+      "calories": 420,
+      "price": 1,
+      "image": "https://code.s3.yandex.net/react/code/bun-02.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "main0",
+      "name": "Начинка 1",
+      "type": "main",
+      "proteins": 420,
+      "fat": 142,
+      "carbohydrates": 242,
+      "calories": 4242,
+      "price": 1,
+      "image": "https://code.s3.yandex.net/react/code/meat-01.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/meat-01-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/meat-01-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "sauce0",
+      "name": "Соус 1",
+      "type": "sauce",
+      "proteins": 30,
+      "fat": 20,
+      "carbohydrates": 40,
+      "calories": 30,
+      "price": 1,
+      "image": "https://code.s3.yandex.net/react/code/sauce-02.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/sauce-02-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-02-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "main1",
+      "name": "Начинка 2",
+      "type": "main",
+      "proteins": 433,
+      "fat": 244,
+      "carbohydrates": 33,
+      "calories": 420,
+      "price": 1,
+      "image": "https://code.s3.yandex.net/react/code/meat-02.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/meat-02-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/meat-02-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "bun1",
+      "name": "Булка 2",
+      "type": "bun",
+      "proteins": 44,
+      "fat": 26,
+      "carbohydrates": 85,
+      "calories": 643,
+      "price": 1,
+      "image": "https://code.s3.yandex.net/react/code/bun-01.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/bun-01-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/bun-01-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "sauce1",
+      "name": "Соус 2",
+      "type": "sauce",
+      "proteins": 42,
+      "fat": 24,
+      "carbohydrates": 42,
+      "calories": 99,
+      "price": 1,
+      "image": "https://code.s3.yandex.net/react/code/sauce-03.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/sauce-03-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-03-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "sauce2",
+      "name": "Соус 3",
+      "type": "sauce",
+      "proteins": 101,
+      "fat": 99,
+      "carbohydrates": 100,
+      "calories": 100,
+      "price": 1,
+      "image": "https://code.s3.yandex.net/react/code/sauce-01.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/sauce-01-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-01-large.png",
+      "__v": 0
+    }
+  ]
+}
