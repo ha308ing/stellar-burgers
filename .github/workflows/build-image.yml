@@ -1,4 +1,4 @@
-name: docker image on merge
+name: Build and push docker image
 
 on:
   push:
@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v2
-      - name: set lower case owner name
+      - name: Set lower case owner name
         run: |
           echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
         env:
           OWNER: "${{ github.repository_owner }}"
-      - name: set lower case repo name
+      - name: Set lower case repo name
         run: |
           echo "REPO_LC=${REPO,,}" >>${GITHUB_ENV}
         env:
@@ -38,4 +38,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ghcr.io/${{ env.OWNER_LC }}/${{ env.REPO_LC }}:${{ github.sha }}
+          tags: ghcr.io/${{ env.OWNER_LC }}/${{ env.REPO_LC }}:latest

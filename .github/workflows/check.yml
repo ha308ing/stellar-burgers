@@ -1,11 +1,6 @@
-name: check new code
+name: Check new code
 
-on:
-  pull_request:
-  push:
-    branches:
-      - master
-      - deploy-test
+on: [pull_request, push]
 
 jobs:
   eslint:
