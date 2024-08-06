@@ -2,6 +2,7 @@ import { thunk } from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 import { initialState } from "./initial-state";
 import { profileActions } from ".";
+import { email, name } from "mocks/data";
 
 const mockStore = configureMockStore([thunk]);
 const store = mockStore(initialState);
@@ -13,8 +14,8 @@ describe("test profile slice", () => {
 
   it("getUserInfo should set user info", () => {
     const user = {
-      email: "email",
-      name: "name",
+      email,
+      name,
     };
 
     jest.spyOn(global, "fetch").mockResolvedValue({

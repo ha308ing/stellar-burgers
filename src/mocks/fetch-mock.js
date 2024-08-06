@@ -1,15 +1,21 @@
 import { API } from "utils/api";
+import {
+  ordersData,
+  email,
+  name,
+  accessToken,
+  refreshToken,
+  orderName,
+  orderNumber,
+  ingredientsData,
+} from "./data";
 
 global.fetch = async function fetchMock(url, config) {
   const orderRegex = new RegExp(`^${API.ORDERS}/(\\d+)$`);
   const regexpResult = orderRegex.exec(url);
   if (regexpResult) {
     const orderNumber = regexpResult[1];
-    const orders = [
-      { number: 1, status: "created" },
-      { number: 2, status: "done" },
-      { number: 3, status: "pending" },
-    ].filter((o) => o.number === +orderNumber);
+    const orders = ordersData.filter((o) => o.number === +orderNumber);
 
     return {
       ok: true,
@@ -25,7 +31,7 @@ global.fetch = async function fetchMock(url, config) {
         ok: true,
         json: async () => ({
           success: true,
-          data: [],
+          data: ingredientsData,
         }),
       };
     }
@@ -41,8 +47,8 @@ global.fetch = async function fetchMock(url, config) {
               password,
               name,
             },
-            accessToken: "accessToken",
-            refreshToken: "refreshToken",
+            accessToken,
+            refreshToken,
           }),
         };
       } catch {
@@ -58,7 +64,7 @@ global.fetch = async function fetchMock(url, config) {
         ok: true,
         json: async () => ({
           success: true,
-          user: { email, password, name: "from-server" },
+          user: { email, password, name },
         }),
       };
     }
@@ -67,8 +73,8 @@ global.fetch = async function fetchMock(url, config) {
         ok: true,
         json: async () => ({
           success: true,
-          accessToken: "accessToken",
-          refreshToken: "refreshToken",
+          accessToken,
+          refreshToken,
         }),
       };
     }
@@ -77,7 +83,7 @@ global.fetch = async function fetchMock(url, config) {
         ok: true,
         json: async () => ({
           success: true,
-          user: { email: "user@ema.il", name: "username" },
+          user: { email, name },
         }),
       };
     }
@@ -91,9 +97,9 @@ global.fetch = async function fetchMock(url, config) {
       return {
         ok: true,
         json: async () => ({
-          name: "orderName",
+          name: orderName,
           order: {
-            number: 1,
+            number: orderNumber,
           },
         }),
       };

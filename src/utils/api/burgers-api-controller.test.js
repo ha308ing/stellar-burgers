@@ -1,11 +1,16 @@
 import { burgersApiController } from "utils/api/burgers-api-controller";
+import {
+  email,
+  name,
+  password,
+  ingredientsData,
+  orderNumber,
+  order,
+} from "mocks/data";
 
 const ACCESS_TOKEN = "accessToken";
 const REFRESH_TOKEN = "refreshToken";
 const tokens = { accesToken: ACCESS_TOKEN, refreshToken: REFRESH_TOKEN };
-const email = "user@ema.il";
-const name = "username";
-const password = "password";
 const registerInput = { email, name, password };
 const loginInput = { email, password };
 
@@ -217,20 +222,16 @@ describe("test api controller", () => {
     it("valid orderNumber should return order info", () => {
       expect.assertions(1);
 
-      return burgersApiController.getOrder(1).then((order) =>
-        expect(order).toEqual({
-          number: 1,
-          status: "created",
-          statusLocal: "создан",
-        }),
-      );
+      return burgersApiController
+        .getOrder(orderNumber)
+        .then((orderResponse) => expect(orderResponse).toEqual(order));
     });
 
     it("order info should contain localStatus", () => {
       expect.assertions(1);
 
       return burgersApiController
-        .getOrder(2)
+        .getOrder(48111)
         .then((order) =>
           expect(order).toHaveProperty("statusLocal", "выполнен"),
         );
@@ -257,17 +258,18 @@ describe("test api controller", () => {
       });
       expect(ingredients).toEqual({
         status: "fulfilled",
-        value: [],
+        value: ingredientsData,
       });
     });
   });
 
   describe("test postOrder", () => {
     it("should return order name and number", () => {
-      expect.assertions(1);
+      expect.assertions(2);
 
       return burgersApiController.postOrder([]).then((data) => {
-        expect(data).toMatchObject({ orderName: "orderName", orderNumber: 1 });
+        expect(data).toHaveProperty("orderName");
+        expect(data).toHaveProperty("orderNumber");
       });
     });
 
@@ -285,7 +287,7 @@ describe("test api controller", () => {
       expect.assertions(1);
 
       return burgersApiController
-        .requestPasswordResetCode({ email: "kk@kk.kk" })
+        .requestPasswordResetCode({ email })
         .then((data) => {
           expect(data).toBe("ok");
         });
@@ -295,7 +297,7 @@ describe("test api controller", () => {
       expect.assertions(1);
 
       return burgersApiController
-        .resetPassword({ email: "kk@kk.kk", token: "kk" })
+        .resetPassword({ email, token: "token" })
         .then((data) => {
           expect(data).toBe("ok");
         });

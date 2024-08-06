@@ -1,5 +1,6 @@
 import { initialState } from "./initial-state";
 import { burgerConstructorSlice, burgerConstructorActions } from "./index";
+import { ingredientsData, internalId } from "mocks/data";
 
 let currentState = initialState;
 
@@ -8,10 +9,10 @@ describe("test burger constructor slice", () => {
     currentState = {
       ...initialState,
       burger: {
-        bun: { type: "bun", internalId: "bun" },
+        bun: { ...ingredientsData[0], internalId: "bun" },
         inner: [
-          { type: "main", internalId: "id1" },
-          { type: "sauce", internalId: "id2" },
+          { ...ingredientsData[1], internalId: "id1" },
+          { ...ingredientsData[2], internalId: "id2" },
         ],
       },
     };
@@ -21,11 +22,7 @@ describe("test burger constructor slice", () => {
   describe("test addIngredient", () => {
     describe("test add bun ingredient", () => {
       it("should add internalId to props", () => {
-        const ingredient = {
-          _id: "643d69a5c3f7b9001cfa093c",
-          name: "Краторная булка N-200i",
-          type: "bun",
-        };
+        const ingredient = ingredientsData[0];
 
         expect(
           burgerConstructorSlice.reducer(
@@ -34,7 +31,7 @@ describe("test burger constructor slice", () => {
           ),
         ).toMatchObject({
           ...initialState,
-          burger: { bun: { ...ingredient, internalId: "nanoid" } },
+          burger: { bun: { ...ingredient, internalId } },
         });
       });
 
@@ -42,11 +39,7 @@ describe("test burger constructor slice", () => {
         const initialStateWithBun = {
           ...initialState,
           burger: {
-            bun: {
-              _id: "643d69a5c3f7b9001cfa093c",
-              name: "Краторная булка N-200i",
-              type: "bun",
-            },
+            bun: ingredientsData[0],
             inner: [],
           },
         };
@@ -65,17 +58,14 @@ describe("test burger constructor slice", () => {
           ...initialStateWithBun,
           burger: {
             ...initialStateWithBun.burger,
-            bun: { ...newBun, internalId: "nanoid" },
+            bun: { ...newBun, internalId },
           },
         });
       });
     });
     describe("test not bun ingredient", () => {
       it("should add to burger.inner array", () => {
-        const ingredient = {
-          _id: "643d69a5c3f7b9001cfa0942",
-          type: "sauce",
-        };
+        const ingredient = ingredientsData[2];
 
         expect(
           burgerConstructorSlice.reducer(
@@ -84,15 +74,12 @@ describe("test burger constructor slice", () => {
           ),
         ).toMatchObject({
           ...initialState,
-          burger: { inner: [{ ...ingredient, internalId: "nanoid" }] },
+          burger: { inner: [{ ...ingredient, internalId }] },
         });
       });
 
       it("should add burger.inner array with present ingredients", () => {
-        const currentIngredient = {
-          _id: "643d69a5c3f7b9001cfa0942",
-          type: "sauce",
-        };
+        const currentIngredient = { ...ingredientsData[2], internalId };
 
         const initialStateWithIngredient = {
           ...initialState,
@@ -102,10 +89,7 @@ describe("test burger constructor slice", () => {
           },
         };
 
-        const newIngredient = {
-          _id: "643d69a5c3f7b9001cfa0943",
-          type: "sauce",
-        };
+        const newIngredient = ingredientsData[3];
 
         expect(
           burgerConstructorSlice.reducer(
@@ -116,10 +100,7 @@ describe("test burger constructor slice", () => {
           ...initialStateWithIngredient,
           burger: {
             ...initialStateWithIngredient.burger,
-            inner: [
-              currentIngredient,
-              { ...newIngredient, internalId: "nanoid" },
-            ],
+            inner: [currentIngredient, { ...newIngredient, internalId }],
           },
         });
       });
