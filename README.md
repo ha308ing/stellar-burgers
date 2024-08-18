@@ -1,24 +1,57 @@
-# Stellar Burgers [![Netlify Status](https://api.netlify.com/api/v1/badges/0cdc7d13-db54-4edd-90fc-0d9a85ec95ff/deploy-status)](https://app.netlify.com/sites/starlit-wisp-9e886a/deploys)
+# Stellar Burgers [![Netlify Deploy](https://api.netlify.com/api/v1/badges/0cdc7d13-db54-4edd-90fc-0d9a85ec95ff/deploy-status?branch=master)](https://stellar-burgers-ha308ing.netlify.app/)
 
 React-приложение бургерной, с конструктором бургеров и лентой заказов.
 
 [макет](https://www.figma.com/design/zFGN2O5xktHl9VmoOieq5E/React-_-%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8_external_link?node-id=724-350&t=c3Vtvd1QyrQQygCF-4)
 
-# Скрипты
+# Деплой
 
-_Стандартные CRA_:
+- [netlify](https://stellar-burgers-ha308ing.netlify.app/)
+- _docker образ_:
+  - скачать / обновить образ:  
+    `docker pull ghcr.io/ha308ing/stellar-burgers:latest`
+  - запустить  
+    `docker run --rm -p 80:80 ghcr.io/ha308ing/stellar-burgers:latest`
+
+# Скрипты
 
 - `npm start` - dev-сервер
 - `npm run build` - сборка в директорию `build`
+- `npm run start:build` - сервер продуктовой сборки
+
+<br>
+
+_тесты_:
+
+- `npm run test` - тестирование хранилища, api
+  - `npm run test:watch` - запустить тесты в watch-режиме
+  - `npm run test:coverage` - с отображением покрытия
+  - `npm run test:verbose` - с подробным логом
+- `npm run test:ui` - тестирование ui (параллельно запускает dev-сервер приложения и cypress, нужно убедиться, что приложение запущено)
+  - `npm run cypress:build` - тестирование продуктовой сборки приложения (параллельно запускает сервер папки _build_ и cypress)
+  - `npm run cypress:run` - тестирование без интерфейса cypress (предварительно нужно запустить приложение)
 
 <br>
 
 _линтеры, форматтеры_:
 
-- `npm run eslint`
-- `npm run stylelint`
-- `npm run prettier`
-- `npm run lint` - все параллельно с [npm-run-all](https://www.npmjs.com/package/npm-run-all)
+- `npm run lint` - запустить все линтеры параллельно
+  - `npm run eslint`
+  - `npm run stylelint`
+  - `npm run prettier`
+
+# Спринт 6. Тестирование и деплой
+
+## Задачи
+
+- тестирование хранилища
+  - экшены, изменение состояния слайсов
+- тестирование ui
+  - сборка и оформление заказа
+  - взаимодействие с модальными окнами
+- тестирование контроллера api
+- деплой: [netlify](https://stellar-burgers-ha308ing.netlify.app/)
+  - github action для сборки docker образа [packages](https://github.com/ha308ing/stellar-burgers/pkgs/container/stellar-burgers)
 
 # Спринт 5. Лента заказов
 
@@ -92,19 +125,26 @@ _линтеры, форматтеры_:
 
 - инициализация проекта
 - сверстать основные компоненты главного экрана (конструктора бургеров)
-  - `AppHeader`
+  - `AppHeader`  
     ![](https://pictures.s3.yandex.net/resources/Untitled_1618657736.png)
-  - `BurgerIngredients`
+  - `BurgerIngredients`  
     ![](https://pictures.s3.yandex.net/resources/12Untitled_1618657778.png)
-  - `BurgerConstructor`
+  - `BurgerConstructor`  
     ![](https://pictures.s3.yandex.net/resources/Untitled_1618657801.png)
 
 # Что используется
 
-- create-react-app (css-modules, eslint) (`npx create-react-app stellar-burgers --template typescript`)
+- [create-react-app](https://create-react-app.dev/) (css-modules, [eslint](https://typescript-eslint.io/)) (`npx create-react-app stellar-burgers --template typescript`)
 - [ui библиотека](https://yandex-practicum.github.io/react-developer-burger-ui-components/docs/)
 - [sass](https://www.npmjs.com/package/sass)
 - [prettier](https://www.npmjs.com/package/prettier) ([eslint-config](https://www.npmjs.com/package/eslint-config-prettier))
 - [stylelint](https://www.npmjs.com/package/stylelint) (конфиги: [sass](stylelint-config-standard-scss), [idiomatic-order](stylelint-config-idiomatic-order), [css-modules](stylelint-config-css-modules))
 - [lefthook](https://www.npmjs.com/package/lefthook) (pre-commit, commit-msg)
 - [commitlint](https://www.npmjs.com/package/@commitlint/cli) (conventional commit [specs](https://www.conventionalcommits.org/), [config](https://www.npmjs.com/package/@commitlint/config-conventional))
+- [redux toolkit](https://redux-toolkit.js.org/)
+- [jest](https://jestjs.io/)
+- [cypress](https://www.cypress.io/)
+- utils:
+  - [npm-run-all](https://www.npmjs.com/package/npm-run-all) to run scripts
+  - [serve](https://www.npmjs.com/package/serve) to start server from dir
+  - [cross-env](https://www.npmjs.com/package/cross-env) to set env for scripts

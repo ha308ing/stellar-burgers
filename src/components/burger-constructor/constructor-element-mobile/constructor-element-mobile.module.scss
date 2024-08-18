@@ -21,13 +21,14 @@
   flex-flow: row nowrap;
   align-items: center;
   gap: 0.3ch;
-  margin-inline: auto 1.5ch;
+  margin-inline: auto 1ch;
 }
 
 .constructorElementMobile[data-islocked="true"] .price {
-  margin-inline-end: 3.1ch;
+  margin-inline-end: 1.2ch;
 }
 
 .delete {
   flex-shrink: 0;
+  margin-inline-end: 1ch;
 }
